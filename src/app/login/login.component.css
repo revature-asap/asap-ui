@@ -1,0 +1,11 @@
+#login-container {
+  padding: 5rem 10rem;
+}
+
+button{
+  margin-bottom: 10px;
+}
+
+#login-button, #login-spinner{
+  display: inline;
+}
