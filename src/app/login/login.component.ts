@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
     if(un === 'cspace' && pw === 'password'){
       this.loading = false;
       this.loginSuccess = true;
-      console.log('success')
+      await this.router.navigate(['']);
     }else{
       this.loginSuccess = false;
       this.loading = false;
