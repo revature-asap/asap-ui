@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from './models/user';
 
 @Component({
-  selector: 'app-registration',
+  selector: 'registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
