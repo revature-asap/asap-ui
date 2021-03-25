@@ -3,11 +3,18 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Asset } from '../models/asset';
 import {Observable} from 'rxjs';
 
+const httpOptions = {                                             
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class FinnhubService {
-
+  
   constructor(private http: HttpClient) { }
 
   api_url: string = "https://finnhub.io/api/v1/quote?symbol=AAPL&token=c1cepq748v6scqmqtk8g";

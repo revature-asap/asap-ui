@@ -1,17 +1,17 @@
 export class Asset {
     //{"c":120.59,"h":121.66,"l":119,"o":119.54,"pc":120.09,"t":1616702402}
-    open: number;
-    high: number;
-    low: number;
-    current: number;
-    prevClose: number;
+    o: number;
+    h: number;
+    l: number;
+    c: number;
+    pc: number;
 
     constructor(open: number, high: number, low: number, current: number, prevClose: number) {
-        this.open = open;
-        this.high = high;
-        this.low = low;
-        this.current = current;
-        this.prevClose = prevClose;
+        this.o = open;
+        this.h = high;
+        this.l = low;
+        this.c = current;
+        this.pc = prevClose;
     }
 }
 // o

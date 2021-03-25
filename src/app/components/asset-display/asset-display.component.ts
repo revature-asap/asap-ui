@@ -24,11 +24,11 @@ export class AssetDisplayComponent implements OnInit {
     console.log(1);
     this.asset = {
       
-      open : 0,
-      high : 0,
-      low : 0,
-      current : 0,
-      prevClose : 0
+      o : 0,
+      h : 0,
+      l : 0,
+      c : 0,
+      pc : 0
 
     };
     this.stockprice = 0;
@@ -36,8 +36,8 @@ export class AssetDisplayComponent implements OnInit {
       
       this.asset = asset;
       console.log(this.asset); //object - prototype object
-      console.log(this.asset.c); //undefined
-      this.stockprice = this.asset.current;
+      console.log(asset.c); //undefined
+      this.stockprice = this.asset.c;
       //this.asset = asset;
     });
   }
