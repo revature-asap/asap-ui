@@ -28,6 +28,7 @@ export class FinnhubService {
   //   ).toPromise();
   // }
   getQuote(ticker: string):Observable<Asset> {
+    console.log("in get quote with ticker: " + ticker);
     return this.http.get<Asset>(`${this.api_url}`);
   }
 

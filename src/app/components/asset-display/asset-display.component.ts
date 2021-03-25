@@ -13,7 +13,7 @@ export class AssetDisplayComponent implements OnInit {
  
   //const finnhub = require('finnhub');
 
-  stockname: string = "";
+  stockprice: number;
   asset: Asset;
  
   // const api_key = finnhub.ApiClient.instance.authentications['api_key']; 
@@ -21,6 +21,7 @@ export class AssetDisplayComponent implements OnInit {
   // const finnhubClient = new finnhub.DefaultApi()
   
   constructor(private finnhub: FinnhubService) { 
+    console.log(1);
     this.asset = {
       
       open : 0,
@@ -30,15 +31,20 @@ export class AssetDisplayComponent implements OnInit {
       prevClose : 0
 
     };
+    this.stockprice = 0;
+    this.finnhub.getQuote("IBM").subscribe(asset => {
+      
+      this.asset = asset;
+      console.log(this.asset); //object - prototype object
+      console.log(this.asset.c); //undefined
+      this.stockprice = this.asset.current;
+      //this.asset = asset;
+    });
   }
 
   ngOnInit(): void {
-    
-    this.finnhub.getQuote("IBM").subscribe(asset => {
-      this.asset = asset;
-      console.log(asset);
-      //this.asset = asset;
-    });
+    console.log(2);
+    console.log("nginit asset: " + this.asset);
     // const api_key = finnhub.ApiClient.instance.authentications['api_key']; 
     // api_key.apiKey = "c1cepq748v6scqmqtk8g" // Replace this
     // const finnhubClient = new finnhub.DefaultApi()
