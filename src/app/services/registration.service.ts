@@ -8,7 +8,7 @@ import { User } from '../components/registration/models/user';
   providedIn: 'root'
 })
 export class RegistrationService {
-  registerURL = '/register';
+  registerURL = '/users';
   constructor(private http: HttpClient) { }
 
   // post method
