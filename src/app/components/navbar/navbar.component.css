@@ -1,0 +1,12 @@
+.menu-spacer{
+    flex: 2 2 auto;
+}
+
+.route{
+    margin-right: 1em;
+}
+
+.icon{
+    position: relative;
+    top: .25em;
+}
