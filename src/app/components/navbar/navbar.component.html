@@ -7,16 +7,16 @@
     <div *ngIf = "!currentUser">
       <span *ngFor = "let puRoute of publicRoutes">
         <mat-icon class = "icon" aria-hidden="false" aria-label = "Example home icon">{{puRoute.routeSymbol}}</mat-icon>
-        <a class = "route" mat-button [routerLink] = "puRoute.routeLink">{{puRoute.routeName}}</a>  
+        <a color="warn" class = "route" mat-button [routerLink] = "puRoute.routeLink">{{puRoute.routeName}}</a>  
       </span>
     </div>
 
     <div *ngIf = "currentUser">
       <span *ngFor = "let prRoute of privateRoutes">
         <mat-icon class = "icon" aria-hidden="false" aria-label = "Example home icon">{{prRoute.routeSymbol}}</mat-icon>
-        <a class = "route" mat-button *ngIf = "prRoute.routeName != 'Logout'; else Logout" [routerLink] = "prRoute.routeLink">{{prRoute.routeName}}</a> 
+        <a color="warn" class = "route" mat-button *ngIf = "prRoute.routeName != 'Logout'; else Logout" [routerLink] = "prRoute.routeLink">{{prRoute.routeName}}</a> 
         <ng-template #Logout>
-          <a class = "route" mat-button (click) = "logout()">{{prRoute.routeName}}</a>
+          <a color="warn" class = "route" mat-button (click) = "logout()">{{prRoute.routeName}}</a>
         </ng-template> 
       </span>
     </div>
