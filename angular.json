@@ -30,7 +30,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              // "../node_modules/finnhub/dist.index.js"
+            ]
           },
           "configurations": {
             "production": {
