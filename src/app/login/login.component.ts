@@ -30,19 +30,20 @@ export class LoginComponent implements OnInit {
   }
 
   login = async () => {
+    this.submitted = true;
+
     if(this.loginForm.invalid){
       return;
     }
 
     this.loading = true;
-    this.submitted = true;
 
     let un = this.formFields.username.value;
     let pw = this.formFields.password.value;
 
     console.log('in loginComponent.login ', un, pw);
 
-    await this.delay(5000);
+    await this.delay(3000);
 
     if(un === 'cspace' && pw === 'password'){
       this.loading = false;
