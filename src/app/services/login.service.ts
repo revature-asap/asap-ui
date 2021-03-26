@@ -1,19 +1,28 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {map} from "rxjs/operators";
+import {Principal} from "../login/models/principal";
+import {BehaviorSubject, Observable} from "rxjs";
+import {Credentials} from "../login/models/credentials";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
+  private currentUserSubject: BehaviorSubject<Principal | null>;
+  currentUser$: Observable<Principal | null>;
   loginUrl = 'http://localhost:5000/users/login';
   token: string | null | undefined;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+    this.currentUserSubject = new BehaviorSubject<Principal | null>(null);
+    this.currentUser$ = this.currentUserSubject.asObservable();
+  }
 
   authenticate(un: string, pw: string): Promise<any> {
-    return this.httpClient.post(this.loginUrl, {un, pw}, {
+    let creds = new Credentials(un, pw);
+    return this.httpClient.post(this.loginUrl, creds, {
       headers: {
         'Content-Type': 'application/json'
       },
@@ -22,9 +31,15 @@ export class LoginService {
       map(resp => {
         const token = resp.headers.get('ASAP-token');
         this.setToken(token);
-        return this.token;
+        const principal = resp.body as Principal;
+        this.currentUserSubject.next(principal);
+        return principal;
       })
     ).toPromise();
+  }
+
+  get currentUserValue() {
+    return this.currentUserSubject.value;
   }
 
   setToken(token: string | null | undefined): void {

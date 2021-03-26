@@ -45,18 +45,14 @@ export class LoginComponent implements OnInit {
     let un = this.formFields.username.value;
     let pw = this.formFields.password.value;
 
-    console.log('in loginComponent.login ', un, pw);
-
-    await this.delay(3000);
-
     try{
       await this.loginService.authenticate(un, pw);
       this.loading = false;
       await this.router.navigate(['']);
     }catch (e){
-      console.log('Login failed!');
       console.error(e);
       this.loading = false;
+      this.loginSuccess = false;
     }
   }
 
