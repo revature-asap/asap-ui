@@ -9,12 +9,14 @@ import { User } from '../components/registration/models/user';
 })
 export class RegistrationService {
   // I think this is what it'll look like
-  registerURL = 'http://asap.us-east-2.elasticbeanstalk.com/users';
+  registerURL = 'http://localhost:5000/users';
   // registerURL = '/users';
   constructor(private http: HttpClient) { }
 
   // post method
-  registerAccount(user:User): Observable<User>{
+  register(user:User): Observable<User>{
+    console.log("registration service");
+
     return this.http.post<User>(this.registerURL,user);
   }
 
