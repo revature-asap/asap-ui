@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
-              //private loginService: LoginService
+              private loginService: LoginService
   ) {
 
     this.loginForm = this.formBuilder.group({
@@ -49,14 +49,14 @@ export class LoginComponent implements OnInit {
 
     await this.delay(3000);
 
-    if(un === 'cspace' && pw === 'password'){
+    try{
+      await this.loginService.authenticate(un, pw);
       this.loading = false;
-      this.loginSuccess = true;
       await this.router.navigate(['']);
-    }else{
-      this.loginSuccess = false;
+    }catch (e){
+      console.log('Login failed!');
+      console.error(e);
       this.loading = false;
-      console.log('invalid credentials');
     }
   }
 
