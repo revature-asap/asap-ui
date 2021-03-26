@@ -8,7 +8,8 @@ import { User } from '../components/registration/models/user';
   providedIn: 'root'
 })
 export class RegistrationService {
-  registerURL = '/register';
+  // I think this is what it'll look like
+  registerURL = 'http://asap.us-east-2.elasticbeanstalk.com/users';
   constructor(private http: HttpClient) { }
 
   // post method
