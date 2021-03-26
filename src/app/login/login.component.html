@@ -21,7 +21,7 @@
     </form>
 
     <form *ngIf="submitted && loginForm.invalid">
-      <mat-error>Please fill out both fields</mat-error>
+      <mat-error id="empty-form-error">Please fill out both fields</mat-error>
     </form>
 
     <div>
