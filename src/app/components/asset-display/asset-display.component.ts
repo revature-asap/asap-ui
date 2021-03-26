@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Asset } from 'src/app/models/asset';
+import { Candle } from 'src/app/models/candle';
 import { FinnhubService } from '../../services/finnhub.service'
-declare var finnhub: any;
+
 // import * as Finnhub from '../../../assets/f'
 
 @Component({
@@ -15,6 +16,7 @@ export class AssetDisplayComponent implements OnInit {
 
   stockprice: number;
   asset: Asset;
+  candle: Candle[];
  
   // const api_key = finnhub.ApiClient.instance.authentications['api_key']; 
   // api_key.apiKey = "c1cepq748v6scqmqtk8g" // Replace this
@@ -40,6 +42,13 @@ export class AssetDisplayComponent implements OnInit {
       this.stockprice = this.asset.c;
       //this.asset = asset;
     });
+
+    this.candle = [];
+    this.finnhub.getCandle("IBM", "D", "1572651390", "1575243390").subscribe(candle => {
+      this.candle = candle;
+      console.log("candle :" + JSON.stringify(this.candle));
+    });
+
   }
 
   ngOnInit(): void {
