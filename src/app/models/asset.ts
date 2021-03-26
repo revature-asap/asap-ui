@@ -11,7 +11,7 @@ export class Asset {
         this.h = high;
         this.l = low;
         this.c = current;
-        this.pc = prevClose;
+        this.pc= prevClose;
     }
 }
 // o
