@@ -1,31 +1,46 @@
-<h2>Register new user</h2>
-<div>
-    <label for="username">Username</label>
-    <input id ="username" [(ngModel)]="newUser.username" placeholder="username">
-</div>
-<div>
-    <label for="password">Password</label>
-    <input id ="password" type="password" [(ngModel)]="newUser.password" placeholder="password">
-</div>
-<div>
-    <label for="firstname">First Name</label>
-    <input id ="firstname" [(ngModel)]="newUser.firstname" placeholder="first name">
-</div>
-<div>
-    <label for="lastname">Last Name</label>
-    <input id ="lastname" [(ngModel)]="newUser.lastname" placeholder="last name">
-</div>
-<div>
-    <label for="email">Email</label>
-    <input id ="email" type="email" [(ngModel)]="newUser.email" placeholder="email">
-</div>
-<div>
-    <label for="role">Role</label>
-    <input id ="role" [(ngModel)]="newUser.role" placeholder="role">
-</div>
-<div>
-    <button type="button" (click)="register()">Register User</button>
-</div>
-<div *ngIf="errorMessage" id="error">
-    All fields need to be filled out
-</div>
+<form id="registrationForm">
+    <h2>Register new user</h2>
+    <div>
+        <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="username" name="username" [(ngModel)]="newUser.username">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput type="password" name="password" placeholder="password" [(ngModel)]="newUser.password">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input matInput placeholder="firstname" name="firstname" [(ngModel)]="newUser.firstname">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input matInput placeholder="lastname" name="lastname" [(ngModel)]="newUser.lastname">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field> 
+            <mat-label>Email</mat-label>
+            <input matInput type="email" name="email" placeholder="email" [(ngModel)]="newUser.email">
+        </mat-form-field>
+    </div>
+    <!--
+        <div>
+        <mat-form-field>
+            <mat-label>Role</mat-label>
+            <input matInput name="role" placeholder="role" [(ngModel)]="newUser.role">
+        </mat-form-field>
+    </div>-->
+    <div>
+        <button mat-raised-button color="primary" (click)="register()">Register User</button>
+    </div>
+    <div *ngIf="errorMessage" id="error">
+        All fields need to be filled out
+    </div>
+</form>

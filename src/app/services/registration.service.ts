@@ -10,6 +10,7 @@ import { User } from '../components/registration/models/user';
 export class RegistrationService {
   // I think this is what it'll look like
   registerURL = 'http://asap.us-east-2.elasticbeanstalk.com/users';
+  // registerURL = '/users';
   constructor(private http: HttpClient) { }
 
   // post method

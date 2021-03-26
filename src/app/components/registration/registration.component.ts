@@ -27,7 +27,7 @@ export class RegistrationComponent implements OnInit {
 
   register() {
     if (!this.newUser.username || !this.newUser.password || !this.newUser.firstname ||
-      !this.newUser.lastname || !this.newUser.email || !this.newUser.role)  {
+      !this.newUser.lastname || !this.newUser.email)  {
       this.errorMessage = 'All fields must be filled out';
       return;
     }
