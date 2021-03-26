@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginComponent } from './login.component';
-import {LoginService} from "../services/login.service";
+import {LoginService} from "../../services/login.service";
 import {Router} from "@angular/router";
 import {ReactiveFormsModule} from "@angular/forms";
 import {By} from "@angular/platform-browser";
