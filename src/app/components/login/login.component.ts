@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
 
   //TODO add the actual register route, if not from navbar
   register = async () => {
-    await this.router.navigate(['']);
+    await this.router.navigate(['register']);
   }
 
   ngOnInit(): void {
