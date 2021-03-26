@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Asset } from '../models/asset';
-import { Candle } from '../models/candle';
+import { assetQuote } from '../models/assetQuote';
+import { assetCandle } from '../models/assetCandle';
 
 import {Observable} from 'rxjs';
 import { Time } from '@angular/common';
@@ -9,6 +9,7 @@ import { Time } from '@angular/common';
 const httpOptions = {                                             
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
+    // 'X-Finnhub-Token': 'c1ceppv48v6scqmqtk5g'
   })
 }
 
@@ -20,23 +21,24 @@ export class FinnhubService {
   
   constructor(private http: HttpClient) { }
 
-  api_url: string = "https://finnhub.io/api/v1/quote?symbol=AAPL?resolution=D?from=&token=c1cepq748v6scqmqtk8g";
-  quoteUrl: string = "https://finnhub.io/api/v1/quote?symbol=";
-  candleUrl: string = "https://finnhub.io/api/v1/stock/candle?symbol=";
-  tokenUrl: string = "&token=c1cepq748v6scqmqtk8g";
+  api_url: string = "https://finnhub.io/api/v1";
+  quoteUrl: string = "/quote?symbol=";
+  candleUrl: string = "/stock/candle?symbol=";
   
-  getQuote(ticker: string):Observable<Asset> {
+  token:string = "&token=c1ceppv48v6scqmqtk5g"
+  
+  getQuote(ticker: string):Observable<assetQuote> {
     console.log("in get quote with ticker: " + ticker);
-    return this.http.get<Asset>(`${this.quoteUrl + ticker + this.tokenUrl}`);
+    return this.http.get<assetQuote>(`${this.api_url + this.quoteUrl + ticker + this.token}`);
   }
 
-  getCandle(ticker: string, resolution: string, start: string, end: string):Observable<Candle[]> {
+  getCandle(ticker: string, resolution: string, start: string, end: string):Observable<assetCandle[]> {
     console.log("in get candle with ticker: " + ticker);
     resolution = "&resolution=" + resolution;
     start = "&from=" + start;
     end = "&to=" + end;
-    console.log("URL on getCandle: " + this.candleUrl + ticker + resolution + start + end + this.tokenUrl);
-    return this.http.get<Candle[]>(`${this.candleUrl + ticker + resolution + start + end + this.tokenUrl}`);
+    console.log("URL on getCandle: " + this.api_url + this.candleUrl + resolution + start + end);
+    return this.http.get<assetCandle[]>(`${this.api_url + this.candleUrl + ticker + resolution + start + end + this.token}`);
   }
 
 
