@@ -17,6 +17,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import { AssetDisplayComponent } from './components/asset-display/asset-display.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegistrationComponent } from './components/registration/registration.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { RegistrationComponent } from './components/registration/registration.co
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    // BrowserAnimationsModule,
+    BrowserAnimationsModule,
     MatInputModule,
     MatProgressSpinnerModule,
     MatFormFieldModule,
