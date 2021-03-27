@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { assetQuote } from '../models/assetQuote';
 import { assetCandle } from '../models/assetCandle';
+import { finnhubAssetProfile } from 'src/app/models/finnhubAssetProfile';
 
 import {Observable} from 'rxjs';
 import { Time } from '@angular/common';
@@ -24,6 +25,7 @@ export class FinnhubService {
   api_url: string = "https://finnhub.io/api/v1";
   quoteUrl: string = "/quote?symbol=";
   candleUrl: string = "/stock/candle?symbol=";
+  finnhubProfileUrl: string = "/stock/profile2?symbol=";
   
   token:string = "&token=c1ceppv48v6scqmqtk5g"
   
@@ -37,9 +39,14 @@ export class FinnhubService {
     resolution = "&resolution=" + resolution;
     start = "&from=" + start;
     end = "&to=" + end;
-    console.log("URL on getCandle: " + this.api_url + this.candleUrl + resolution + start + end);
+    console.log("URL on getCandle: " + this.api_url + this.candleUrl + ticker + resolution + start + end + this.token);
     return this.http.get<assetCandle[]>(`${this.api_url + this.candleUrl + ticker + resolution + start + end + this.token}`);
   }
 
+  getFinnhubProfile(ticker: string):Observable<finnhubAssetProfile> {
+    console.log("in get profile with ticker: " + ticker);
+    console.log("URL on getProfile: " + this.api_url + this.finnhubProfileUrl + ticker + this.token);
+    return this.http.get<finnhubAssetProfile>(`${this.api_url + this.finnhubProfileUrl + ticker + this.token}`);
+  }
 
 }

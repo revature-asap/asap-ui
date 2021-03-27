@@ -19,6 +19,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { TickerCardComponent } from './components/ticker-card/ticker-card.component';
+import { AssetCandleChartComponent } from './components/asset-candle-chart/asset-candle-chart.component';
+import { AssetCompanyProfileComponent } from './components/asset-company-profile/asset-company-profile.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { TickerCardComponent } from './components/ticker-card/ticker-card.compon
     AssetDisplayComponent,
     NavbarComponent,
     RegistrationComponent,
-    TickerCardComponent
+    TickerCardComponent,
+    AssetCandleChartComponent,
+    AssetCompanyProfileComponent
   ],
   imports: [
     BrowserModule,
