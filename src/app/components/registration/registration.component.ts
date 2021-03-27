@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user';
 import { RegistrationService } from '../../services/registration.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'registration',
@@ -20,7 +21,7 @@ export class RegistrationComponent implements OnInit {
 
   errorMessage = '';
 
-  constructor(private registrationService: RegistrationService) { }
+  constructor(private registrationService: RegistrationService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     
@@ -35,10 +36,38 @@ export class RegistrationComponent implements OnInit {
     
     this.registrationService.register(this.newUser)
                             .subscribe(user => {
-                              console.log("you will recive the email shortly " + user);
+                              this.openModal();
                             });
     console.log("registration component");
     this.errorMessage = '';
   }
 
+  openModal(): void {
+    const dialogRef = this.dialog.open(RegisterEmailConfirmationDialog, {
+      width: "20%",
+      height: "20%" 
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log("email dialog closed");
+      this.newUser.username = '';
+      this.newUser.firstName = '';
+      this.newUser.lastName = '';
+      this.newUser.password = '';
+      this.newUser.email = '';
+    });
+  }
+
+}
+
+@Component({
+  selector: 'register-email-confirmation-dialog',
+  templateUrl: 'register.email.confirmation.dialog.html'
+})
+export class RegisterEmailConfirmationDialog {
+  constructor(public dialogRef: MatDialogRef<RegisterEmailConfirmationDialog>) {}
+
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
 }
