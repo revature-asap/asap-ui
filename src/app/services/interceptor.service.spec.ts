@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { InterceptorService } from './interceptor.service';
 import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {HttpClient} from "@angular/common/http";
 
 describe('InterceptorService', () => {
   let service: InterceptorService;
