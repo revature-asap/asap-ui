@@ -28,9 +28,9 @@ export class AssetDisplayComponent implements OnInit {
     this.stockprice = 0;
     this.finnhub.getQuote("IBM").subscribe(a => {
       // this.asset.updateQuote(a);
-      console.log(this.asset); //object - prototype object
-      console.log(this.asset.current); //undefined
-      this.stockprice = this.asset.current;
+      // console.log(this.asset); //object - prototype object
+      // console.log(this.asset.current); //undefined
+      // this.stockprice = this.asset.current;
       //this.asset = asset;
     });
 

@@ -8,3 +8,7 @@
   .card {
     flex: 0 0 auto;
   }
+
+  .space {
+    margin-right: 1em;
+  }

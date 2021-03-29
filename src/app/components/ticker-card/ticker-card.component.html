@@ -1,5 +1,15 @@
-<div >
+<mat-card class="ticker-display">
 
-<p>{{ticker}}</p>
+    <mat-card-header>
+        <mat-card-title >{{asset.companyName}}</mat-card-title>
+        
+        <mat-card-subtitle [ngStyle]="tickerBackground">{{asset.companyTicker}}</mat-card-subtitle>
+    </mat-card-header>
 
-</div>
+    <mat-card-content>
+        <p>Current: {{asset.current | currency}}</p>
+        <p>Changed: {{change | number: '2.1-2'}}</p>
+        
+    </mat-card-content>
+
+</mat-card>

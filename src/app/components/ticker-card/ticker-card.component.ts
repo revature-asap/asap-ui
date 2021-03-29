@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
+import { assetProfile } from 'src/app/models/assetProfile';
 import { assetQuote } from '../../models/assetQuote.model'
 
 @Component({
@@ -7,10 +8,20 @@ import { assetQuote } from '../../models/assetQuote.model'
   styleUrls: ['./ticker-card.component.css']
 })
 export class TickerCardComponent implements OnInit {
-  @Input() ticker!: assetQuote;
+  @Input() asset!: assetQuote;
+  @Input() companyName!: assetProfile;
+  @Input() change!: number;
+ 
+  tickerBackground = {};
+
   constructor() { }
 
   ngOnInit(): void {
+    this.tickerBackground = {
+        'background-color': 'blue'
+
+    };
+
   }
 
 }

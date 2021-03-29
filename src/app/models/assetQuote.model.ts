@@ -6,6 +6,8 @@ export class assetQuote {
     low: number; //Low price of the day
     current: number; //Current price
     previousClose: number; //Previous close price
+    companyTicker!: string;
+    companyName!: string;
 
     constructor(asset: any){
         this.open = asset.o;
@@ -14,7 +16,6 @@ export class assetQuote {
         this.current = asset.c;
         this.previousClose = asset.pc;
     }
-
     // updateQuote() {
     //     this.open = asset.o;
     //     this.high = asset.h;

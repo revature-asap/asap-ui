@@ -20,7 +20,9 @@ import { RegistrationComponent } from './components/registration/registration.co
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { TickerCardComponent } from './components/ticker-card/ticker-card.component';
 import { HomeComponent } from './components/pages/home/home.component';
-import { TickerContainerComponent } from './ticker-container/ticker-container.component';
+import { TickerContainerComponent } from './components/ticker-container/ticker-container.component';
+import {MatCardModule} from '@angular/material/card';
+
 
 @NgModule({
   declarations: [
@@ -48,7 +50,7 @@ import { TickerContainerComponent } from './ticker-container/ticker-container.co
     MatProgressSpinnerModule,
     MatFormFieldModule,
     FormsModule,
-    // NoopAnimationsModule
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

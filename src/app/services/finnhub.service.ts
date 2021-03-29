@@ -5,6 +5,7 @@ import { assetCandle } from '../models/assetCandle';
 
 import {Observable} from 'rxjs';
 import { Time } from '@angular/common';
+import { assetProfile } from '../models/assetProfile';
 
 const httpOptions = {                                             
   headers: new HttpHeaders({
@@ -24,12 +25,18 @@ export class FinnhubService {
   api_url: string = "https://finnhub.io/api/v1";
   quoteUrl: string = "/quote?symbol=";
   candleUrl: string = "/stock/candle?symbol=";
+  profileUrl: string = "/stock/profile2?symbol=";
   
   token:string = "&token=c1ceppv48v6scqmqtk5g"
   
   getQuote(ticker: string):Observable<assetQuote> {
     console.log("in get quote with ticker: " + ticker);
     return this.http.get<assetQuote>(`${this.api_url + this.quoteUrl + ticker + this.token}`);
+  }
+
+  getName(ticker: string):Observable<assetProfile> {
+    console.log("in get quote with ticker: " + ticker);
+    return this.http.get<assetProfile>(`${this.api_url + this.profileUrl + ticker + this.token}`);
   }
 
   getCandle(ticker: string, resolution: string, start: string, end: string):Observable<assetCandle[]> {
