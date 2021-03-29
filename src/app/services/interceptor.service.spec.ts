@@ -1,10 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 
-import { FinnhubService } from './finnhub.service';
+import { InterceptorService } from './interceptor.service';
 import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {HttpClient} from "@angular/common/http";
 
-describe('FinnhubService', () => {
-  let service: FinnhubService;
+describe('InterceptorService', () => {
+  let service: InterceptorService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -12,7 +13,7 @@ describe('FinnhubService', () => {
         HttpClientTestingModule
       ]
     });
-    service = TestBed.inject(FinnhubService);
+    service = TestBed.inject(InterceptorService);
   });
 
   it('should be created', () => {

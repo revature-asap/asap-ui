@@ -1,5 +1,4 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +13,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatFormFieldModule} from "@angular/material/form-field";
+import {InterceptorService} from "./services/interceptor.service";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { AssetDisplayComponent } from './components/asset-display/asset-display.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegistrationComponent } from './components/registration/registration.component';
@@ -49,11 +50,14 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatInputModule,
     MatProgressSpinnerModule,
     MatFormFieldModule,
+    FormsModule
+  ],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}
     FormsModule,
     MatCardModule,
     MatExpansionModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

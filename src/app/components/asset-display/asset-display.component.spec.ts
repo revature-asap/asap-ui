@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AssetDisplayComponent } from './asset-display.component';
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('AssetDisplayComponent', () => {
   let component: AssetDisplayComponent;
@@ -8,7 +9,10 @@ describe('AssetDisplayComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AssetDisplayComponent ]
+      declarations: [ AssetDisplayComponent ],
+      imports: [
+        HttpClientTestingModule
+      ]
     })
     .compileComponents();
   });
