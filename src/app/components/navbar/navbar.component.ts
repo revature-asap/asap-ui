@@ -57,6 +57,8 @@ export class NavbarComponent implements OnInit {
 
     this.logSubscription = this.loginSerice.currentUser$.subscribe(
       user=> {
+
+        console.log("Something changed. I got a user", user);
         this.currentUser = user as Principal;
       });
   }
