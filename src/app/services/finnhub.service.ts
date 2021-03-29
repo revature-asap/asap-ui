@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { assetQuote } from '../models/assetQuote';
+import { assetQuote } from '../models/assetQuote.model';
 import { assetCandle } from '../models/assetCandle';
 
 import {Observable} from 'rxjs';

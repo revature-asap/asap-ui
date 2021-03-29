@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { assetQuote } from 'src/app/models/assetQuote';
+import { assetQuote } from 'src/app/models/assetQuote.model';
 import { assetCandle } from 'src/app/models/assetCandle';
 import { FinnhubService } from '../../services/finnhub.service'
 
@@ -27,7 +27,7 @@ export class AssetDisplayComponent implements OnInit {
 
     this.stockprice = 0;
     this.finnhub.getQuote("IBM").subscribe(a => {
-      this.asset.updateQuote(a);
+      // this.asset.updateQuote(a);
       console.log(this.asset); //object - prototype object
       console.log(this.asset.current); //undefined
       this.stockprice = this.asset.current;
