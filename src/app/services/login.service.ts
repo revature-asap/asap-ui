@@ -46,6 +46,11 @@ export class LoginService {
     return this.currentUserSubject.value;
   }
 
+  setCurrentUserSubjectToNull() {
+    this.currentUserSubject.next(null);
+  }
+
+
   setToken(token: string | null | undefined): void {
     this.token = token;
   }

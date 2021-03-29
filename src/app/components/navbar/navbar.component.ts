@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Principal } from 'src/app/models/principal';
 import { User } from 'src/app/models/user';
 import { LoginService } from 'src/app/services/login.service';
+import { LogoutService } from 'src/app/services/logout.service';
 
 @Component({
   selector: 'app-navbar',
@@ -51,11 +53,11 @@ export class NavbarComponent implements OnInit {
 
   ]
 
-  constructor(public loginSerice: LoginService) { }
+  constructor(public loginService: LoginService, public logoutService: LogoutService, private route: Router) { }
 
   ngOnInit(): void {
 
-    this.logSubscription = this.loginSerice.currentUser$.subscribe(
+    this.logSubscription = this.loginService.currentUser$.subscribe(
       user=> {
 
         console.log("Something changed. I got a user", user);
@@ -65,7 +67,9 @@ export class NavbarComponent implements OnInit {
 
   logout() {
 
-    this.currentUser = undefined;
+    this.logoutService.logoutUser();
+    this.route.navigate(['/login']);
+  
   }
 
 }
