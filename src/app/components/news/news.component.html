@@ -1,0 +1,12 @@
+<form (ngSubmit)="fetchArticles()">
+  <div>
+    <button mat-raised-button color="primary" id="register-button">Articles</button>
+  </div>
+
+  <ul>
+    <li *ngFor="let article of articles">
+      <h1><a href="{{article.link}}">{{ article.title }}</a></h1>
+      <p>{{article.summary}}</p>
+    </li>
+  </ul>
+</form>
