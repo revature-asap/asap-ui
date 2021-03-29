@@ -19,6 +19,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { TickerCardComponent } from './components/ticker-card/ticker-card.component';
+import { HomeComponent } from './components/pages/home/home.component';
+import { TickerContainerComponent } from './ticker-container/ticker-container.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { TickerCardComponent } from './components/ticker-card/ticker-card.compon
     AssetDisplayComponent,
     NavbarComponent,
     RegistrationComponent,
-    TickerCardComponent
+    TickerCardComponent,
+    HomeComponent,
+    TickerContainerComponent
   ],
   imports: [
     BrowserModule,

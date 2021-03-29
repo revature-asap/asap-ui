@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { assetQuote } from '../../models/assetQuote'
 
 @Component({
   selector: 'app-ticker-card',
@@ -6,8 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ticker-card.component.css']
 })
 export class TickerCardComponent implements OnInit {
-
-  constructor() { }
+  // @Input() quote: assetQuote;
+  
+  constructor(private assetQuote:assetQuote) { }
 
   ngOnInit(): void {
   }
