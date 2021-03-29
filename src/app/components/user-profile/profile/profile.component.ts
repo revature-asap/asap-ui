@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Data } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/user';
 
 @Component({
@@ -6,30 +8,46 @@ import { User } from 'src/app/models/user';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
+
+
+  subscription: Subscription | undefined;
 
   userProfile = {};
 
-  user?: User;
+  user!: User;
 
-  constructor() {
-    this.user = {    id: 1,
-      username: "waefwaef",
-      password: "awefwaef",
-      firstname: "awefwaef",
-      lastname: "stgresgring",
-      email: "strisergng",
-      role: "strersging"}
-   }
+  constructor(private route: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
-    this.userProfile = {
-      'background' : 'url(https://source.unsplash.com/random/200x200)',
-      'background-repeat' : 'no-repeat',
-      'background-size' : 'cover'
-    }; // this.BackgroundImage
+
+    this.subscription = this.route.data.subscribe(
+      (data: Data) =>{
+        this.user = data['profile'];
+        console.log(this.user.email);
+        this.userProfile = {
+          'background' : 'url(https://source.unsplash.com/random/200x200)',
+          'background-repeat' : 'no-repeat',
+          'background-size' : 'cover'
+        };
+      }
+    )
 
 
+
+
+    // this.userProfile = {
+    //   'background' : 'url(https://source.unsplash.com/random/200x200)',
+    //   'background-repeat' : 'no-repeat',
+    //   'background-size' : 'cover'
+    // }; // this.BackgroundImage
+
+
+  }
+
+  ngOnDestroy(){
+    this.subscription?.unsubscribe();
   }
 
   }

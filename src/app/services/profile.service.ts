@@ -18,6 +18,11 @@ export class ProfileService {
 
 profileInfoChanged = new Subject<User>();
 
+
+private profileInfo2: User = new User(1, 'username1', 'pass', 'firstmn', 'lastn', 'ema', 'arole');
+
+
+
   private profileInfo: User = {
     id: 1,
     username: "waefwaef",
@@ -31,7 +36,9 @@ profileInfoChanged = new Subject<User>();
 
   getProfile() {
 
-    return this.profileInfo;
+
+    //console.log(this.profileInfo);
+    return this.profileInfo2;
 
   }
 

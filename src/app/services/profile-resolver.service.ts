@@ -12,7 +12,8 @@ export class ProfileResolverService implements Resolve<User> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){ // The resolve method preloads data before the component is loaded
 
     const profileInfo = this.profileService.getProfile(); // Grabs the current instance of User
-
+    console.log('The profile info is ');
+    console.log(profileInfo);
     // If the current instance of User is null, fetch data from the backend. Else, return the current instance of User
     return profileInfo;
     // if (profileInfo == null) {
