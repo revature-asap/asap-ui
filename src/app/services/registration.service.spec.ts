@@ -4,17 +4,25 @@ import { RegistrationService } from './registration.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { User } from '../models/user';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 describe('RegistrationService', () => {
   let service: RegistrationService;
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
-
+  let matMod: MatDialogModule;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [
+        HttpClientTestingModule,
+        MatDialogModule,
+        FormsModule,
+        ReactiveFormsModule
+      ],
       providers: [
         RegistrationService
       ]
@@ -22,6 +30,7 @@ describe('RegistrationService', () => {
     service = TestBed.inject(RegistrationService);
     httpClient = TestBed.inject(HttpClient);
     httpTestingController = TestBed.inject(HttpTestingController);
+    matMod = TestBed.inject(MatDialogModule);
   });
 
   it('should be created', () => {
@@ -64,7 +73,15 @@ describe('RegistrationService', () => {
   
         }
 
-        
+        service.register(newUsr).subscribe(
+          data => expect(data).toEqual(newUsr, 'should return the user'),
+          fail
+        );
 
+        const req = httpTestingController.expectOne(service.registerURL);
+
+        // respond with 404 error
+        const message = '404 error';
+        req.flush(message, {status: 404, statusText: 'Not Found'});
       });
 });

@@ -17,8 +17,9 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { AssetDisplayComponent } from './components/asset-display/asset-display.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { RegistrationComponent } from './components/registration/registration.component';
+import { RegisterEmailConfirmationDialog, RegistrationComponent } from './components/registration/registration.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     LoginComponent,
     AssetDisplayComponent,
     NavbarComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    RegisterEmailConfirmationDialog
   ],
   imports: [
     BrowserModule,
@@ -44,9 +46,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatFormFieldModule,
     FormsModule,
     MatDialogModule, 
+    OverlayModule,
     // NoopAnimationsModule
   ],
-  providers: [],
+  providers: [OverlayModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
