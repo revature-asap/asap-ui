@@ -50,13 +50,13 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatInputModule,
     MatProgressSpinnerModule,
     MatFormFieldModule,
-    FormsModule
-  ],
-  providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}
     FormsModule,
     MatCardModule,
     MatExpansionModule
+  ],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}
+
   ],
   bootstrap: [AppComponent]
 })
