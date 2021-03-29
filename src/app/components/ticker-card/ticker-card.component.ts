@@ -7,8 +7,7 @@ import { assetQuote } from '../../models/assetQuote'
   styleUrls: ['./ticker-card.component.css']
 })
 export class TickerCardComponent implements OnInit {
-  // @Input() quote: assetQuote;
-  
+  @Input() ticker!: assetQuote;
   constructor(private assetQuote:assetQuote) { }
 
   ngOnInit(): void {

@@ -7,12 +7,12 @@ export class assetQuote {
     current: number; //Current price
     previousClose: number; //Previous close price
 
-    constructor(){
-        this.open = 0;
-        this.high = 0;
-        this.low = 0;
-        this.current = 0;
-        this.previousClose = 0;
+    constructor(asset:any){
+        this.open = asset.o;
+        this.high = asset.h;
+        this.low = asset.l;
+        this.current = asset.c;
+        this.previousClose = asset.pc;
     }
 
     updateQuote(asset:any) {

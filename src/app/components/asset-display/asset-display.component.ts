@@ -15,8 +15,8 @@ export class AssetDisplayComponent implements OnInit {
   //const finnhub = require('finnhub');
 
   stockprice: number;
-  candle: assetCandle;
-  asset: assetQuote;
+  candle!: assetCandle;
+  asset!: assetQuote;
  
   // const api_key = finnhub.ApiClient.instance.authentications['api_key']; 
   // api_key.apiKey = "c1cepq748v6scqmqtk8g" // Replace this
@@ -26,8 +26,6 @@ export class AssetDisplayComponent implements OnInit {
     console.log(1);
 
     this.stockprice = 0;
-    this.candle = new assetCandle();
-    this.asset = new assetQuote();
     this.finnhub.getQuote("IBM").subscribe(a => {
       this.asset.updateQuote(a);
       console.log(this.asset); //object - prototype object

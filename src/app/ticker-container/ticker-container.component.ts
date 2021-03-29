@@ -9,10 +9,14 @@ import { assetQuote } from '../models/assetQuote'
 })
 export class TickerContainerComponent implements OnInit {
 
-  assetQuotes:assetQuote[] = [new assetQuote(), new assetQuote(), new assetQuote(), new assetQuote(), new assetQuote(),]
+  assetQuotes:Array<assetQuote> = new Array(); // = [new assetQuote(), new assetQuote(), new assetQuote(), new assetQuote(), new assetQuote()];
   constructor(private finnhubService:FinnhubService) { }
 
   ngOnInit(): void {
+    this.finnhubService.getQuote("APPL").subscribe(a=>{this.assetQuotes.push(a)});
+    this.finnhubService.getQuote("APPL").subscribe(a=>{this.assetQuotes.push(a)});
+    this.finnhubService.getQuote("APPL").subscribe(a=>{this.assetQuotes.push(a)});
+    this.finnhubService.getQuote("APPL").subscribe(a=>{this.assetQuotes.push(a)});
   }
 
 }
