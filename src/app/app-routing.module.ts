@@ -11,9 +11,10 @@ const routes: Routes = [
   {path: '', component: ProfileComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegistrationComponent},
-  {path: 'profile', component: ProfileComponent, resolve: {profile: ProfileResolverService}, children: [
-    {path: 'watchlist', component: WatchListComponent}
-  ]},
+  {path: 'profile', resolve: {profile: ProfileResolverService}, component: ProfileComponent//,  children: [
+    //{path: 'watchlist', component: WatchListComponent}
+  //]
+},
   {path: '**', component: LoginComponent}
 ];
 
