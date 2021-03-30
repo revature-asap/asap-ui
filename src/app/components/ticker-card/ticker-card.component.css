@@ -12,6 +12,7 @@
 
   .ticker-display {
       background-color: rgb(229, 255, 0);
+      overscroll-behavior: contain;
   }
 
   .material-icons{

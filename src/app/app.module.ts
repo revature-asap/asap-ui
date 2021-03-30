@@ -22,6 +22,7 @@ import { TickerCardComponent } from './components/ticker-card/ticker-card.compon
 import { HomeComponent } from './components/pages/home/home.component';
 import { TickerContainerComponent } from './components/ticker-container/ticker-container.component';
 import {MatCardModule} from '@angular/material/card';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import {MatCardModule} from '@angular/material/card';
     MatProgressSpinnerModule,
     MatFormFieldModule,
     FormsModule,
-    MatCardModule
+    MatCardModule,
+    ScrollingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
