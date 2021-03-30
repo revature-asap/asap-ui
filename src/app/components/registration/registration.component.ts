@@ -10,13 +10,11 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 })
 export class RegistrationComponent implements OnInit {
   newUser: User = {
-    // id: 0,
     username: '',
     password: '',
     firstName: '',
     lastName: '',
     email: ''
-    // role: ''
   }
 
   errorMessage = '';
