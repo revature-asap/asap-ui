@@ -1,0 +1,19 @@
+#login-container {
+  text-align: center;
+  border: 3px solid black;
+  margin-left: 25rem;
+  margin-right: 25rem;
+  margin-top: 5rem;
+}
+
+.mat-form-field {
+  width: 25%;
+}
+
+button{
+  margin-bottom: 10px;
+}
+
+#login-button, #login-spinner{
+  display: inline;
+}
