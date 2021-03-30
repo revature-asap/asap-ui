@@ -1,6 +1,7 @@
 <mat-card class="ticker-display">
 
     <mat-card-header>
+        <div mat-card-avatar [ngStyle]="tickerIcon" ></div>
         <mat-card-title >{{asset.companyName}}</mat-card-title>
         
         <mat-card-subtitle>{{asset.companyTicker}}</mat-card-subtitle>

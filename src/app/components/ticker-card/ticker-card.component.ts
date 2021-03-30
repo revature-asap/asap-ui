@@ -14,6 +14,7 @@ export class TickerCardComponent implements OnInit {
  
   trending = "";
   rate = {};
+  tickerIcon = {};
 
   constructor() { }
 
@@ -29,6 +30,13 @@ export class TickerCardComponent implements OnInit {
       }      
       this.trending = "trending_up";
     }
+
+    this.tickerIcon = {
+      'background' : 'url(https://source.unsplash.com/random/200x200)',
+      'background-repeat' : 'no-repeat',
+      'background-size' : 'cover'
+    }
+
   }
 
 }
