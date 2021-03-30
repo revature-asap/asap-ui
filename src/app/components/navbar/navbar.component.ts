@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit {
 
     {
       routeName: 'Dashboard',
-      routeLink: '/dashboard',
+      routeLink: '/home',
       routeSymbol: 'home'
     },
 
@@ -29,7 +29,7 @@ export class NavbarComponent implements OnInit {
   privateRoutes = [
     {
       routeName: 'Dashboard',
-      routeLink: '/dashboard',
+      routeLink: '/home',
       routeSymbol: 'home'
     },
     {
@@ -39,7 +39,7 @@ export class NavbarComponent implements OnInit {
     },
     {
       routeName: 'Logout',
-      routeLink: '/dashboard',
+      routeLink: '/home',
       routeSymbol: 'logout'
     }
 
