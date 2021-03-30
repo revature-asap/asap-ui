@@ -9,22 +9,20 @@ import {Article} from "../models/article";
 })
 export class NewsService {
 
-  newsURL = 'https://newscatcher.p.rapidapi.com/v1/latest_headlines?topic=finance&lang=en&country=us';
-
+  newsURL = 'https://finnhub.io/api/v1/company-news?';
   constructor(private httpClient: HttpClient) { }
 
-  stockNews(): Promise<any>{
-    return this.httpClient.get(this.newsURL, {
-      headers: {
-        'x-rapidapi-key': '59112df39fmshdec38ef5443177cp1a45bdjsnac5d805063d7'
-      },
+  stockNews(stockSymbol: string, dateFrom: string, dateTo: string): Promise<any>{
+    let symbol = 'symbol=' + stockSymbol;
+    let from = '&from=' + dateFrom;
+    let to = '&to=' + dateTo;
+    const token = '&token=c1hlcvn48v6q1s3o3v10';
+
+    return this.httpClient.get(this.newsURL+symbol+from+to+token, {
       observe: 'response'
     }).pipe(
       map(resp => {
-        //@ts-ignore
-        let body = resp.body.articles;
-        console.log(body);
-        return body;
+        return resp.body;
     })
     ).toPromise();
   }
