@@ -2,11 +2,9 @@
   <div>
     <button mat-raised-button color="primary" id="register-button">Articles</button>
   </div>
-
-  <ul>
-    <li *ngFor="let article of articles">
-      <h1><a href="{{article.link}}">{{ article.title }}</a></h1>
-      <p>{{article.summary}}</p>
-    </li>
-  </ul>
 </form>
+<div class="list-of-articles" *ngFor="let article of articles" (click)="redirect(article.url)">
+  <img src="{{article.image}}" width="100rem" height="100rem">
+  <h2>{{ article.headline }}</h2>
+  <p>{{article.summary}}</p>
+</div>
