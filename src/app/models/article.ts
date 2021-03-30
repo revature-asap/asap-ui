@@ -1,15 +1,15 @@
 export class Article{
+  datetime: number;
+  headline: string;
+  image: string;
   summary: string;
-  author: string;
-  link: string;
-  title: string;
-  published_date: string;
+  url: string;
 
-  constructor(summary: string, author: string, link: string, title: string, published_date: string) {
+  constructor(datetime: number, headline: string, image: string, summary: string, url: string) {
+    this.datetime = datetime;
+    this.headline = headline;
+    this.image = image;
     this.summary = summary;
-    this.author = author;
-    this.link = link;
-    this.title = title;
-    this.published_date = published_date;
+    this.url = url;
   }
 }
