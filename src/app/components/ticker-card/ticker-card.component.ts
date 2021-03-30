@@ -12,16 +12,23 @@ export class TickerCardComponent implements OnInit {
   @Input() companyName!: assetProfile;
   @Input() change!: number;
  
-  tickerBackground = {};
+  trending = "";
+  rate = {};
 
   constructor() { }
 
   ngOnInit(): void {
-    this.tickerBackground = {
-        'background-color': 'blue'
-
-    };
-
+    if(this.change < 0) {
+      this.rate = {
+        'color': 'red',
+      }
+      this.trending = "trending_down";
+    }else {
+      this.rate = {
+        'color': 'green'
+      }      
+      this.trending = "trending_up";
+    }
   }
 
 }

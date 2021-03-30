@@ -1,12 +1,21 @@
-.scrolling-wrapper-flexbox {
-    display: flex;
-    flex-wrap: nowrap;
+
+  .inline {
+    white-space: nowrap;
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    overflow-y: hidden;
   }
 
-  .card {
-    flex: 0 0 auto;
+  .inline > p {
+    display: inline-block;
+    margin-right: .2em;
   }
 
-  
+  .ticker-display {
+      background-color: rgb(229, 255, 0);
+  }
+
+  .material-icons{
+    position: relative;
+    top: .3em;
+}
+

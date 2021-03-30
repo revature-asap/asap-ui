@@ -3,12 +3,20 @@
     <mat-card-header>
         <mat-card-title >{{asset.companyName}}</mat-card-title>
         
-        <mat-card-subtitle [ngStyle]="tickerBackground">{{asset.companyTicker}}</mat-card-subtitle>
+        <mat-card-subtitle>{{asset.companyTicker}}</mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content>
         <p>Current: {{asset.current | currency}}</p>
-        <p>Changed: {{change | percent: '2.1-2'}}</p>
+        <div class="inline">
+            <p>Changed: </p>
+
+            <p [ngStyle]="rate">{{change | percent: '2.1-2'}}</p>
+
+            <span class="material-icons">
+                {{trending}}
+            </span>
+        </div>
         
     </mat-card-content>
 
