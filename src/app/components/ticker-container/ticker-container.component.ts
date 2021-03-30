@@ -122,6 +122,62 @@ export class TickerContainerComponent implements OnInit {
 
         });
 
+        this.finnhubService.getQuote("IBM")
+        .subscribe((asseta)=>{
+          this.asset = new assetQuote(asseta);
+          this.asset.companyTicker = "IBM";
+
+          this.change = this.tickerService.computeChange(this.asset.current, this.asset.previousClose);
+
+          this.finnhubService.getName("IBM")
+          .subscribe((profile: assetProfile)=> {
+            this.asset.companyName = profile.name;
+            this.assetQuotes.push(this.asset);
+          });
+
+        });
+        this.finnhubService.getQuote("IBM")
+        .subscribe((asseta)=>{
+          this.asset = new assetQuote(asseta);
+          this.asset.companyTicker = "IBM";
+
+          this.change = this.tickerService.computeChange(this.asset.current, this.asset.previousClose);
+
+          this.finnhubService.getName("IBM")
+          .subscribe((profile: assetProfile)=> {
+            this.asset.companyName = profile.name;
+            this.assetQuotes.push(this.asset);
+          });
+
+        });
+        this.finnhubService.getQuote("IBM")
+        .subscribe((asseta)=>{
+          this.asset = new assetQuote(asseta);
+          this.asset.companyTicker = "IBM";
+
+          this.change = this.tickerService.computeChange(this.asset.current, this.asset.previousClose);
+
+          this.finnhubService.getName("IBM")
+          .subscribe((profile: assetProfile)=> {
+            this.asset.companyName = profile.name;
+            this.assetQuotes.push(this.asset);
+          });
+
+        });
+        this.finnhubService.getQuote("IBM")
+        .subscribe((asseta)=>{
+          this.asset = new assetQuote(asseta);
+          this.asset.companyTicker = "IBM";
+
+          this.change = this.tickerService.computeChange(this.asset.current, this.asset.previousClose);
+
+          this.finnhubService.getName("IBM")
+          .subscribe((profile: assetProfile)=> {
+            this.asset.companyName = profile.name;
+            this.assetQuotes.push(this.asset);
+          });
+
+        });
         
 
 

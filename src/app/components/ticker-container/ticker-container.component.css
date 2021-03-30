@@ -2,7 +2,8 @@
     display: flex;
     flex-wrap: nowrap;
     border-style: ridge;
-    overflow: scroll;
+    flex-direction: row;
+    overflow-x: auto;
   }
 
   .card {
