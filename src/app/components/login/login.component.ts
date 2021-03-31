@@ -3,6 +3,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {LoginService} from "../../services/login.service";
 
+/**
+ * Login Component typescript file that manipulates the Login Component HTML
+ * to be able to grab user information needed for logging the user in, which
+ * is the username and the password. Injects the login service to make calls
+ * to the backend for confirming the credentials are correct
+ */
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
@@ -29,10 +35,20 @@ export class LoginComponent implements OnInit {
     this.loginSuccess = true;
   }
 
+  /**
+   * Returns the form fields of the login form, helpful for shortening
+   * the lines that call for the form fields
+   */
   get formFields() {
     return this.loginForm.controls;
   }
 
+  /**
+   * Login method that is tied to the submit button, will scrape for
+   * the user credentials, and if both the username and the password
+   * text box hav valid inputs, then those will be sent to the login
+   * service. Correct login information will redirect the user
+   */
   login = async () => {
     this.submitted = true;
 
@@ -56,11 +72,11 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  delay(ms: number) {
-    return new Promise( resolve => setTimeout(resolve, ms) );
-  }
-
-  //TODO add the actual register route, if not from navbar
+  /**
+   * Tied to the register button on the page, this will redirect the user
+   * to the register page if they do not have an account with our
+   * application
+   */
   register = async () => {
     await this.router.navigate(['register']);
   }

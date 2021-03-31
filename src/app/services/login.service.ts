@@ -7,6 +7,12 @@ import {Principal} from "../models/principal";
 import {BehaviorSubject, Observable} from "rxjs";
 import {Credentials} from "../models/credentials";
 
+/**
+ * Service class for the Login Component, this class will
+ * take in user input from the login component and try
+ * to verify that the credentials supplied are correct by
+ * calling the endpoint for our application
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -14,6 +20,7 @@ export class LoginService {
 
   private currentUserSubject: BehaviorSubject<Principal | null>;
   currentUser$: Observable<Principal | null>;
+  //TODO change from hitting localhost to the actual deployed application
   loginUrl = 'http://localhost:5000/users/login';
   token: string | null | undefined;
 
@@ -22,6 +29,13 @@ export class LoginService {
     this.currentUser$ = this.currentUserSubject.asObservable();
   }
 
+  /**
+   * Authenticates the information passed by the user from the login
+   * component, takes in a username and password that is sent in a
+   * post request to the application.
+   * @param un the username of the user
+   * @param pw the password of the user
+   */
   authenticate(un: string, pw: string): Promise<any> {
     let creds = new Credentials(un, pw);
     // @ts-ignore
@@ -42,14 +56,26 @@ export class LoginService {
     ).toPromise();
   }
 
+  /**
+   * This gets the current user that is logged in for this
+   * client side
+   */
   get currentUserValue() {
     return this.currentUserSubject.value;
   }
 
+  /**
+   * This sets the token that is sent back from the server for the
+   * user session
+   * @param token the token string for the user session
+   */
   setToken(token: string | null | undefined): void {
     this.token = token;
   }
 
+  /**
+   * This method grabs the token for the user currently logged in
+   */
   get grabToken(): string | null | undefined {
     return this.token;
   }
