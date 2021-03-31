@@ -38,7 +38,7 @@ DevOps Tools:
 
 Clone the repository to your local machine with the git clone command:
 
-- git clone https://github.com/revature-asap/asap-ui
+- git clone https://github.com/revature-asap/asap-ui.git
 
 * Development server (Need Angular CLI for running the command)
 
