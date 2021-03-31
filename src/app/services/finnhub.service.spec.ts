@@ -30,7 +30,7 @@ fdescribe('FinnhubService', () => {
     expect(service).toBeTruthy();
   });
 
-  fit('should return an Asset Quote JSON',  async () =>{
+  fit('should return an Asset Quote JSON',  () =>{
 
 
 
@@ -49,7 +49,7 @@ fdescribe('FinnhubService', () => {
     console.log(url);
 
 
-    await service.getQuote(ticker).subscribe((asseta)=>{});
+    service.getQuote(ticker).subscribe((asseta)=>{});
 //     let formatedURL = encodeURI(
 //       `${service.api_url + service.quoteUrl + ticker + service.token}`);
 // const req = httpTestingController.expectOne(
