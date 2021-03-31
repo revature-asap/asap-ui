@@ -30,7 +30,7 @@ fdescribe('FinnhubService', () => {
     expect(service).toBeTruthy();
   });
 
-  fit('should return an Asset Quote JSON', () =>{
+  fit('should return an Asset Quote JSON',  async () =>{
 
 
 
@@ -44,10 +44,12 @@ fdescribe('FinnhubService', () => {
     //   `${service.api_url + service.quoteUrl + ticker + service.token}`);
 
     let results = [{ param: 'symbol', value: 'GME' }, {param: 'token', value: 'c1ceppv48v6scqmqtk5g'}];
-    let url = `${service.api_url}/quote?${results[0].param}=${results[0].value}&${results[1].param}=${results[1].value}`;
-    
-  
-    service.getQuote(ticker);
+    //let url = `${service.api_url}/quote?${results[0].param}=${results[0].value}&${results[1].param}=${results[1].value}`;
+    let url = service.api_url + service.quoteUrl + ticker + service.token;
+    console.log(url);
+
+
+    await service.getQuote(ticker).subscribe((asseta)=>{});
 //     let formatedURL = encodeURI(
 //       `${service.api_url + service.quoteUrl + ticker + service.token}`);
 // const req = httpTestingController.expectOne(
@@ -65,7 +67,7 @@ fdescribe('FinnhubService', () => {
  const profiles = new assetProfile(assetP);
  const ticker = 'GME';
  //`${this.api_url + this.quoteUrl + ticker + this.token}`
- service.getProfile(ticker);
+ service.getProfile(ticker).subscribe((asseta)=>{});
 
  const req = httpTestingController.expectOne(`${service.api_url + service.profileUrl + ticker + service.token}`);
  expect(req.request.method).toEqual('GET');
@@ -85,7 +87,7 @@ const start = '55555555555555555555555555555555';
 const end = '999999999999999999999999999999999';
 
 //`${this.api_url + this.quoteUrl + ticker + this.token}`
-service.getCandle(ticker, resolution, start, end);
+service.getCandle(ticker, resolution, start, end).subscribe((asseta)=>{});
 
 const req = httpTestingController.expectOne(`${service.api_url + service.candleUrl + ticker + resolution + start + end + service.token}`);
 expect(req.request.method).toEqual('GET');

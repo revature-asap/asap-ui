@@ -6,7 +6,7 @@ import { assetCandle } from '../models/assetCandle';
 import {Observable} from 'rxjs';
 import { assetProfile } from '../models/assetProfile';
 
-const httpOptions = {                                             
+const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
     // 'X-Finnhub-Token': 'c1ceppv48v6scqmqtk5g'
@@ -18,16 +18,16 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class FinnhubService {
-  
+
   constructor(private http: HttpClient) { }
 
   api_url: string = "https://finnhub.io/api/v1";
   quoteUrl: string = "/quote?symbol=";
   candleUrl: string = "/stock/candle?symbol=";
   profileUrl: string = "/stock/profile2?symbol=";
-  
+
   token:string = "&token=c1ceppv48v6scqmqtk5g"
-  
+
   getQuote(ticker: string):Observable<assetQuote> {
     //console.log("in get quote with ticker: " + ticker);
     console.log("Inside not test " + `${this.api_url + this.quoteUrl + ticker + this.token}`);

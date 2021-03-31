@@ -11,18 +11,18 @@ import { FinnhubService } from '../../services/finnhub.service'
   styleUrls: ['./asset-display.component.css']
 })
 export class AssetDisplayComponent implements OnInit {
- 
+
   //const finnhub = require('finnhub');
 
   stockprice: number;
   candle!: assetCandle;
   asset!: assetQuote;
- 
-  // const api_key = finnhub.ApiClient.instance.authentications['api_key']; 
+
+  // const api_key = finnhub.ApiClient.instance.authentications['api_key'];
   // api_key.apiKey = "c1cepq748v6scqmqtk8g" // Replace this
   // const finnhubClient = new finnhub.DefaultApi()
-  
-  constructor(private finnhub: FinnhubService) { 
+
+  constructor(private finnhub: FinnhubService) {
     console.log(1);
 
     this.stockprice = 0;
@@ -45,7 +45,7 @@ export class AssetDisplayComponent implements OnInit {
   ngOnInit(): void {
     console.log(2);
     // console.log("nginit asset: " + asset);
-    // const api_key = finnhub.ApiClient.instance.authentications['api_key']; 
+    // const api_key = finnhub.ApiClient.instance.authentications['api_key'];
     // api_key.apiKey = "c1cepq748v6scqmqtk8g" // Replace this
     // const finnhubClient = new finnhub.DefaultApi()
 
