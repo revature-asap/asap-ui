@@ -38,7 +38,7 @@ describe('NewsComponent', () => {
     let dd = String(today.getDate()).padStart(2, '0');
     let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     let yyyy = today.getFullYear();
-    expect(component.todayDate).toEqual(yyyy + '-' + mm + '-' + dd);
+    expect(component.todayDate).toBe(yyyy + '-' + mm + '-' + dd);
   });
 
   it('should return week ago time as a string', () => {
@@ -47,6 +47,17 @@ describe('NewsComponent', () => {
     let dd = String(weekAgo.getDate()).padStart(2, '0');
     let mm = String(weekAgo.getMonth() + 1).padStart(2, '0'); //January is 0!
     let yyyy = weekAgo.getFullYear();
-    expect(component.weekAgo(new Date())).toEqual(yyyy + '-' + mm + '-' + dd);
+    expect(component.weekAgo(today)).toBe(yyyy + '-' + mm + '-' + dd);
+  });
+
+  it('should correctly set assets given an array of strings', () => {
+    const testAssets: string[] = ['AMZN', 'TSLA'];
+    component.setAssets(testAssets);
+    expect(component.assets).toEqual(testAssets);
+  });
+
+  it('should have base assets if none are set', () => {
+    let baseAssets: string[] = ['AAPL', 'GME', 'GOOG', 'AMZN', 'MSFT', 'TSLA'];
+    expect(component.assets).toEqual(baseAssets);
   })
 });
