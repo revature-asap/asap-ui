@@ -23,6 +23,7 @@ import { ProfileComponent } from './components/user-profile/profile/profile.comp
 import { WatchListComponent } from './components/user-profile/watch-list/watch-list.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { NewsComponent } from './components/news/news.component';
 
 
 
@@ -34,7 +35,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     NavbarComponent,
     RegistrationComponent,
     ProfileComponent,
-    WatchListComponent
+    WatchListComponent,
+    NewsComponent
   ],
   imports: [
     BrowserModule,
