@@ -15,8 +15,8 @@ Client Tier:
 
 DevOps Tools:
   - Pipeline: AWS CodePipeline
-  - Build Server: AWS CodeBuild
-  - Deployment: AWS Elastic Beanstalk
+  - Build Server:
+  - Deployment:
 
 ## Features
 
@@ -36,32 +36,31 @@ DevOps Tools:
 
 ## Getting Started
 
+Clone the repository to your local machine with the git clone command:
 
-* Development server
+- git clone https://github.com/revature-asap/asap-ui
+
+* Development server (Need Angular CLI for running the command)
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-* Code scaffolding
+* Code scaffolding (Need Angular CLI for running the command)
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-* Build
+* Build (Need Angular CLI for running the command)
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-* Running unit tests
+* Running unit tests (Need Angular CLI for running the command)
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-* Running end-to-end tests
+* Running end-to-end tests (Need Angular CLI for running the command)
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
    
-(include git clone command)
 (include all environment setup steps)
-
-> Be sure to include BOTH Windows and Unix command  
-> Be sure to mention if the commands only work on a specific platform (eg. AWS, GCP)
 
 - All the `code` required to get started
 - Images of what it should look like
