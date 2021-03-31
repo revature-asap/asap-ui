@@ -2,6 +2,7 @@ import { Overlay } from '@angular/cdk/overlay';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, NgControl, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { User } from '../../models/user';
 import { RegistrationService } from '../../services/registration.service';
 
 import { RegisterEmailConfirmationDialog, RegistrationComponent } from './registration.component';
@@ -10,15 +11,25 @@ describe('RegistrationComponent', () => {
   let component: RegistrationComponent;
   let fixture: ComponentFixture<RegistrationComponent>;
   let registerSpy: jasmine.SpyObj<RegistrationService>;
-  let registerMethod: jasmine.SpyObjMethodNames
+  // let registerMethod: jasmine.SpyObjMethodNames;
+  let registerService: RegistrationService;
   // let dialog: MatDialogRef<RegisterEmailConfirmationDialog>;
   const mockDialogRef = {
     close: jasmine.createSpy('close')
   };
 
+  let user:User = {
+    username: '',
+    password: '',
+    firstName: '',
+    lastName: '',
+    email: ''
+
+  }
+
   beforeEach(async () => {
     const spyA = jasmine.createSpyObj('registerService',['register']);
-    
+    spyA.register(user);
     await TestBed.configureTestingModule({
       declarations: [ 
         RegistrationComponent,
@@ -176,5 +187,9 @@ describe('RegistrationComponent', () => {
     expect(component.register).toBeDefined();
   });
 
+  it('register method in component should use registration service', () =>{
 
+    component.register;
+    expect(registerSpy.register).toHaveBeenCalled();
+  });
 });
