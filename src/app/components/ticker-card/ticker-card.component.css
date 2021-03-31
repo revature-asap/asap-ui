@@ -17,6 +17,9 @@
       color: white;
       font-family: cursive;
   }
+  .subtitle {
+    color: white;
+  }
 
   .material-icons{
     position: relative;

@@ -15,7 +15,7 @@ export class assetProfile {
         this.id = profile.asset_id;
         this.name = profile.asset_name;
         this.ticker = profile.ticker;
-        this.imageUrl = profile.asset_image_url;
+        this.imageUrl = profile.logo;
         this.marketCap= profile.market_cap;
         this.shareOutstanding = profile.share_outstanding;
         this.industryCategory = profile.industry_category;

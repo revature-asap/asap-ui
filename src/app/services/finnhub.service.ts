@@ -4,7 +4,6 @@ import { assetQuote } from '../models/assetQuote.model';
 import { assetCandle } from '../models/assetCandle';
 
 import {Observable} from 'rxjs';
-import { Time } from '@angular/common';
 import { assetProfile } from '../models/assetProfile';
 
 const httpOptions = {                                             
@@ -34,7 +33,7 @@ export class FinnhubService {
     return this.http.get<assetQuote>(`${this.api_url + this.quoteUrl + ticker + this.token}`);
   }
 
-  getName(ticker: string):Observable<assetProfile> {
+  getProfile(ticker: string):Observable<assetProfile> {
     console.log("in get quote with ticker: " + ticker);
     return this.http.get<assetProfile>(`${this.api_url + this.profileUrl + ticker + this.token}`);
   }
