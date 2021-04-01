@@ -24,7 +24,7 @@ export class InterceptorService implements HttpInterceptor {
    */
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.token = this.loginService.grabToken;
-    if(this.token){
+    if(this.token && !req.url.includes('finnhub.io')){
       let newHeaders = req.headers;
       newHeaders = newHeaders.append('ASAP-token', this.token as string);
       const authReq = req.clone({headers: newHeaders});

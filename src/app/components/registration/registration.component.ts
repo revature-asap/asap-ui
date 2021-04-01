@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user';
 import { RegistrationService } from '../../services/registration.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'registration',
@@ -19,7 +20,7 @@ export class RegistrationComponent implements OnInit {
 
   errorMessage = '';
 
-  constructor(private registrationService: RegistrationService, private dialog: MatDialog) { }
+  constructor(private registrationService: RegistrationService, private dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -47,12 +48,13 @@ export class RegistrationComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log("email dialog closed");
-      this.newUser.username = '';
-      this.newUser.firstName = '';
-      this.newUser.lastName = '';
-      this.newUser.password = '';
-      this.newUser.email = '';
+      // console.log("email dialog closed");
+      // this.newUser.username = '';
+      // this.newUser.firstName = '';
+      // this.newUser.lastName = '';
+      // this.newUser.password = '';
+      // this.newUser.email = '';
+      this.router.navigate(['login']);
     });
   }
 
