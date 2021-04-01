@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Data } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Principal } from 'src/app/models/principal';
 import { User } from 'src/app/models/user';
 
 @Component({
@@ -15,7 +16,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   userProfile = {};
 
-  user!: User;
+  user!: Principal;
 
   constructor(private route: ActivatedRoute) {
   }
@@ -25,7 +26,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.subscription = this.route.data.subscribe(
       (data: Data) =>{
         this.user = data['profile'];
-        console.log(this.user.email);
         this.userProfile = {
           'background' : 'url(https://source.unsplash.com/random/200x200)',
           'background-repeat' : 'no-repeat',

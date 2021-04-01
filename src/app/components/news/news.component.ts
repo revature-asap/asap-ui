@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NewsService} from "../../services/news.service";
 import {Article} from "../../models/article";
+import { PageEvent } from '@angular/material/paginator';
 
 /**
  * This component is able to display all the news articles for a given
@@ -84,6 +85,10 @@ export class NewsComponent implements OnInit {
    */
   ngOnInit(): void {
     this.fetchArticles();
+  }
+
+  onChangePage(pageData: PageEvent) {
+    console.log(pageData);
   }
 
 }
