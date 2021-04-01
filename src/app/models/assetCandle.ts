@@ -20,7 +20,7 @@ export class assetCandle {
     }
 
     updateCandle(candle:any) {
-        this.open = candle.c;
+        this.open = candle.o;
         this.high = candle.h;
         this.low = candle.l;
         this.close = candle.c;

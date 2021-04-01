@@ -11,9 +11,14 @@
   }
 
   .ticker-display {
-      background-color: rgb(229, 255, 0);
+      background-color: black;
       overscroll-behavior: contain;
       width: 20em;
+      color: white;
+      font-family: cursive;
+  }
+  .subtitle {
+    color: white;
   }
 
   .material-icons{

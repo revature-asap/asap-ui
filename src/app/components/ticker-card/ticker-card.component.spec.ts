@@ -22,4 +22,10 @@ describe('TickerCardComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should go into if statement', () => {
+    component.ngOnInit();
+    const dummyData = -1;
+    
+  })
 });
