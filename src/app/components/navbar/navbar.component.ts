@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { Principal } from 'src/app/models/principal';
+import { User } from 'src/app/models/user';
+import { LoginService } from 'src/app/services/login.service';
+import { LogoutService } from 'src/app/services/logout.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,8 +13,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
+  logSubscription!: Subscription;
 
-  currentUser = "anything"
+
+  currentUser?: Principal;
 
   publicRoutes = [
 
@@ -45,14 +53,23 @@ export class NavbarComponent implements OnInit {
 
   ]
 
-  constructor() { }
+  constructor(public loginService: LoginService, public logoutService: LogoutService, private route: Router) { }
 
   ngOnInit(): void {
-    this.currentUser = "Anything";
+
+    this.logSubscription = this.loginService.currentUser$.subscribe(
+      user=> {
+
+        console.log("Something changed. I got a user", user);
+        this.currentUser = user as Principal;
+      });
   }
 
   logout() {
-    this.currentUser = '';
+
+    this.logoutService.logoutUser();
+    this.route.navigate(['/login']);
+  
   }
 
 }

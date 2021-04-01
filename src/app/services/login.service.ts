@@ -64,6 +64,10 @@ export class LoginService {
     return this.currentUserSubject.value;
   }
 
+  setCurrentUserSubjectToNull() {
+    this.currentUserSubject.next(null);
+  }
+
   /**
    * This sets the token that is sent back from the server for the
    * user session
