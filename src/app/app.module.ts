@@ -21,6 +21,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { TickerCardComponent } from './components/ticker-card/ticker-card.component';
 import { AssetCandleChartComponent } from './components/asset-candle-chart/asset-candle-chart.component';
 import { AssetCompanyProfileComponent } from './components/asset-company-profile/asset-company-profile.component';
+import { AssetChartComponent } from './components/asset-chart/asset-chart.component';
+import { GoogleChartsModule } from 'angular-google-charts';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { AssetCompanyProfileComponent } from './components/asset-company-profile
     RegistrationComponent,
     TickerCardComponent,
     AssetCandleChartComponent,
-    AssetCompanyProfileComponent
+    AssetCompanyProfileComponent,
+    AssetChartComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { AssetCompanyProfileComponent } from './components/asset-company-profile
     MatProgressSpinnerModule,
     MatFormFieldModule,
     FormsModule,
+    GoogleChartsModule
     // NoopAnimationsModule
   ],
   providers: [],
