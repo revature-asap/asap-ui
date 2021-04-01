@@ -11,14 +11,14 @@ import {NewsComponent} from "./components/news/news.component";
 
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent},
+  {path: '', component: HomeComponent},
   {path: 'register', component: RegistrationComponent},
+  {path: 'login', component: LoginComponent},
   {path: 'newsArticles', component: NewsComponent},
   {path: 'profile', resolve: {profile: ProfileResolverService}, component: ProfileComponent, canActivate: [AuthGuardService],  children: [
     {path: 'watchlist', component: WatchListComponent}
   ]
 },
-  {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},
   {path: '**', component: HomeComponent}
 ];
