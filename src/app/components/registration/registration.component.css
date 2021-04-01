@@ -1,0 +1,16 @@
+#error {
+    color: red;
+    margin-top: 1%;
+}
+
+#registrationForm {
+    text-align: center;
+    border: 3px solid black;
+    margin-left: 25rem;
+    margin-right: 25rem;
+    margin-top: 5rem;
+}
+
+button{
+    margin-bottom: 10px;
+}

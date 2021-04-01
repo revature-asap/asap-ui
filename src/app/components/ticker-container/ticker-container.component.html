@@ -1,0 +1,10 @@
+
+<div class="scrolling-wrapper-flexbox">
+    <!-- Tickers across the top -->
+     <app-ticker-card
+     class="space" 
+     *ngFor="let asset of assetQuotes"
+     [asset]="asset"
+     [change]="change">
+    </app-ticker-card>
+</div>
