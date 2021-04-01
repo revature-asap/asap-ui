@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user';
+import { RegistrationService } from '../../services/registration.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'registration',
@@ -8,31 +10,62 @@ import { User } from '../../models/user';
 })
 export class RegistrationComponent implements OnInit {
   newUser: User = {
-    id: 0,
     username: '',
     password: '',
-    firstname: '',
-    lastname: '',
-    email: '',
-    role: ''
+    firstName: '',
+    lastName: '',
+    email: ''
   }
 
   errorMessage = '';
 
-  constructor() { }
+  constructor(private registrationService: RegistrationService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    
+
   }
 
   register() {
-    if (!this.newUser.username || !this.newUser.password || !this.newUser.firstname ||
-      !this.newUser.lastname || !this.newUser.email)  {
+    if (!this.newUser.username || !this.newUser.password || !this.newUser.firstName ||
+      !this.newUser.lastName || !this.newUser.email)  {
       this.errorMessage = 'All fields must be filled out';
       return;
     }
 
+    this.registrationService.register(this.newUser)
+                            .subscribe(user => {
+                              this.openModal();
+                            });
+    console.log("registration component");
     this.errorMessage = '';
   }
 
+  openModal(): void {
+    const dialogRef = this.dialog.open(RegisterEmailConfirmationDialog, {
+      width: "20%",
+      height: "20%"
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log("email dialog closed");
+      this.newUser.username = '';
+      this.newUser.firstName = '';
+      this.newUser.lastName = '';
+      this.newUser.password = '';
+      this.newUser.email = '';
+    });
+  }
+
+}
+
+@Component({
+  selector: 'register-email-confirmation-dialog',
+  templateUrl: 'register.email.confirmation.dialog.html'
+})
+export class RegisterEmailConfirmationDialog {
+  constructor(public dialogRef: MatDialogRef<RegisterEmailConfirmationDialog>) {}
+
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
 }
