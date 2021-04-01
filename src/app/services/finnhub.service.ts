@@ -21,6 +21,8 @@ export class FinnhubService {
 
   constructor(private http: HttpClient) { }
 
+  tokens: string[] = ["&token=c1ceppv48v6scqmqtk5g", "&token=c1cf0gf48v6scqmqtr50", "&token=c1cf0gf48v6scqmqtr50"]; 
+
   api_url: string = "https://finnhub.io/api/v1";
   quoteUrl: string = "/quote?symbol=";
   candleUrl: string = "/stock/candle?symbol=";
@@ -30,13 +32,13 @@ export class FinnhubService {
 
   getQuote(ticker: string):Observable<assetQuote> {
     //console.log("in get quote with ticker: " + ticker);
-    console.log("Inside not test " + `${this.api_url + this.quoteUrl + ticker + this.token}`);
-    return this.http.get<assetQuote>(`${this.api_url + this.quoteUrl + ticker + this.token}`);
+    console.log("Inside not test " + `${this.api_url + this.quoteUrl + ticker }${this.tokens[this.getToken()]}`);
+    return this.http.get<assetQuote>(`${this.api_url + this.quoteUrl + ticker }${this.tokens[this.getToken()]}`);
   }
 
   getProfile(ticker: string):Observable<assetProfile> {
     //console.log("in get quote with ticker: " + ticker);
-    return this.http.get<assetProfile>(`${this.api_url + this.profileUrl + ticker + this.token}`);
+    return this.http.get<assetProfile>(`${this.api_url + this.profileUrl + ticker}${this.tokens[this.getToken()]}`);
   }
 
   getCandle(ticker: string, resolution: string, start: string, end: string):Observable<assetCandle> {
@@ -45,8 +47,13 @@ export class FinnhubService {
     start = "&from=" + start;
     end = "&to=" + end;
     //console.log("URL on getCandle: " + this.api_url + this.candleUrl + resolution + start + end);
-    return this.http.get<assetCandle>(`${this.api_url + this.candleUrl + ticker + resolution + start + end + this.token}`);
+    return this.http.get<assetCandle>(`${this.api_url + this.candleUrl + ticker + resolution + start + end}${this.tokens[this.getToken()]}`);
   }
 
+  getToken():number{
+    let tokenIdx = Math.floor(Math.random() * 3);
+    console.log("tokenIdx: " + tokenIdx);
+    return tokenIdx;
+  }
 
 }
