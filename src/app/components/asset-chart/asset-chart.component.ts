@@ -14,7 +14,7 @@ export class AssetChartComponent implements OnInit {
   @Input() height = 700;
   @Input() chartType = 'candlestick'; // default for charts
 
-  type = ChartType.CandlestickChart;
+  type : ChartType = ChartType.CandlestickChart;
   chartData : any[] = [];
 
   constructor(private finnhubService : FinnhubService) {}
@@ -31,7 +31,8 @@ export class AssetChartComponent implements OnInit {
   }
  
   ngOnInit(): void { 
-    let fhd = this.finnhubService.getCandle("AAPL", "1", "1615298999", "1615302599");
+    this.type = this.chartType === 'candlestick' ? ChartType.CandlestickChart : ChartType.BarChart;
+    let fhd = this.finnhubService.getCandle("AAPL", "1", "1615298999", "1615333699");
     
     fhd.toPromise().then(data => {
       let acd = new assetCandle(data);
