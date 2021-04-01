@@ -21,11 +21,16 @@ import {RegisterEmailConfirmationDialog, RegistrationComponent } from './compone
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { ProfileComponent } from './components/user-profile/profile/profile.component'
 import { WatchListComponent } from './components/user-profile/watch-list/watch-list.component';
-import {MatCardModule} from '@angular/material/card';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { NewsComponent } from './components/news/news.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { TickerCardComponent } from './components/ticker-card/ticker-card.component';
+import { HomeComponent } from './components/pages/home/home.component';
+import { TickerContainerComponent } from './components/ticker-container/ticker-container.component';
+import {MatCardModule} from '@angular/material/card';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +42,10 @@ import { OverlayModule } from '@angular/cdk/overlay';
     ProfileComponent,
     WatchListComponent,
     NewsComponent,
-    RegisterEmailConfirmationDialog
+    RegisterEmailConfirmationDialog,
+    TickerCardComponent,
+    HomeComponent,
+    TickerContainerComponent
   ],
   imports: [
     BrowserModule,
@@ -55,12 +63,13 @@ import { OverlayModule } from '@angular/cdk/overlay';
     MatFormFieldModule,
     FormsModule,
     MatExpansionModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule,
+    OverlayModule,
+    ScrollingModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},
-    MatDialogModule,
-    OverlayModule
   ],
   bootstrap: [AppComponent]
 })

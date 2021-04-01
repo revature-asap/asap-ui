@@ -7,30 +7,15 @@ import { User } from '../models/user';
 })
 export class ProfileService {
 
-//   this.user = {    id: 1,
-//     username: "waefwaef",
-//     password: "awefwaef",
-//     firstname: "awefwaef",
-//     lastname: "stgresgring",
-//     email: "strisergng",
-//     role: "strersging"}
-//  }
-
 profileInfoChanged = new Subject<User>();
 
 
-private profileInfo2: User = new User(1, 'username1', 'pass', 'firstmn', 'lastn', 'ema', 'arole');
-
-
-
   private profileInfo: User = {
-    id: 1,
     username: "waefwaef",
     password: "awefwaef",
-    firstname: "awefwaef",
-    lastname: "stgresgring",
-    email: "strisergng",
-    role: "strersging"};
+    firstName: "awefwaef",
+    lastName: "stgresgring",
+    email: "strisergng"};
 
 
 
@@ -38,7 +23,7 @@ private profileInfo2: User = new User(1, 'username1', 'pass', 'firstmn', 'lastn'
 
 
     //console.log(this.profileInfo);
-    return this.profileInfo2;
+    return this.profileInfo;
 
   }
 

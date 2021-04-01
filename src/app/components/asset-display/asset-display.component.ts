@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Asset } from 'src/app/models/asset';
-import { Candle } from 'src/app/models/candle';
+import { assetQuote } from 'src/app/models/assetQuote.model';
+import { assetCandle } from 'src/app/models/assetCandle';
 import { FinnhubService } from '../../services/finnhub.service'
 
 // import * as Finnhub from '../../../assets/f'
@@ -15,8 +15,8 @@ export class AssetDisplayComponent implements OnInit {
   //const finnhub = require('finnhub');
 
   stockprice: number;
-  asset: Asset;
-  candle: Candle[];
+  candle!: assetCandle;
+  asset!: assetQuote;
  
   // const api_key = finnhub.ApiClient.instance.authentications['api_key']; 
   // api_key.apiKey = "c1cepq748v6scqmqtk8g" // Replace this
@@ -24,28 +24,19 @@ export class AssetDisplayComponent implements OnInit {
   
   constructor(private finnhub: FinnhubService) { 
     console.log(1);
-    this.asset = {
-      
-      o : 0,
-      h : 0,
-      l : 0,
-      c : 0,
-      pc : 0
 
-    };
     this.stockprice = 0;
-    this.finnhub.getQuote("IBM").subscribe(asset => {
-      
-      this.asset = asset;
-      console.log(this.asset); //object - prototype object
-      console.log(asset.c); //undefined
-      this.stockprice = this.asset.c;
+    this.finnhub.getQuote("IBM").subscribe(a => {
+      // this.asset.updateQuote(a);
+      // console.log(this.asset); //object - prototype object
+      // console.log(this.asset.current); //undefined
+      // this.stockprice = this.asset.current;
       //this.asset = asset;
     });
 
-    this.candle = [];
-    this.finnhub.getCandle("IBM", "D", "1572651390", "1575243390").subscribe(candle => {
-      this.candle = candle;
+    // this.candle = [];
+    this.finnhub.getCandle("IBM", "D", "1572651390", "1575243390").subscribe(c=> {
+      this.candle.updateCandle(c);
       console.log("candle :" + JSON.stringify(this.candle));
     });
 
@@ -53,7 +44,7 @@ export class AssetDisplayComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(2);
-    console.log("nginit asset: " + this.asset);
+    // console.log("nginit asset: " + asset);
     // const api_key = finnhub.ApiClient.instance.authentications['api_key']; 
     // api_key.apiKey = "c1cepq748v6scqmqtk8g" // Replace this
     // const finnhubClient = new finnhub.DefaultApi()
