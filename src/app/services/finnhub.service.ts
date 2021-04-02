@@ -21,14 +21,12 @@ export class FinnhubService {
 
   constructor(private http: HttpClient) { }
 
-  tokens: string[] = ["&token=c1ceppv48v6scqmqtk5g", "&token=c1cf0gf48v6scqmqtr50", "&token=c1cf0gf48v6scqmqtr50"]; 
+  tokens: string[] = ["&token=c1ceppv48v6scqmqtk5g", "&token=c1cepq748v6scqmqtk8g", "&token=c1cf0gf48v6scqmqtr50"]; 
 
   api_url: string = "https://finnhub.io/api/v1";
   quoteUrl: string = "/quote?symbol=";
   candleUrl: string = "/stock/candle?symbol=";
   profileUrl: string = "/stock/profile2?symbol=";
-
-  token:string = "&token=c1ceppv48v6scqmqtk5g"
 
   getQuote(ticker: string):Observable<assetQuote> {
     //console.log("in get quote with ticker: " + ticker);

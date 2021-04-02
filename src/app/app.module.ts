@@ -30,6 +30,9 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { TickerContainerComponent } from './components/ticker-container/ticker-container.component';
 import {MatCardModule} from '@angular/material/card';
 import {ScrollingModule} from '@angular/cdk/scrolling';
+import { CommentBoxComponent } from './components/comment/comment-box/comment-box.component';
+import { CommentsContainerComponent } from './components/comment/comments-container/comments-container.component';
+import { DisplayCommentsComponent } from './components/comment/display-comments/display-comments.component';
 
 
 @NgModule({
@@ -45,7 +48,10 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     RegisterEmailConfirmationDialog,
     TickerCardComponent,
     HomeComponent,
-    TickerContainerComponent
+    TickerContainerComponent,
+    CommentBoxComponent,
+    CommentsContainerComponent,
+    DisplayCommentsComponent
   ],
   imports: [
     BrowserModule,

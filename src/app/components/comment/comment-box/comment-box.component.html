@@ -1,0 +1,14 @@
+<div id="comment-box">
+    <h2> Posts </h2>
+    <form [formGroup]="commentForm" (ngSubmit)="submit()">
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>New Post</mat-label>
+                <textarea matInput placeholder = "Comment here ...."></textarea>
+            </mat-form-field>
+        </div>
+        <div>
+            <button mat-raised-button color="primary" id="comment-button"> Submit </button>
+        </div>
+    </form>
+</div>
