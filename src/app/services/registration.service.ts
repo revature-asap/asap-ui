@@ -9,8 +9,8 @@ import { User } from '../models/user';
 })
 export class RegistrationService {
   // I think this is what it'll look like
-  registerURL = 'http://localhost:5000/users';
-  // registerURL = 'http://ec2co-ecsel-1g0q6xc63i5af-1652680293.us-east-2.elb.amazonaws.com/users';
+  // registerURL = 'http://localhost:5000/users';
+  registerURL = 'http://ec2co-ecsel-1g0q6xc63i5af-1652680293.us-east-2.elb.amazonaws.com:5000/users';
   // registerURL = '/users';
   constructor(private http: HttpClient) { }
 
