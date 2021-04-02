@@ -1,0 +1,6 @@
+.list-of-articles{
+  margin: 1%;
+  border: solid black;
+  text-align: center;
+  cursor: url("../../../assets/wezleygun.png"), auto;
+}
