@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ChartType } from 'angular-google-charts';
 import { assetCandle } from 'src/app/models/assetCandle';
 import { FinnhubService } from '../../services/finnhub.service';
+import { DateTimeService } from '../../services/date-time.service';
 
 @Component({
   selector: 'asset-chart',
@@ -11,7 +12,7 @@ import { FinnhubService } from '../../services/finnhub.service';
 export class AssetChartComponent implements OnInit {
   @Input() chartTitle = 'Asset Chart';
   @Input() width = 1700;
-  @Input() height = 400;
+  @Input() height = 800;
   @Input() chartType = 'candlestick'; // default for charts
   assetTimeInterval = '5m';
   loadingGraph = false;
@@ -19,21 +20,10 @@ export class AssetChartComponent implements OnInit {
   type : ChartType = ChartType.CandlestickChart;
   chartData : any[] = [];
 
-  constructor(private finnhubService : FinnhubService) {}
+  constructor(private finnhubService : FinnhubService, private dateTimeService : DateTimeService) {}
 
   setChartType() {
     this.type = this.chartType === 'candlestick' ? ChartType.CandlestickChart : ChartType.LineChart;
-  }
-
-  getFormattedDate(date: number, month: number,  year: number, 
-    hour: number, minutes: number, seconds: number): string {
-    let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    let hours = ['12', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
-
-    return months[month] + " " + date + " " + year + " " + 
-        hours[hour % 12] + ":" + (minutes < 10 ? ("0" + minutes) : minutes) + ":" 
-        + (seconds < 10 ? ("0" + seconds) : seconds)
-        + (hour > 11 ? "pm" : "am"); 
   }
 
   chartTypeChange = (childChartType: string): void => {
@@ -44,53 +34,6 @@ export class AssetChartComponent implements OnInit {
   timeIntervalChange = (childTimeInterval: string): void => {
     this.assetTimeInterval = childTimeInterval;
     this.getChartData();
-  }
-
-  chartTimeInterval(scaleDate: number = 1): any {
-    let ct = Math.floor(Date.now() / 1000 - 86400) * scaleDate;
-
-    switch(this.assetTimeInterval) {
-      case '5m':
-        return {
-          currentTime: ct,
-          pastTime: ct - (60 * 5)
-        }
-      case '15m':
-        return {
-          currentTime: ct,
-          pastTime: ct - (60 * 15)
-        }
-      case '30m':
-        return {
-          currentTime: ct,
-          pastTime: ct - (60 * 30)
-        }
-      case '1h':
-        return {
-          currentTime: ct,
-          pastTime: ct - (60 * 60)
-        }
-      case '4h':
-        return {
-          currentTime: ct,
-          pastTime: ct - (60 * 60 * 4)
-        }
-      case '6h':
-        return {
-          currentTime: ct,
-          pastTime: ct - (60 * 60 * 6)
-        }
-      case '12h':
-        return {
-          currentTime: ct,
-          pastTime: ct - (60 * 60 * 12)
-        }
-      case '1d':
-        return {
-            currentTime: ct,
-            pastTime: ct - (60 * 60 * 24)
-        }
-    }
   }
  
   ngOnInit(): void { 
@@ -108,7 +51,7 @@ export class AssetChartComponent implements OnInit {
 
     this.setChartType();
     
-    let assetTime = this.chartTimeInterval(scaleDate);
+    let assetTime = this.dateTimeService.getTimeInterval(scaleDate, this.assetTimeInterval);
     console.log(assetTime);
 
     this.loadingGraph = true;
@@ -131,7 +74,7 @@ export class AssetChartComponent implements OnInit {
         let candlestick : Array<string | number> = [];
         let assetDate = new Date(acd.timestamp[i] * 1000);
 
-        candlestick.push(this.getFormattedDate(
+        candlestick.push(this.dateTimeService.getFormattedDate(
           assetDate.getDate(), 
           assetDate.getMonth(), 
           assetDate.getFullYear(),
