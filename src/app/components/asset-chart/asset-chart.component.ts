@@ -13,6 +13,8 @@ export class AssetChartComponent implements OnInit {
   @Input() width = 1700;
   @Input() height = 400;
   @Input() chartType = 'candlestick'; // default for charts
+  assetTimeInterval = '5m';
+  loadingGraph = false;
 
   type : ChartType = ChartType.CandlestickChart;
   chartData : any[] = [];
@@ -39,10 +41,15 @@ export class AssetChartComponent implements OnInit {
     this.setChartType();
   }
 
-  chartTimeInterval(timespan: string = '5m', scaleDate: number = 1): any {
+  timeIntervalChange = (childTimeInterval: string): void => {
+    this.assetTimeInterval = childTimeInterval;
+    this.getChartData();
+  }
+
+  chartTimeInterval(scaleDate: number = 1): any {
     let ct = Math.floor(Date.now() / 1000 - 86400) * scaleDate;
 
-    switch(timespan) {
+    switch(this.assetTimeInterval) {
       case '5m':
         return {
           currentTime: ct,
@@ -91,20 +98,26 @@ export class AssetChartComponent implements OnInit {
   }
 
   getChartData(scaleDate: number = 1) {
+    this.chartData = [];
     if (scaleDate >= 15) {
       console.log("Too many calls to the finnhub api have been made.");
       alert("Too many calls to the finnhub api have been made. Try refreshing the page.");
+      this.loadingGraph = false;
       return;
     }
 
     this.setChartType();
-    let assetTime = this.chartTimeInterval('4h', scaleDate);
+    
+    let assetTime = this.chartTimeInterval(scaleDate);
     console.log(assetTime);
+
+    this.loadingGraph = true;
     let fhd = this.finnhubService.getCandle("AAPL", "1", assetTime.pastTime.toString(), assetTime.currentTime.toString());
 
     fhd.toPromise().then(data => {
       let acd = new assetCandle(data);
 
+      console.log(acd);
       if (acd.status === 'no_data') {
         console.log('in no data section');
         this.getChartData(++scaleDate);
@@ -113,7 +126,7 @@ export class AssetChartComponent implements OnInit {
 
       let length = acd.close.length;
       console.log(acd);
-//
+
       for (let i=0; i<length; i++) {
         let candlestick : Array<string | number> = [];
         let assetDate = new Date(acd.timestamp[i] * 1000);
@@ -126,8 +139,8 @@ export class AssetChartComponent implements OnInit {
           assetDate.getMinutes(), 
           assetDate.getSeconds())
         );
-        candlestick.push(acd.high[i]);
 
+        candlestick.push(acd.high[i]);
 
         if (acd.open[i] > acd.close[i]) {
           candlestick.push(acd.open[i]);
@@ -140,7 +153,11 @@ export class AssetChartComponent implements OnInit {
         candlestick.push(acd.low[i]);
 
         this.chartData.push(candlestick);
+        this.loadingGraph = false;
       }
+    }).catch(error => {
+      this.loadingGraph = false;
+      console.log(error.message);
     });
   }
 }

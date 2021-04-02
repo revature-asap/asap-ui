@@ -26,6 +26,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
 import { AssetChartOptionsComponent } from './components/asset-chart-options/asset-chart-options.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select'
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { MatRadioModule } from '@angular/material/radio';
     FormsModule,
     GoogleChartsModule,
     MatExpansionModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
