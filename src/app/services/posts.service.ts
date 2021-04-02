@@ -13,7 +13,7 @@ export class PostsService {
   private posts: Post[] = [];
   private postUpdated = new Subject<Post[]>();
   
-  private url:string = "http://localhost:5000/posts";
+  private url:string = "http://ec2co-ecsel-1g0q6xc63i5af-1652680293.us-east-2.elb.amazonaws.com:5000/posts";
 
   constructor(private http:HttpClient, private router:Router) { }
 
@@ -23,17 +23,8 @@ export class PostsService {
 
   getAllPosts(){
     console.log("Made it: 1");
-    
-    return this.http.get<{ message: string; posts: any }>(this.url).pipe(map((postData: any) => {
-        console.log("Made it: 2");
-        return postData.posts.map((post:any) => {
-          return {id: post.id, userId: post.authorId, content: post.textContent,
-                  title: post.title, assetId: post.assetId}
-        })
-    })).subscribe(transformPosts => {
-      this.posts = transformPosts;
-      this.postUpdated.next([...this.posts]);
-    });
+    return this.http.get<Post[]>(this.url);
+
   }
 
   newPost(){
