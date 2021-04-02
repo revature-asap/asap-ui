@@ -8,6 +8,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { AppComponent } from './app.component';
+import { SentimentComponent } from './components/sentiment/sentiment.component';
 import { LoginComponent } from './components/login/login.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
@@ -35,6 +36,7 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 @NgModule({
   declarations: [
     AppComponent,
+    SentimentComponent,
     LoginComponent,
     AssetDisplayComponent,
     NavbarComponent,
