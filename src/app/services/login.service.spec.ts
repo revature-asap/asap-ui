@@ -38,8 +38,7 @@ describe('LoginService', () => {
 
   it('should login user with correct credentials', () => {
     const creds = new Credentials('cspace', 'password');
-    const principal = new Principal(1, 'cspace', 'basic', 'token');
-
+    const principal = new Principal(1, 'cspace', 'cole', 'space', 'cole@email.com', 'basic', 'token');
     const username = 'cspace';
     const password = 'password';
     service.authenticate(username, password);
