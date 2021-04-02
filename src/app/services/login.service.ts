@@ -21,7 +21,9 @@ export class LoginService {
   private currentUserSubject: BehaviorSubject<Principal | null>;
   currentUser$: Observable<Principal | null>;
   //TODO change from hitting localhost to the actual deployed application
-  loginUrl = 'https://ec2co-ecsel-1g0q6xc63i5af-1652680293.us-east-2.elb.amazonaws.com/users/login';
+
+  // loginUrl = 'http://ec2co-ecsel-1g0q6xc63i5af-1652680293.us-east-2.elb.amazonaws.com/users/login';
+  loginUrl = 'http://localhost:5000/users/login';
   token: string | null | undefined;
 
   constructor(private httpClient: HttpClient) {
