@@ -1,13 +1,10 @@
-<mat-accordion multi = "true" *ngIf = "articles.length > 0">
-  <div class="list-of-articles" *ngFor="let article of articles" (click)="redirect(article.url)">
-      <img src="{{article.image}}" width="100rem" height="100rem">
-      <h2>{{ article.headline }}</h2>
-      <p>{{article.summary}}</p>
-  </div>
-</mat-accordion>
+<div class="list-of-articles" *ngFor="let article of articlesTemp" (click)="redirect(article.url)">
+  <img src="{{article.image}}" width="100rem" height="100rem">
+  <h2>{{ article.headline }}</h2>
+  <p>{{article.summary}}</p>
+</div>
 <mat-paginator
-[length] = "4"
-[pageSize] = "2"
+[length] = "articles.length"
+[pageSize] = "pageSizeNum"
 (page)="onChangePage($event)">
 </mat-paginator>
-
