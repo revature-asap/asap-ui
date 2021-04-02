@@ -1,5 +1,11 @@
-<google-chart [title]="chartTitle" 
-            [type]="type" 
-            [data]="chartData" 
-            [width]="width" 
-            [height]="height"></google-chart>
+<div *ngIf="chartData.length > 0">
+    <google-chart [title]="chartTitle" 
+        [type]="type" 
+        [data]="chartData" 
+        [width]="width" 
+        [height]="height"></google-chart>
+</div>
+<div *ngIf="chartData.length === 0">
+    <h1>Your asset chart can't be rendered at this time</h1>
+</div>
+<asset-chart-options (chartTypeEvent)='chartTypeChange($event)'></asset-chart-options>

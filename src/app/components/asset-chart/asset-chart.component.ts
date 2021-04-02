@@ -10,14 +10,18 @@ import { FinnhubService } from '../../services/finnhub.service';
 })
 export class AssetChartComponent implements OnInit {
   @Input() chartTitle = 'Asset Chart';
-  @Input() width = 1300;
-  @Input() height = 700;
+  @Input() width = 1700;
+  @Input() height = 400;
   @Input() chartType = 'candlestick'; // default for charts
 
   type : ChartType = ChartType.CandlestickChart;
   chartData : any[] = [];
 
   constructor(private finnhubService : FinnhubService) {}
+
+  setChartType() {
+    this.type = this.chartType === 'candlestick' ? ChartType.CandlestickChart : ChartType.LineChart;
+  }
 
   getFormattedDate(date: number, month: number,  year: number, 
     hour: number, minutes: number, seconds: number): string {
@@ -29,16 +33,87 @@ export class AssetChartComponent implements OnInit {
         + (seconds < 10 ? ("0" + seconds) : seconds)
         + (hour > 11 ? "pm" : "am"); 
   }
+
+  chartTypeChange = (childChartType: string): void => {
+    this.chartType = childChartType;
+    this.setChartType();
+  }
+
+  chartTimeInterval(timespan: string = '5m', scaleDate: number = 1): any {
+    let ct = Math.floor(Date.now() / 1000 - 86400) * scaleDate;
+
+    switch(timespan) {
+      case '5m':
+        return {
+          currentTime: ct,
+          pastTime: ct - (60 * 5)
+        }
+      case '15m':
+        return {
+          currentTime: ct,
+          pastTime: ct - (60 * 15)
+        }
+      case '30m':
+        return {
+          currentTime: ct,
+          pastTime: ct - (60 * 30)
+        }
+      case '1h':
+        return {
+          currentTime: ct,
+          pastTime: ct - (60 * 60)
+        }
+      case '4h':
+        return {
+          currentTime: ct,
+          pastTime: ct - (60 * 60 * 4)
+        }
+      case '6h':
+        return {
+          currentTime: ct,
+          pastTime: ct - (60 * 60 * 6)
+        }
+      case '12h':
+        return {
+          currentTime: ct,
+          pastTime: ct - (60 * 60 * 12)
+        }
+      case '1d':
+        return {
+            currentTime: ct,
+            pastTime: ct - (60 * 60 * 24)
+        }
+    }
+  }
  
   ngOnInit(): void { 
-    this.type = this.chartType === 'candlestick' ? ChartType.CandlestickChart : ChartType.BarChart;
-    let fhd = this.finnhubService.getCandle("AAPL", "1", "1615298999", "1615333699");
-    
+    this.getChartData();
+  }
+
+  getChartData(scaleDate: number = 1) {
+    if (scaleDate >= 15) {
+      console.log("Too many calls to the finnhub api have been made.");
+      alert("Too many calls to the finnhub api have been made. Try refreshing the page.");
+      return;
+    }
+
+    this.setChartType();
+    let assetTime = this.chartTimeInterval('4h', scaleDate);
+    console.log(assetTime);
+    let fhd = this.finnhubService.getCandle("AAPL", "1", assetTime.pastTime.toString(), assetTime.currentTime.toString());
+
     fhd.toPromise().then(data => {
       let acd = new assetCandle(data);
+
+      if (acd.status === 'no_data') {
+        console.log('in no data section');
+        this.getChartData(++scaleDate);
+        return;
+      }
+
       let length = acd.close.length;
       console.log(acd);
-
+//
       for (let i=0; i<length; i++) {
         let candlestick : Array<string | number> = [];
         let assetDate = new Date(acd.timestamp[i] * 1000);
@@ -67,6 +142,5 @@ export class AssetChartComponent implements OnInit {
         this.chartData.push(candlestick);
       }
     });
-
   }
 }

@@ -1,0 +1,16 @@
+<mat-accordion>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>Graph Details</mat-panel-title>
+            <mat-panel-description>Click to expand and collapse</mat-panel-description>
+        </mat-expansion-panel-header>
+        <div>
+            <mat-label>Chart type</mat-label>
+            <mat-radio-group aria-label="Select a chart type" 
+                [(ngModel)]="selectedChartType">
+                <mat-radio-button *ngFor="let type of chartSelection" 
+                    [value]="type" (change)='propagateChartType($event)'>{{type | titlecase}}</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>

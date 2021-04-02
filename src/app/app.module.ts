@@ -23,6 +23,9 @@ import { AssetCandleChartComponent } from './components/asset-candle-chart/asset
 import { AssetCompanyProfileComponent } from './components/asset-company-profile/asset-company-profile.component';
 import { AssetChartComponent } from './components/asset-chart/asset-chart.component';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { AssetChartOptionsComponent } from './components/asset-chart-options/asset-chart-options.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,8 @@ import { GoogleChartsModule } from 'angular-google-charts';
     TickerCardComponent,
     AssetCandleChartComponent,
     AssetCompanyProfileComponent,
-    AssetChartComponent
+    AssetChartComponent,
+    AssetChartOptionsComponent
   ],
   imports: [
     BrowserModule,
@@ -51,8 +55,9 @@ import { GoogleChartsModule } from 'angular-google-charts';
     MatProgressSpinnerModule,
     MatFormFieldModule,
     FormsModule,
-    GoogleChartsModule
-    // NoopAnimationsModule
+    GoogleChartsModule,
+    MatExpansionModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]
