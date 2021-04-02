@@ -1,0 +1,28 @@
+
+  .inline {
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .inline > p {
+    display: inline-block;
+    margin-right: .2em;
+  }
+
+  .ticker-display {
+      background-color: black;
+      overscroll-behavior: contain;
+      width: 20em;
+      color: white;
+      font-family: cursive;
+  }
+  .subtitle {
+    color: white;
+  }
+
+  .material-icons{
+    position: relative;
+    top: .3em;
+}
+

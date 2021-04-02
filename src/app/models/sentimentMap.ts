@@ -1,14 +1,14 @@
 export class sentimentMap {
     //Made to match sentiment endpoint created by Brian, Greg, and Chris
-    positive: number;
-    negative: number;
-    mixed: number;
-    neutral: number;
+    POSITIVE: number;
+    NEGATIVE: number;
+    MIXED: number;
+    NEUTRAL: number;
 
     constructor(sentimentMapDTO:any) {
-        this.positive = sentimentMapDTO.POSITIVE;
-        this.negative = sentimentMapDTO.NEGATIVE;
-        this.mixed = sentimentMapDTO.MIXED;
-        this.neutral = sentimentMapDTO.NEUTRAL;
+        this.POSITIVE = sentimentMapDTO.POSITIVE;
+        this.NEGATIVE = sentimentMapDTO.NEGATIVE;
+        this.MIXED = sentimentMapDTO.MIXED;
+        this.NEUTRAL = sentimentMapDTO.NEUTRAL;
     }
 }
