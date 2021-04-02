@@ -1,5 +1,6 @@
 import { Component, AfterViewInit, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-comment-box',
@@ -8,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CommentBoxComponent implements OnInit {
 
-  commentForm!: FormGroup;
+  
   commentInfo: Array<object> = [];
   submitted: Boolean = false;
   public id = 0; //??
@@ -22,25 +23,23 @@ export class CommentBoxComponent implements OnInit {
   }
 
   createForm(){
-    this.commentForm = this.formBuilder.group({
-      comment: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]]
-    });
+    
   }
 
-  submit(){
-    this.submitted = true;
+  onSubmit(form:NgForm){
+    console.log(form.value);
+    // this.submitted = true;
     //If form is invalid:
-    if (this.commentForm.invalid){
-      return;
-    }else{
-      this.commentInfo.push({
-        commentId : this.id++, 
-        currentDate: new Date(), 
-        commentTxt: this.commentForm.controls['comment'].value,
-        replyComment: []
-      });
-      this.userComment.emit(this.commentInfo);
-    }
+    // if (this.commentForm.invalid){
+    //   return;
+    // }else{
+    //   this.commentInfo.push({
+    //     currentDate: new Date(), 
+    //     commentTxt: this.commentForm.controls['comment'].value,
+    //     replyComment: []
+    //   });
+    //   this.userComment.emit(this.commentInfo);
+    // }
   }
 
 }
