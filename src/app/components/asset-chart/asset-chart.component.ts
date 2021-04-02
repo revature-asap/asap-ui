@@ -14,6 +14,7 @@ export class AssetChartComponent implements OnInit {
   @Input() width = 1700;
   @Input() height = 800;
   @Input() chartType = 'candlestick'; // default for charts
+  @Input() assetTicker = 'AAPL';
   assetTimeInterval = '5m';
   loadingGraph = false;
 
@@ -55,7 +56,7 @@ export class AssetChartComponent implements OnInit {
     console.log(assetTime);
 
     this.loadingGraph = true;
-    let fhd = this.finnhubService.getCandle("AAPL", "1", assetTime.pastTime.toString(), assetTime.currentTime.toString());
+    let fhd = this.finnhubService.getCandle(this.assetTicker, "1", assetTime.pastTime.toString(), assetTime.currentTime.toString());
 
     fhd.toPromise().then(data => {
       let acd = new assetCandle(data);
