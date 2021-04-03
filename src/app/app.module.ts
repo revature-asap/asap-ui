@@ -31,6 +31,7 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { TickerContainerComponent } from './components/ticker-container/ticker-container.component';
 import {MatCardModule} from '@angular/material/card';
 import {ScrollingModule} from '@angular/cdk/scrolling';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     MatCardModule,
     MatDialogModule,
     OverlayModule,
-    ScrollingModule
+    ScrollingModule,
+    MatGridListModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},

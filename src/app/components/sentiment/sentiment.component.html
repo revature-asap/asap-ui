@@ -1,11 +1,31 @@
-<!--<div *ngIf="twitterSentiment;then content else other_content">here is ignored</div>-->
-<!--<ng-template #content>Twitter sentiment is positive: {{twitterSentiment}}</ng-template>-->
-<!--<ng-template #other_content>Twitter sentiment is negative:  {{twitterSentiment}}</ng-template>-->
+
+<!--<mat-sidenav-container> &lt;!&ndash; 'structural container for content' &ndash;&gt;-->
+<!--  <mat-sidenav #sidenav> &lt;!&ndash; 'added side content' &ndash;&gt;-->
+<!--    <mat-nav-list>-->
+<!--    </mat-nav-list>-->
+<!--  </mat-sidenav>-->
+<!--  <mat-sidenav-content> &lt;!&ndash; 'Main content' &ndash;&gt;-->
+<!--    <div style="height: 88vh; margin-left: 80%; margin-right: 2%; margin-top: 1%; border: 2px solid green;">-->
+<!--      <div style= "border: 1px solid green; margin: 1%">-->
+        <div id="sentiment-title">Sentiment</div>
+        <mat-grid-list cols="2" rowHeight="2:1">
+          <mat-grid-tile><img src="../assets/twitterIcon.png" class="sentiment-image" id="twitter-icon"></mat-grid-tile>
+          <mat-grid-tile [ngSwitch]="twitterSentiment" class="sentiment-image">
+            <img src="../assets/greenarrowup.png" class="sentiment-image" *ngSwitchCase="1" id="upFingerTwitter">
+            <img src="../assets/yellowneutral.png" class="sentiment-image" *ngSwitchCase="0" id="neutralFingerTwitter">
+            <img src="../assets/redarrowdown.png" class="sentiment-image" *ngSwitchCase="-1" id="downFingerTwitter">
+          </mat-grid-tile>
+          <br>
+          <mat-grid-tile><img src="../assets/redditIcon2.png" class="sentiment-image" id="reddit-icon"></mat-grid-tile>
+          <mat-grid-tile [ngSwitch]="redditSentiment" class="sentiment-image">
+            <img src="../assets/greenarrowup.png" class="sentiment-image" *ngSwitchCase="1" id="upFingerReddit">
+            <img src="../assets/yellowneutral.png" class="sentiment-image" *ngSwitchCase="0" id="neutralFingerReddit">
+            <img src="../assets/redarrowdown.png" class="sentiment-image" *ngSwitchCase="-1" id="downFingerReddit">
+         </mat-grid-tile>
+        </mat-grid-list>
+<!--      </div>-->
+<!--    </div>-->
+<!--  </mat-sidenav-content>-->
+<!--</mat-sidenav-container>-->
 
 
-
-<!--<div *ngIf="twitterSentiment" style="color: red">-->
-
-<!--  Twitter sentiment is: {{twitterSentiment}}-->
-
-<!--</div>-->

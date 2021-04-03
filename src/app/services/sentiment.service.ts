@@ -18,8 +18,9 @@ export class SentimentService {
 
   constructor(private http: HttpClient) { }
 
-  twitterUrl: string = "http://localhost:5000/twitter?asset=";
-  redditUrl: string = "http://localhost:5000/reddit?asset=";
+  twitterUrl: string = "http://ec2co-ecsel-1g0q6xc63i5af-1652680293.us-east-2.elb.amazonaws.com:5000/twitter?asset=";
+  redditUrl: string = "http://ec2co-ecsel-1g0q6xc63i5af-1652680293.us-east-2.elb.amazonaws.com:5000/reddit?asset=";
+
 
   updateTwitterSentiment(asset: string):Observable<sentimentCarrier> {
       console.log("In update sentiment with asset: " + asset);
