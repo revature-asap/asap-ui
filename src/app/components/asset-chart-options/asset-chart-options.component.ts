@@ -12,8 +12,11 @@ export class AssetChartOptionsComponent implements OnInit {
   @Output() chartTypeEvent = new EventEmitter<string>();
   @Output() timeIntervalEvent = new EventEmitter<string>();
 
+
   chartSelection: string[] = ['candlestick', 'line'];
   timeIntervalSelection : string[] = ['5m', '15m', '30m', '1h', '4h', '6h', '12h', '1d'];
+
+  
   selectedTime: string = '5m';
 
   propagateChartType(event: MatRadioChange) {

@@ -13,8 +13,9 @@
                     [value]="type" (change)='propagateChartType($event)'>{{type | titlecase}}</mat-radio-button>
             </mat-radio-group>
         </div>
+        <mat-divider class="divider-space"></mat-divider>
         <h3>Assets from a span of time</h3>
-        <mat-form-field appearance="fill">
+        <mat-form-field>
             <mat-label>Time interval</mat-label>
             <mat-select [(value)]="selectedTime" (selectionChange)='propagateTimeInterval($event)'>
                 <mat-option *ngFor="let time of timeIntervalSelection" [value]="time">
