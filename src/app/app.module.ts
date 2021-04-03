@@ -30,6 +30,7 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { TickerContainerComponent } from './components/ticker-container/ticker-container.component';
 import {MatCardModule} from '@angular/material/card';
 import {ScrollingModule} from '@angular/cdk/scrolling';
+import { CompanyDetailsComponent } from './components/pages/asset-profile/company-details/company-details.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     RegisterEmailConfirmationDialog,
     TickerCardComponent,
     HomeComponent,
-    TickerContainerComponent
+    TickerContainerComponent,
+    CompanyDetailsComponent
   ],
   imports: [
     BrowserModule,
