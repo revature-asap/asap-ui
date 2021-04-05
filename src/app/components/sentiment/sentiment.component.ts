@@ -11,9 +11,7 @@ export class SentimentComponent implements OnInit {
 
   twitterSentiment!: number;
   redditSentiment!: number;
-
-
-
+  loading = true;
 
   constructor(private sentiment: SentimentService) {
 
@@ -33,18 +31,20 @@ export class SentimentComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.loading = true;
     this.sentiment.updateTwitterSentiment("Game Stop").subscribe((response:sentimentCarrier) =>
     {
       console.log("This is the response object from the Twitter http call: " + JSON.stringify(response));
       this.twitterSentiment = this.sentimentCompare(response.sentimentTotals.POSITIVE, response.sentimentTotals.NEGATIVE );
     });
-
     this.sentiment.updateRedditSentiment("Microsoft").subscribe((response:sentimentCarrier) =>
     {
       console.log("This is the response object from the Reddit http call: " + JSON.stringify(response));
       this.redditSentiment = this.sentimentCompare(response.sentimentTotals.POSITIVE, response.sentimentTotals.NEGATIVE );
     });
-
+    setTimeout(() => {
+    this.loading = false;
+    }, 5000);
   }
 
 }
