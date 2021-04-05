@@ -1,0 +1,9 @@
+<mat-card class="card">
+    <form (ngSubmit)="onReply(f)" #f="ngForm">
+    <mat-form-field appearance="outline">
+        <textarea ngModel matInput placeholder = "Comment here ...." name="postContent" >
+        </textarea>
+    </mat-form-field>
+    <button mat-raised-button color="primary" id="reply-button" class="spacer"> Reply </button>
+    </form>
+</mat-card>

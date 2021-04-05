@@ -33,6 +33,7 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import { CommentBoxComponent } from './components/comment/comment-box/comment-box.component';
 import { CommentsContainerComponent } from './components/comment/comments-container/comments-container.component';
 import { DisplayCommentsComponent } from './components/comment/display-comments/display-comments.component';
+import { ReplyBoxComponent } from './components/comment/reply-box/reply-box.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { DisplayCommentsComponent } from './components/comment/display-comments/
     TickerContainerComponent,
     CommentBoxComponent,
     CommentsContainerComponent,
-    DisplayCommentsComponent
+    DisplayCommentsComponent,
+    ReplyBoxComponent
   ],
   imports: [
     BrowserModule,
