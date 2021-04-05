@@ -29,7 +29,6 @@ export class SentimentComponent implements OnInit {
       }
    }
 
-
   ngOnInit(): void {
     this.loading = true;
     this.sentiment.updateTwitterSentiment("Game Stop").subscribe((response:sentimentCarrier) =>
