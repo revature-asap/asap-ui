@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { assetProfile } from '../models/assetProfile';
+import { companyProfile } from '../models/companyProfile';
 import { WatchListService } from './watch-list.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class WatchListResolverService implements Resolve<assetProfile[]> {
+export class WatchListResolverService implements Resolve<companyProfile[]> {
 
   constructor(private watchlistService: WatchListService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
-    const watchList = this.watchlistService.getAssetProfile();
+    const watchList = this.watchlistService.getCompanyProfile();
 
     if (watchList == null) {
       return this.watchlistService.fetchUserWatchList();

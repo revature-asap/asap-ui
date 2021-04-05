@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
-import { assetProfile } from 'src/app/models/assetProfile';
+import { companyProfile } from 'src/app/models/companyProfile';
 import { assetQuote } from '../../models/assetQuote.model'
 
 @Component({
@@ -9,7 +9,7 @@ import { assetQuote } from '../../models/assetQuote.model'
 })
 export class TickerCardComponent implements OnInit {
   @Input() asset!: assetQuote;
-  @Input() companyName!: assetProfile;
+  @Input() companyName!: companyProfile;
   @Input() change!: number;
  
   trending = "";

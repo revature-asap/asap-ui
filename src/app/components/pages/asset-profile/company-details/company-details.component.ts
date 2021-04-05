@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { assetProfile } from 'src/app/models/assetProfile';
 import { assetQuote } from 'src/app/models/assetQuote.model';
 import { companyProfile } from 'src/app/models/companyProfile';
 import { Principal } from 'src/app/models/principal';
@@ -14,13 +13,13 @@ import { FinnhubService } from '../../../../services/finnhub.service';
 })
 export class CompanyDetailsComponent implements OnInit {
 
-  profile!: assetProfile;
+  profile!: companyProfile;
   ticker!: string;
   companyName!: string;
   asset!: assetQuote;
   isFavorited: boolean = false;
   loggedIn!: Principal | null;
-  watchList!: assetProfile[];
+  watchList!: companyProfile[];
 
 
 
@@ -36,7 +35,7 @@ export class CompanyDetailsComponent implements OnInit {
       this.checkIfFavorited();
     }
 
-    this.finnhub.getProfile("IBM").subscribe((profile: assetProfile) => {
+    this.finnhub.getProfile("IBM").subscribe((profile: companyProfile) => {
       this.profile = profile;
       console.log(this.profile);
       // this.ticker = profile.ticker;
@@ -75,11 +74,11 @@ export class CompanyDetailsComponent implements OnInit {
 
   setWatchList() {
     console.log("Set watch list");
-      this.watchList = this.watchListService.getAssetProfile();
+      this.watchList = this.watchListService.getCompanyProfile();
 
       if (this.watchList == null) {
         this.watchListService.fetchUserWatchList();
-        this.watchList = this.watchListService.getAssetProfile();
+        this.watchList = this.watchListService.getCompanyProfile();
       }
   }
 
@@ -99,6 +98,7 @@ export class CompanyDetailsComponent implements OnInit {
   addFavorites():void {
     this.watchListService.insertFavorite(this.profile);
     this.isFavorited = true;
+    this.watchList = this.watchListService.getCompanyProfile();
   }
 
 }

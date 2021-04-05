@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FinnhubService } from '../../services/finnhub.service';
-import { assetQuote } from '../../models/assetQuote.model'
-import { assetProfile } from 'src/app/models/assetProfile';
+import { assetQuote } from '../../models/assetQuote.model';
 import { TickerService } from 'src/app/services/ticker.service';
+import { companyProfile } from 'src/app/models/companyProfile';
 
 @Component({
   selector: 'app-ticker-container',
@@ -26,7 +26,7 @@ export class TickerContainerComponent implements OnInit {
           this.change = this.tickerService.computeChange(this.asset.current, this.asset.previousClose);
 
           this.finnhubService.getProfile("AAPL")
-          .subscribe((profile: assetProfile)=> {
+          .subscribe((profile: companyProfile)=> {
             this.asset.companyName = profile.name;
             this.assetQuotes.push(this.asset);
           });

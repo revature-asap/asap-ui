@@ -4,7 +4,6 @@ import { assetQuote } from '../models/assetQuote.model';
 import { assetCandle } from '../models/assetCandle';
 
 import {Observable} from 'rxjs';
-import { assetProfile } from '../models/assetProfile';
 import { companyProfile } from '../models/companyProfile';
 
 const httpOptions = {
@@ -39,9 +38,9 @@ export class FinnhubService {
   }
 
   //should pull from backend api to display profile information for given asset with database/finnhub/lunarcrush being checked for info in order
-  getProfile(ticker: string):Observable<assetProfile> {
+  getProfile(ticker: string):Observable<companyProfile> {
     //console.log("in get quote with ticker: " + ticker);
-    return this.http.get<assetProfile>(`${this.backendProfileInfo + ticker}`);
+    return this.http.get<companyProfile>(`${this.backendProfileInfo + ticker}`);
   }
 
   getCandle(ticker: string, resolution: string, start: string, end: string):Observable<assetCandle> {

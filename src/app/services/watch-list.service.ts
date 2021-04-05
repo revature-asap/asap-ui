@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { assetProfile } from '../models/assetProfile';
 import { LoginService } from './login.service';
 import {map, tap} from "rxjs/operators";
 import { formatDate } from '@angular/common';
+import { companyProfile } from '../models/companyProfile';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +13,8 @@ export class WatchListService {
 
 
 
-  private currentUserWatchList = new Subject<assetProfile[]>();
-  private currentWatchList: assetProfile[] = [];
+  private currentUserWatchList = new Subject<companyProfile[]>();
+  private currentWatchList: companyProfile[] = [];
 
   // private tempCurrentUserWatchList: Subject<assetProfile[]| null>;
   // private tempCurrentWatchList$: assetProfile = null
@@ -35,17 +35,17 @@ export class WatchListService {
       // industryCategory: string; //Potentially used for searching purposes
       // websiteUrl: string;
       // lastTouchedTimestamp: Date; //Not sure about this one 
-  getAssetProfile() {
+  getCompanyProfile() {
     return this.currentWatchList;
   }
-  fetchUserWatchList() : Promise<assetProfile[]> {
+  fetchUserWatchList() : Promise<companyProfile[]> {
     this.loginService.currentUser$.subscribe(
       user => {
         this.fetchAssetUrl+= user?.id;
       }
     );
 
-    return this.httpClient.get<assetProfile[]>(this.fetchAssetUrl, {
+    return this.httpClient.get<companyProfile[]>(this.fetchAssetUrl, {
       headers: {
         'Content-Type': 'application/json'
       },
@@ -53,7 +53,7 @@ export class WatchListService {
     }).pipe(
       map(resp => {
 
-        const assetProfile1 = resp.body as assetProfile[];
+        const assetProfile1 = resp.body as companyProfile[];
         this.currentWatchList = assetProfile1;
         this.currentUserWatchList.next(assetProfile1);
         return assetProfile1;
@@ -62,7 +62,7 @@ export class WatchListService {
     
   }
 
-  insertFavorite(userTicker: assetProfile) {
+  insertFavorite(userTicker: companyProfile) {
 
     this.httpClient.post(this.fetchAssetUrl + userTicker.ticker, {
 
