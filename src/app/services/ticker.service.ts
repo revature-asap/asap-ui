@@ -6,8 +6,6 @@ import { assetQuote } from '../models/assetQuote.model';
 })
 export class TickerService {
 
-	curTicker!: assetQuote;
-
 	constructor() { }
 
 	computeChange(cur: number, prevClosed: number): number {
@@ -17,19 +15,11 @@ export class TickerService {
 		return change;
 	}
 
-	getCurTicker() {
-		return this.curTicker;
-	}
-
-	setCurTicker(curTicker: assetQuote) {
-		this.curTicker = curTicker;
-	}
-
 }
 
 /**
- * 
- * 
+ *
+ *
  * create table assets(
 
 	asset_id serial,
@@ -41,8 +31,8 @@ export class TickerService {
 	industry_category varchar(25) not null default 'Other',
 	website_url text,
 	last_touched_timestamp date not null default current_date,
-	
+
 	constraint assets_pk primary key(asset_id)
-	
+
 );
  */

@@ -12,7 +12,8 @@
     </mat-sidenav>
     <mat-sidenav-content> <!-- 'Main content' -->
         <div style="height: 88vh; margin-left: 2%; margin-right: 80%; margin-top: 1%; border: 2px solid green;">
-            <div style= "border: 1px solid green; margin: 1%">
+          <button *ngIf = "!isFavorited && loggedIn" (click) = "addFavorites()">Add to Favorites</button>
+          <div style= "border: 1px solid green; margin: 1%">
                 {{profile?.name}}
             </div>
             <div style= "border: 1px solid green; margin: 1%">
@@ -50,9 +51,11 @@
             </div>
         </div>
 
+
+
         <!-- <input type="URL" name="myURL" [(ngModel)]="myURL" placeholder="insert image URL here" (change)="onURLinserted() ">
         <img [src]="imageToShow" alt="Place image title"> -->
 
     </mat-sidenav-content>
-</mat-sidenav-container> 
+</mat-sidenav-container>
 

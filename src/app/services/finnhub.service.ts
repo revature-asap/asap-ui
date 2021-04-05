@@ -5,7 +5,6 @@ import { assetCandle } from '../models/assetCandle';
 import { finnhubAssetProfile } from 'src/app/models/finnhubAssetProfile';
 
 import {Observable} from 'rxjs';
-import { assetProfile } from '../models/assetProfile';
 import { newsSentiment } from '../models/newsSentiment';
 import { companyProfile } from '../models/companyProfile';
 

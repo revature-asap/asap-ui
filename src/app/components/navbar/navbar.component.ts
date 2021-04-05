@@ -25,12 +25,17 @@ export class NavbarComponent implements OnInit {
       routeLink: '/home',
       routeSymbol: 'home'
     },
+    {
+      routeName: 'Assets',
+      routeLink: '/asset',
+      routeSymbol: 'login'
+    },
 
     {
       routeName: 'Login',
       routeLink: '/login',
       routeSymbol: 'login'
-    },
+    }
 
   ];
 
@@ -40,6 +45,13 @@ export class NavbarComponent implements OnInit {
       routeLink: '/home',
       routeSymbol: 'home'
     },
+
+    {
+      routeName: 'Assets',
+      routeLink: '/companyDisplay',
+      routeSymbol: 'login'
+    },
+
     {
       routeName: 'User Profile',
       routeLink: '/profile',
@@ -69,7 +81,7 @@ export class NavbarComponent implements OnInit {
 
     this.logoutService.logoutUser();
     this.route.navigate(['login']);
-  
+
   }
 
 }

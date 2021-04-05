@@ -17,7 +17,7 @@ export class TickerContainerComponent implements OnInit {
   constructor(private finnhubService:FinnhubService, public tickerService: TickerService) { }
 
   ngOnInit(): void {
-    
+
     this.finnhubService.getQuote("IBM")
         .subscribe((asseta)=>{
           this.asset = new assetQuote(asseta);
