@@ -15,8 +15,8 @@ Client Tier:
 
 DevOps Tools:
   - Pipeline: AWS CodePipeline
-  - Build Server:
-  - Deployment:
+  - Build Server: AWS CodeBuild
+  - Deployment: AWS S3 Bucket
 
 ## Features
 
