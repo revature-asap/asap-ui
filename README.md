@@ -68,7 +68,7 @@ You can use either of the two following commands to locally host the project:
 - npm start (will run asap-ui@<version> start and ng serve)
 
 These commands will allow you to hit the webpage from localhost:4200
-All service files will be hitting the hosted project. In order to hit your own project or a local project, the URLs will need to be changed in the service files:
+All service files will be hitting the hosted project. In order to hit your own hosted project or a local project, the URLs will need to be changed in the service files below to the local url:
 
 ## Usage
 
