@@ -50,10 +50,14 @@
             </div>
         </div>
 
+        
+
         <!-- <input type="URL" name="myURL" [(ngModel)]="myURL" placeholder="insert image URL here" (change)="onURLinserted() ">
         <img [src]="imageToShow" alt="Place image title"> -->
 
     </mat-sidenav-content>
 </mat-sidenav-container> 
+
+<button *ngIf = "!isFavorited && loggedIn" (click) = "addFavorites()">Add to Favorites</button>
 
 

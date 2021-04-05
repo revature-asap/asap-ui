@@ -10,20 +10,13 @@ export class WatchListResolverService implements Resolve<assetProfile[]> {
 
   constructor(private watchlistService: WatchListService) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot ){
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
+    const watchList = this.watchlistService.getAssetProfile();
 
-    console.log("I am in the resolve");
-    const watchList = this.watchlistService.getUserWatchList();
-    console.log("I got the resolve. The data is " + watchList);
-
-    if (watchList.length == 0) {
-      console.log("The data was null");
-      this.watchlistService.setUserWatchList();
-      return this.watchlistService.getUserWatchList();
-      
+    if (watchList == null) {
+      return this.watchlistService.fetchUserWatchList();
     }
     else {
-      console.log("The data was NOT null");
       return watchList;
     }
   }

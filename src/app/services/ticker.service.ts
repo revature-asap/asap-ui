@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class TickerService {
-
   constructor() { }
 
   computeChange(cur: number, prevClosed: number): number {
@@ -13,6 +12,8 @@ export class TickerService {
 
     return change;
   }
+
+
 
 }
 
