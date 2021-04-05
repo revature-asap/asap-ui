@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Data } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Principal } from 'src/app/models/principal';
 import { User } from 'src/app/models/user';
 
 @Component({
@@ -15,7 +16,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   userProfile = {};
 
-  user!: User;
+  user!: Principal;
 
   constructor(private route: ActivatedRoute) {
   }

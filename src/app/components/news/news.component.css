@@ -3,4 +3,5 @@
   border: solid black;
   text-align: center;
   cursor: url("../../../assets/wezleygun.png"), auto;
+  height: 100%;
 }

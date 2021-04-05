@@ -9,16 +9,17 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { ProfileResolverService } from './services/profile-resolver.service';
 import {NewsComponent} from "./components/news/news.component";
 import {SentimentComponent} from './components/sentiment/sentiment.component';
-
+import { CompanyDetailsComponent } from "./components/pages/asset-profile/company-details/company-details.component"
+import { WatchListResolverService } from './services/watch-list-resolver.service';
 
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'register', component: RegistrationComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'newsArticles', component: NewsComponent},
+  {path: 'companyDisplay', component: CompanyDetailsComponent},
   {path: 'profile', resolve: {profile: ProfileResolverService}, component: ProfileComponent, canActivate: [AuthGuardService],  children: [
-    {path: 'watchlist', component: WatchListComponent}
+    {path: 'watchlist', resolve: {asset: WatchListResolverService}, component: WatchListComponent}
   ]
   },
   {path: 'sentiment', component: SentimentComponent},

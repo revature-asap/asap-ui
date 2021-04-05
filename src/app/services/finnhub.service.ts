@@ -7,6 +7,7 @@ import { finnhubAssetProfile } from 'src/app/models/finnhubAssetProfile';
 import {Observable} from 'rxjs';
 import { assetProfile } from '../models/assetProfile';
 import { newsSentiment } from '../models/newsSentiment';
+import { companyProfile } from '../models/companyProfile';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -38,9 +39,10 @@ export class FinnhubService {
     return this.http.get<assetQuote>(`${this.api_url + this.quoteUrl + ticker }${this.tokens[this.getToken()]}`);
   }
 
-  getProfile(ticker: string):Observable<assetProfile> {
+  //should pull from backend api to display profile information for given asset with database/finnhub/lunarcrush being checked for info in order
+  getProfile(ticker: string):Observable<companyProfile> {
     //console.log("in get quote with ticker: " + ticker);
-    return this.http.get<assetProfile>(`${this.api_url + this.profileUrl + ticker}${this.tokens[this.getToken()]}`);
+    return this.http.get<companyProfile>(`${this.api_url + this.profileUrl + ticker}${this.tokens[this.getToken()]}`);
   }
 
   getCandle(ticker: string, resolution: string, start: string, end: string):Observable<assetCandle> {
@@ -67,5 +69,4 @@ export class FinnhubService {
     console.log("URL on getProfile: " + this.api_url + this.finnhubProfileUrl + ticker + this.tokens[this.getToken()]);
     return this.http.get<finnhubAssetProfile>(`${this.api_url + this.finnhubProfileUrl + ticker}${this.tokens[this.getToken()]}`);
   }
-
 }
