@@ -32,6 +32,9 @@ import { TickerContainerComponent } from './components/ticker-container/ticker-c
 import {MatCardModule} from '@angular/material/card';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { CommentBoxComponent } from './components/comment/comment-box/comment-box.component';
+import { CommentsContainerComponent } from './components/comment/comments-container/comments-container.component';
+import { DisplayCommentsComponent } from './components/comment/display-comments/display-comments.component';
 
 
 @NgModule({
@@ -48,7 +51,10 @@ import {MatGridListModule} from '@angular/material/grid-list';
     RegisterEmailConfirmationDialog,
     TickerCardComponent,
     HomeComponent,
-    TickerContainerComponent
+    TickerContainerComponent,
+    CommentBoxComponent,
+    CommentsContainerComponent,
+    DisplayCommentsComponent
   ],
   imports: [
     BrowserModule,

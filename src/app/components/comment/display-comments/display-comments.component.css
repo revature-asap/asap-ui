@@ -1,0 +1,17 @@
+.card {
+    margin-bottom: 10px;
+    display: block;
+  
+    border: .2em solid rgba(0, 0, 0, 0.938);
+    border-radius: 5px;
+
+    width: 40%;
+    height: 80%;
+    padding: 10px;
+
+}
+
+.spacer {
+    margin-bottom: 1em;
+}
+
