@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NewsService} from "../../services/news.service";
 import {Article} from "../../models/article";
+import { PageEvent } from '@angular/material/paginator';
 
 /**
  * This component is able to display all the news articles for a given
@@ -15,6 +16,10 @@ export class NewsComponent implements OnInit {
 
   articles: Article[] = [];
   assets: string[] = ['AAPL', 'GME', 'GOOG', 'AMZN', 'MSFT', 'TSLA'];
+  articlesTemp: Article[] = [];
+  numElements = 0;
+  currentIndex = 0;
+  pageSizeNum = 4;
 
   constructor(private newsService: NewsService) { }
 
@@ -35,7 +40,11 @@ export class NewsComponent implements OnInit {
         console.error(e);
       }
     }
-
+    this.articlesTemp = [];
+    for (let i = 0; i < this.pageSizeNum; i++) {
+      this.articlesTemp.push(this.articles[i]);
+    }
+    console.log("The length of the articles is " + this.articles.length);
   }
 
   /**
@@ -83,7 +92,25 @@ export class NewsComponent implements OnInit {
    * method in order to populate with the news articles in the class variable
    */
   ngOnInit(): void {
-    this.fetchArticles();
+   this.fetchArticles();
+
+
+
+  }
+
+  onChangePage(pageData: PageEvent) {
+    this.articlesTemp = [];
+
+    this.numElements = 0;
+    this.currentIndex = pageData.pageIndex * pageData.pageSize;
+
+      while (this.numElements < pageData.pageSize && this.currentIndex < this.articles.length) {
+
+        this.articlesTemp.push(this.articles[this.currentIndex]);
+        this.numElements++;
+        this.currentIndex++;
+      }
+    console.log(pageData);
   }
 
 }

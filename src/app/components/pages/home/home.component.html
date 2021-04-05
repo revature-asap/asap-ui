@@ -1,8 +1,25 @@
-<div>
     <!-- Ticker accross the top -->
+
     <app-ticker-container></app-ticker-container>
-    <!-- rest of the page -->
-    <div> 
-        <p> Rest of the page</p>
+
+    <div id = "dashboardContainer">
+        <mat-grid-list  cols="3" rowHeight="100%" *ngIf = "loggedIn">
+            <mat-grid-tile>1</mat-grid-tile>
+            <mat-grid-tile>2</mat-grid-tile>
+            <mat-grid-tile>
+                <app-news></app-news>
+            </mat-grid-tile>
+          </mat-grid-list>
+    
+    
+    
+          <mat-grid-list cols="2" rowHeight="100%" *ngIf = "!loggedIn">
+            <mat-grid-tile>1</mat-grid-tile>
+            <mat-grid-tile>
+                <app-news></app-news>
+            </mat-grid-tile>
+          </mat-grid-list>
     </div>
-</div>
+    <!-- rest of the page -->
+
+
