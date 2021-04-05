@@ -28,13 +28,14 @@ export class FinnhubService {
   profileUrl: string = "/stock/profile2?symbol=";
   
   //real backend: http://ec2co-ecsel-1g0q6xc63i5af-1652680293.us-east-2.elb.amazonaws.com:5000
-  backendProfileInfo: string = "http://localhost:5000/asset?ticker="
+  //backendProfileInfo: string = "http://ec2co-ecsel-1g0q6xc63i5af-1652680293.us-east-2.elb.amazonaws.com:5000/asset?ticker=";
+  backendProfileInfo: string = "http://localhost:5000/asset?ticker=";
 
   token:string = "&token=c1ceppv48v6scqmqtk5g"
 
   getQuote(ticker: string):Observable<assetQuote> {
     //console.log("in get quote with ticker: " + ticker);
-    console.log("Inside not test " + `${this.api_url + this.quoteUrl + ticker + this.token}`);
+    console.log("inside finhub service get quote with url: " + `${this.api_url + this.quoteUrl + ticker + this.token}`);
     return this.http.get<assetQuote>(`${this.api_url + this.quoteUrl + ticker + this.token}`);
   }
 
@@ -52,6 +53,5 @@ export class FinnhubService {
     //console.log("URL on getCandle: " + this.api_url + this.candleUrl + resolution + start + end);
     return this.http.get<assetCandle>(`${this.api_url + this.candleUrl + ticker + resolution + start + end + this.token}`);
   }
-
 
 }

@@ -1,18 +1,29 @@
 import { Injectable } from '@angular/core';
+import { assetQuote } from '../models/assetQuote.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TickerService {
 
-  constructor() { }
+	curTicker!: assetQuote;
 
-  computeChange(cur: number, prevClosed: number): number {
-    let change = ((cur - prevClosed)/prevClosed);
-    console.log(change);
+	constructor() { }
 
-    return change;
-  }
+	computeChange(cur: number, prevClosed: number): number {
+		let change = ((cur - prevClosed)/prevClosed);
+		console.log(change);
+
+		return change;
+	}
+
+	getCurTicker() {
+		return this.curTicker;
+	}
+
+	setCurTicker(curTicker: assetQuote) {
+		this.curTicker = curTicker;
+	}
 
 }
 

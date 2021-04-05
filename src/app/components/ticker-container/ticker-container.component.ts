@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FinnhubService } from '../../services/finnhub.service';
 import { assetQuote } from '../../models/assetQuote.model'
-import { assetProfile } from 'src/app/models/assetProfile';
+import { companyProfile } from 'src/app/models/companyProfile';
 import { TickerService } from 'src/app/services/ticker.service';
 
 @Component({
@@ -18,22 +18,20 @@ export class TickerContainerComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.finnhubService.getQuote("AAPL")
+    this.finnhubService.getQuote("IBM")
         .subscribe((asseta)=>{
           this.asset = new assetQuote(asseta);
-          this.asset.companyTicker = "AAPL";
+          this.asset.companyTicker = "IBM";
 
           this.change = this.tickerService.computeChange(this.asset.current, this.asset.previousClose);
 
-          this.finnhubService.getProfile("AAPL")
-          .subscribe((profile: assetProfile)=> {
+          this.finnhubService.getProfile("IBM")
+          .subscribe((profile: companyProfile) => {
             this.asset.companyName = profile.name;
             this.assetQuotes.push(this.asset);
           });
 
         });
-
-
   }
 
 }
