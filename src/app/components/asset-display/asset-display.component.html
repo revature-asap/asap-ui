@@ -1,2 +1,28 @@
-<h2 [innerHtml] = "stockprice"></h2>
-<li>{{candle | json}}</li>
+<h1>{{candleName}}: {{stockprice | currency}}
+</h1>
+
+
+<table>
+    <thead>
+        <th>Candledata: {{candleName}}</th>
+    </thead>
+        <tr>
+            Open: <td *ngFor="let open of candleOpen">{{open | currency}}</td>
+        </tr>
+        <tr >
+            High: <td *ngFor="let high of candleHigh">{{high | currency}}</td>
+        </tr>
+        <tr >
+            Low: <td *ngFor="let low of candleLow">{{low | currency}}</td>
+        </tr>
+        <tr >
+            Close: <td *ngFor="let close of candleClose">{{close | currency}}</td>
+        </tr>
+        <tr>
+            Volume: <td *ngFor="let volume of candleVolume">{{volume}}</td>
+        </tr>
+        <tr>
+            Time: <td *ngFor="let time of candleTime">{{time}}</td>
+        </tr>
+    
+</table>

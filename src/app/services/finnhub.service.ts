@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { assetQuote } from '../models/assetQuote.model';
 import { assetCandle } from '../models/assetCandle';
+import { finnhubAssetProfile } from 'src/app/models/finnhubAssetProfile';
 
 import {Observable} from 'rxjs';
 import { assetProfile } from '../models/assetProfile';
@@ -28,7 +29,8 @@ export class FinnhubService {
   quoteUrl: string = "/quote?symbol=";
   candleUrl: string = "/stock/candle?symbol=";
   profileUrl: string = "/stock/profile2?symbol=";
-  sentimentUrl: string = "/news-sentiment?symbol="
+  sentimentUrl: string = "/news-sentiment?symbol=";
+  finnhubProfileUrl: string = "/stock/profile2?symbol=";
 
   getQuote(ticker: string):Observable<assetQuote> {
     //console.log("in get quote with ticker: " + ticker);
@@ -58,6 +60,12 @@ export class FinnhubService {
     let tokenIdx = Math.floor(Math.random() * 3);
     console.log("tokenIdx: " + tokenIdx);
     return tokenIdx;
+  }
+
+  getFinnhubProfile(ticker: string):Observable<finnhubAssetProfile> {
+    console.log("in get profile with ticker: " + ticker);
+    console.log("URL on getProfile: " + this.api_url + this.finnhubProfileUrl + ticker + this.tokens[this.getToken()]);
+    return this.http.get<finnhubAssetProfile>(`${this.api_url + this.finnhubProfileUrl + ticker}${this.tokens[this.getToken()]}`);
   }
 
 }
