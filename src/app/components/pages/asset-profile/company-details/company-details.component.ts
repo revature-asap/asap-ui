@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { assetProfile } from 'src/app/models/assetProfile';
 import { assetQuote } from 'src/app/models/assetQuote.model';
 import { companyProfile } from 'src/app/models/companyProfile';
 import { FinnhubService } from '../../../../services/finnhub.service';
@@ -10,7 +11,7 @@ import { FinnhubService } from '../../../../services/finnhub.service';
 })
 export class CompanyDetailsComponent implements OnInit {
 
-  profile!: companyProfile;
+  profile!: assetProfile;
   ticker!: string;
   companyName!: string;
   asset!: assetQuote;
@@ -21,7 +22,7 @@ export class CompanyDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.finnhub.getProfile("IBM").subscribe((profile: companyProfile) => {
+    this.finnhub.getProfile("IBM").subscribe((profile: assetProfile) => {
       this.profile = profile;
       console.log(this.profile);
       // this.ticker = profile.ticker;

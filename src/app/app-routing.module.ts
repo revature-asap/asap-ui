@@ -16,6 +16,7 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'register', component: RegistrationComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'asset', component: CompanyDetailsComponent},
   {path: 'newsArticles', component: NewsComponent},
   {path: 'companyDisplay', component: CompanyDetailsComponent},
   {path: 'profile', resolve: {profile: ProfileResolverService}, component: ProfileComponent, canActivate: [AuthGuardService],  children: [
