@@ -8,6 +8,7 @@ import { WatchListComponent } from './components/user-profile/watch-list/watch-l
 import { AuthGuardService } from './services/auth-guard.service';
 import { ProfileResolverService } from './services/profile-resolver.service';
 import {NewsComponent} from "./components/news/news.component";
+import { WatchListResolverService } from './services/watch-list-resolver.service';
 
 
 const routes: Routes = [
@@ -16,7 +17,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'newsArticles', component: NewsComponent},
   {path: 'profile', resolve: {profile: ProfileResolverService}, component: ProfileComponent, canActivate: [AuthGuardService],  children: [
-    {path: 'watchlist', component: WatchListComponent}
+    {path: 'watchlist', resolve: {asset: WatchListResolverService}, component: WatchListComponent}
   ]
 },
   {path: 'home', component: HomeComponent},

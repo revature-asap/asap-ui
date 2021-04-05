@@ -3,7 +3,7 @@
     <app-ticker-container></app-ticker-container>
 
     <div id = "dashboardContainer">
-        <mat-grid-list  cols="3" rowHeight="100%" *ngIf = "!loggedIn">
+        <mat-grid-list  cols="3" rowHeight="100%" *ngIf = "loggedIn">
             <mat-grid-tile>1</mat-grid-tile>
             <mat-grid-tile>2</mat-grid-tile>
             <mat-grid-tile>
@@ -13,7 +13,7 @@
     
     
     
-          <mat-grid-list cols="2" rowHeight="100%" *ngIf = "loggedIn">
+          <mat-grid-list cols="2" rowHeight="100%" *ngIf = "!loggedIn">
             <mat-grid-tile>1</mat-grid-tile>
             <mat-grid-tile>
                 <app-news></app-news>

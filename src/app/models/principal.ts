@@ -16,4 +16,5 @@ export class Principal {
     this.role = role;
     this.token = token;
   }
+
 }
