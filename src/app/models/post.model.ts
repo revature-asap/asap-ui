@@ -5,6 +5,7 @@ export class Post{
     title: string;
     assetName!: string;
     assetId: number;
+    parentPostId!: number;
 
     constructor(post:any){
         this.id = post.id;
@@ -12,6 +13,7 @@ export class Post{
         this.textContent = post.textContent;
         this.title = post.title;
         this.assetId = post.assetId;
+        this.parentPostId = post.parentPostId;
     }
     
 }

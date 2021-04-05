@@ -1,5 +1,5 @@
-<div>
-    <mat-card class="card" *ngFor="let post of posts">
+<div *ngFor="let post of posts">
+    <mat-card class="card">
         <mat-card-header>
             <div mat-card-avatar [ngStyle]="userProfile" ></div>
             <mat-card-title class="title"> 
@@ -12,5 +12,7 @@
         <mat-card-content>
             {{post.textContent}}
         </mat-card-content>
+
     </mat-card>
+    <button mat-raised-button color="primary" id="reply-button" class="spacer" (click)="onReply()")> Reply </button>
 </div>

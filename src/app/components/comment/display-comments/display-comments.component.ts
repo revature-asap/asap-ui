@@ -36,12 +36,14 @@ export class DisplayCommentsComponent implements OnInit {
           'height' : '5em',
           'background-size' : 'cover',
           'postion' : 'relative',
-          'top' : '-5em'
         };
       }
     )
 
   }
 
+  onReply() {
+    console.log("replying");
+  }
 
 }
