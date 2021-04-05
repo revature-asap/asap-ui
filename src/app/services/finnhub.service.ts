@@ -5,6 +5,7 @@ import { assetCandle } from '../models/assetCandle';
 
 import {Observable} from 'rxjs';
 import { assetProfile } from '../models/assetProfile';
+import { companyProfile } from '../models/companyProfile';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -25,6 +26,9 @@ export class FinnhubService {
   quoteUrl: string = "/quote?symbol=";
   candleUrl: string = "/stock/candle?symbol=";
   profileUrl: string = "/stock/profile2?symbol=";
+  
+  //real backend: http://ec2co-ecsel-1g0q6xc63i5af-1652680293.us-east-2.elb.amazonaws.com:5000
+  backendProfileInfo: string = "http://localhost:5000/asset?ticker="
 
   token:string = "&token=c1ceppv48v6scqmqtk5g"
 
@@ -34,9 +38,10 @@ export class FinnhubService {
     return this.http.get<assetQuote>(`${this.api_url + this.quoteUrl + ticker + this.token}`);
   }
 
-  getProfile(ticker: string):Observable<assetProfile> {
+  //should pull from backend api to display profile information for given asset with database/finnhub/lunarcrush being checked for info in order
+  getProfile(ticker: string):Observable<companyProfile> {
     //console.log("in get quote with ticker: " + ticker);
-    return this.http.get<assetProfile>(`${this.api_url + this.profileUrl + ticker + this.token}`);
+    return this.http.get<companyProfile>(`${this.backendProfileInfo + ticker}`);
   }
 
   getCandle(ticker: string, resolution: string, start: string, end: string):Observable<assetCandle> {
