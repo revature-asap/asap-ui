@@ -40,6 +40,8 @@ Clone the repository to your local machine with the git clone command:
 
 - git clone https://github.com/revature-asap/asap-ui.git
 
+The following are AnglulerCLI commands for starting the server and running tests
+
 * Development server (Need Angular CLI for running the command)
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -60,10 +62,13 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
    
-(include all environment setup steps)
+You can use either of the two following commands to locally host the project:
 
-- All the `code` required to get started
-- Images of what it should look like
+- ng serve (will only run the serve command)
+- npm start (will run asap-ui@<version> start and ng serve)
+
+These commands will allow you to hit the webpage from localhost:4200
+All service files will be hitting the hosted project. In order to hit your own project or a local project, the URLs will need to be changed in the service files:
 
 ## Usage
 
