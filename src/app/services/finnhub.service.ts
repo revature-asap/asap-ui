@@ -5,6 +5,7 @@ import { assetCandle } from '../models/assetCandle';
 
 import {Observable} from 'rxjs';
 import { assetProfile } from '../models/assetProfile';
+import { newsSentiment } from '../models/newsSentiment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -25,6 +26,7 @@ export class FinnhubService {
   quoteUrl: string = "/quote?symbol=";
   candleUrl: string = "/stock/candle?symbol=";
   profileUrl: string = "/stock/profile2?symbol=";
+  sentimentUrl: string = "/news-sentiment?symbol="
 
   token:string = "&token=c1ceppv48v6scqmqtk5g"
 
@@ -46,6 +48,10 @@ export class FinnhubService {
     end = "&to=" + end;
     //console.log("URL on getCandle: " + this.api_url + this.candleUrl + resolution + start + end);
     return this.http.get<assetCandle>(`${this.api_url + this.candleUrl + ticker + resolution + start + end + this.token}`);
+  }
+
+  getSentiment(ticker: string):Observable<newsSentiment> {
+    return this.http.get<newsSentiment>(`${this.api_url + this.sentimentUrl + ticker + this.token}`);
   }
 
 
