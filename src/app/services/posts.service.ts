@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Post } from '../models/Post.model';
-import { Subject } from 'rxjs'
+import { Post } from '../models/post.model';
+import { Observable, Subject } from 'rxjs'
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
@@ -21,7 +21,7 @@ export class PostsService {
     return this.postUpdated.asObservable();
   }
 
-  getAllPosts(){
+  getAllPosts():Observable<Post[]>{
     console.log("Made it: 1");
     return this.http.get<Post[]>(this.url);
 

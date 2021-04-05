@@ -1,7 +1,7 @@
 export class Post{
     id: number;
     userId: number;
-    content: string;
+    textContent: string;
     title: string;
     assetName!: string;
     assetId: number;
@@ -9,7 +9,7 @@ export class Post{
     constructor(post:any){
         this.id = post.id;
         this.userId = post.authorId;
-        this.content = post.textContent;
+        this.textContent = post.textContent;
         this.title = post.title;
         this.assetId = post.assetId;
     }

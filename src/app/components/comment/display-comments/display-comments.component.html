@@ -1,15 +1,16 @@
 <div>
-    <mat-card *ngFor="let post of posts">
+    <mat-card class="card" *ngFor="let post of posts">
         <mat-card-header>
-            <mat-card-title> 
+            <div mat-card-avatar [ngStyle]="userProfile" ></div>
+            <mat-card-title class="title"> 
                 {{post.title}}
             </mat-card-title>
             <mat-card-subtitle>
-                {{post.assetName}}
+                <!-- {{user.firstName}} -->
             </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-            {{post.content}}
+            {{post.textContent}}
         </mat-card-content>
     </mat-card>
 </div>

@@ -25,7 +25,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.subscription = this.route.data.subscribe(
       (data: Data) =>{
         this.user = data['profile'];
-        console.log(this.user.email);
         this.userProfile = {
           'background' : 'url(https://source.unsplash.com/random/200x200)',
           'background-repeat' : 'no-repeat',
