@@ -31,8 +31,8 @@ import { TickerContainerComponent } from './components/ticker-container/ticker-c
 import {MatCardModule} from '@angular/material/card';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import { CompanyDetailsComponent } from './components/pages/asset-profile/company-details/company-details.component';
-
-
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatPaginatorModule} from '@angular/material/paginator';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,7 +68,10 @@ import { CompanyDetailsComponent } from './components/pages/asset-profile/compan
     MatCardModule,
     MatDialogModule,
     OverlayModule,
-    ScrollingModule
+    ScrollingModule,
+    MatGridListModule,
+    MatPaginatorModule
+    
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},

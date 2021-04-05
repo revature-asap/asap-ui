@@ -1,37 +1,42 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { Principal } from '../models/principal';
 import { User } from '../models/user';
+import { LoginService } from './login.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
 
-profileInfoChanged = new Subject<User>();
+  constructor(public loginService: LoginService) {}
+
+profileInfoChanged = new Subject<Principal|null>();
 
 
-  private profileInfo: User = {
-    username: "waefwaef",
-    password: "awefwaef",
-    firstName: "awefwaef",
-    lastName: "stgresgring",
-    email: "strisergng"};
+  private profileInfo!: Principal | null;
 
 
 
   getProfile() {
 
-
-    //console.log(this.profileInfo);
+    if (this.profileInfo == null) {
+     this.loginService.currentUser$.subscribe(
+       user => {
+         this.profileInfo = user;
+         this.profileInfoChanged.next(this.profileInfo);
+       }
+     );
+    }
     return this.profileInfo;
 
   }
 
-  setAbout(profileInfo: User){
+  // setProfile(profileInfo: User){
 
-    this.profileInfo = profileInfo;
+  //   this.profileInfo = profileInfo;
 
-    this.profileInfoChanged.next(this.profileInfo);
+  //   this.profileInfoChanged.next(this.profileInfo);
 
-  }
+  // }
 }

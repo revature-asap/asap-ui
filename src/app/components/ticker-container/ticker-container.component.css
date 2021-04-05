@@ -4,6 +4,7 @@
     border-style: ridge;
     flex-direction: row;
     overflow-x: auto;
+    height: 20%;
   }
 
   .card {
