@@ -1,5 +1,5 @@
 
-<mat-toolbar id="headerToolBar" color="primary">
+<mat-toolbar id="headerToolBar">
   <mat-toolbar-row>
     <button type= "button" aria-label="Toggle sidenav" mat-icon-button (click) = "toggleDrawer()" *ngIf = "mobileNavigation">
       <mat-icon arial-label="Side nav toggle icon">menu</mat-icon>
@@ -7,8 +7,8 @@
     <a [routerLink]="['/home']" >
     <span id = "header-component-title">Asset Sentiment Analysis Platform</span>
     </a>
-    
-    <form (ngSubmit)= "onSubmit(f)" #f="ngForm" class="form-inline waves-light" mdbWavesEffect>
+    <span class="menu-spacer" *ngIf = "!mobileNavigation"></span>
+    <form (ngSubmit)= "onSubmit(f)" #f="ngForm" class="submitBar form-inline waves-light" mdbWavesEffect>
       <mat-form-field class="md-form mb-3">
         <input ngModel matInput placeholder="Enter Ticker" name = "searchField" class="form-control" type="search" id="search1" aria-label="Search" mdbInput>
         <button mat-raised-button color="Accent" id="comment-button"> Search </button>
