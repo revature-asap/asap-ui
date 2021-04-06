@@ -41,7 +41,7 @@ export class AssetChartComponent implements OnInit {
 
   constructor(private finnhubService : FinnhubService, private dateTimeService : DateTimeService) {}
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.getChartData();
   }
 
@@ -66,7 +66,7 @@ export class AssetChartComponent implements OnInit {
 
   getChartData(scaleDate: number = 1) {
     this.chartData = [];
-    
+
     if (scaleDate >= 15) {
       alert("Too many calls to the finnhub api have been made. Try refreshing the page.");
       this.loadingGraph = false;
@@ -74,11 +74,11 @@ export class AssetChartComponent implements OnInit {
     }
 
     this.setChartType();
-    
+
     let assetTime = this.dateTimeService.getTimeInterval(scaleDate, this.assetTimeInterval);
 
     this.loadingGraph = true;
-    let fhd = this.finnhubService.getCandle(this.assetTicker, "1", assetTime.pastTime.toString(), 
+    let fhd = this.finnhubService.getCandle(this.assetTicker, "1", assetTime.pastTime.toString(),
       assetTime.currentTime.toString());
 
     fhd.toPromise().then(data => {
@@ -98,18 +98,19 @@ export class AssetChartComponent implements OnInit {
         console.log("assetdate " + assetDate);
 
         candlestick.push(this.dateTimeService.getFormattedDate(
-          assetDate.getDate(), 
-          assetDate.getMonth(), 
+          assetDate.getDate(),
+          assetDate.getMonth(),
           assetDate.getFullYear(),
           assetDate.getHours() - (assetDate.getTimezoneOffset() / 60),
-          assetDate.getMinutes(), 
-          assetDate.getSeconds())
-        );
+          assetDate.getMinutes(),
+          assetDate.getSeconds(),
+          assetDate.getTimezoneOffset()
+        ));
 
         candlestick.push(acd.low[i]);
         candlestick.push(acd.open[i]);
         candlestick.push(acd.close[i]);
-        candlestick.push(acd.high[i]); 
+        candlestick.push(acd.high[i]);
 
         this.chartData.push(candlestick);
         this.loadingGraph = false;
