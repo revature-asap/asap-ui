@@ -33,7 +33,7 @@ export class CommentBoxComponent implements OnInit {
     this.postService.newPost(
       form.value.postTitle,
       form.value.postContent,
-      form.value.assetName,
+      form.value.assetTicker,
       ).subscribe(post => {
         console.log("trying to console log post:" + post);
       });

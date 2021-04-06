@@ -34,6 +34,7 @@ import { CommentBoxComponent } from './components/comment/comment-box/comment-bo
 import { CommentsContainerComponent } from './components/comment/comments-container/comments-container.component';
 import { DisplayCommentsComponent } from './components/comment/display-comments/display-comments.component';
 import { ReplyBoxComponent } from './components/comment/reply-box/reply-box.component';
+import { DisplayReplyComponent } from './components/comment/display-reply/display-reply.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { ReplyBoxComponent } from './components/comment/reply-box/reply-box.comp
     CommentBoxComponent,
     CommentsContainerComponent,
     DisplayCommentsComponent,
-    ReplyBoxComponent
+    ReplyBoxComponent,
+    DisplayReplyComponent
   ],
   imports: [
     BrowserModule,

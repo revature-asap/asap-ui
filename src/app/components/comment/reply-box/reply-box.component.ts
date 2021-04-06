@@ -12,15 +12,23 @@ export class ReplyBoxComponent implements OnInit {
 
   constructor(private postService: PostsService) { }
   @Input() post!:Post;
+  parentPostId!: number;
 
   ngOnInit(): void {
-    
+    this.parentPostId = this.post.id;
   }
 
   onReply(form:NgForm) {
     console.log("replying");
 
-    this.postService.getReplys(1);
+    this.postService.addReply(
+      this.parentPostId,
+      this.post.title,
+      form.value.postContent,
+      this.post.assetTicker
+      ).subscribe(post => {
+        console.log("trying to console log post:" + post);
+      });
   }
 
 }

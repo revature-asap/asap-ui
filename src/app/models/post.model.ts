@@ -3,9 +3,10 @@ export class Post{
     userId: number;
     textContent: string;
     title: string;
-    assetName!: string;
+    assetTicker!: string;
     assetId: number;
     parentPostId!: number;
+    creationTimestamp!: number;
 
     constructor(post:any){
         this.id = post.id;
@@ -14,6 +15,7 @@ export class Post{
         this.title = post.title;
         this.assetId = post.assetId;
         this.parentPostId = post.parentPostId;
+        this.creationTimestamp = post.creationTimestamp;
     }
     
 }
