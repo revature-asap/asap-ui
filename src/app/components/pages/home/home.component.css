@@ -9,3 +9,7 @@
  #dashboardContainer {
     height: 100%;
 }
+
+.container{
+    padding: 1rem;
+}
