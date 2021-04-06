@@ -10,17 +10,3 @@
     padding: 10px;
     white-space: nowrap;
 }
-
-.spacer {
-    margin-bottom: 1em;
-}
-
-.alignReply {
-    display: flex;
-    flex-wrap: wrap;
-
-}
-
-.replybox {
-    
-}

@@ -14,6 +14,7 @@ import { PostsService } from 'src/app/services/posts.service';
 export class DisplayCommentsComponent implements OnInit {
   posts: Post[] = [];
   subscription: Subscription | undefined;
+  assetTicker!: string; 
 
   userProfile = {};
 
@@ -23,7 +24,10 @@ export class DisplayCommentsComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("Made it 2: ");
-    this.postService.getAllPosts().subscribe(p=> {this.posts = p; console.log(this.posts);});
+    this.postService.getAllPosts()
+      .subscribe(p=> {
+        this.posts = p;
+      });
 
     this.subscription = this.route.data.subscribe(
       (data: Data) =>{
@@ -40,10 +44,6 @@ export class DisplayCommentsComponent implements OnInit {
       }
     )
 
-  }
-
-  onReply() {
-    console.log("replying");
   }
 
 }
