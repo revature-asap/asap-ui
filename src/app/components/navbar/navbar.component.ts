@@ -25,11 +25,11 @@ export class NavbarComponent implements OnInit {
       routeLink: '/home',
       routeSymbol: 'home'
     },
-    {
-      routeName: 'Assets',
-      routeLink: '/asset',
-      routeSymbol: 'login'
-    },
+    // {
+    //   routeName: 'Assets',
+    //   routeLink: '/companyDisplay',
+    //   routeSymbol: 'login'
+    // },
 
     {
       routeName: 'Login',
@@ -46,11 +46,11 @@ export class NavbarComponent implements OnInit {
       routeSymbol: 'home'
     },
 
-    {
-      routeName: 'Assets',
-      routeLink: '/companyDisplay',
-      routeSymbol: 'login'
-    },
+    // {
+    //   routeName: 'Assets',
+    //   routeLink: '/companyDisplay',
+    //   routeSymbol: 'login'
+    // },
 
     {
       routeName: 'User Profile',
