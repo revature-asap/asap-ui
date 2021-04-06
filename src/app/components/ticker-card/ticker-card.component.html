@@ -1,8 +1,8 @@
 <mat-card class="ticker-display">
-    <a href = {{getUrl(asset.companyTicker)}}>
+    <a (click)="route(asset.companyTicker)">
     <mat-card-header>
         <mat-card-title >{{asset.companyName}}</mat-card-title>
-        
+
         <mat-card-subtitle class="subtitle">{{asset.companyTicker}}</mat-card-subtitle>
     </mat-card-header>
 
@@ -17,7 +17,7 @@
                 {{trending}}
             </span>
         </div>
-        
+
     </mat-card-content>
 </a>
 </mat-card>
