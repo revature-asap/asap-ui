@@ -30,6 +30,7 @@ export class NewsComponent implements OnInit {
    * Fetches articles fora given stock symbol
    */
   fetchArticles = async () => {
+    this.articles = [];
     //Finnhub is annoying and requires that the date format have the 0 in front of the months and
     // days with one character
     let to = this.todayDate();
@@ -38,13 +39,19 @@ export class NewsComponent implements OnInit {
     for (const asset of this.assets) {
       try{
         let allArticles: Article[] = await this.newsService.stockNews(asset, from, to);
-        this.articles.push(allArticles[0]);
+        if(allArticles.length > 0){
+          this.articles.push(allArticles[0]);
+        }
       }catch (e){
         console.error(e);
       }
     }
     this.articlesTemp = [];
-    for (let i = 0; i < this.pageSizeNum; i++) {
+    let counter = 0;
+    for (let i = 0; i < this.articles.length-1; i++) {
+      if(counter > this.pageSizeNum){
+        break;
+      }
       this.articlesTemp.push(this.articles[i]);
     }
   }
@@ -86,6 +93,7 @@ export class NewsComponent implements OnInit {
    * @param assets an array of ticker names
    */
   setAssets(assets: string[]): void {
+    console.log("printing the assets: " + assets);
     this.assets = assets;
   }
 
@@ -97,6 +105,7 @@ export class NewsComponent implements OnInit {
     this.loginService.currentUser$.subscribe(
       async (user) => {
         if (user != null) {
+          console.log("user is logged in ");
           let assetNames: string[] = [];
           let companies = await this.watchlistService.fetchUserWatchList();
           if(companies.length > 0){
@@ -104,12 +113,13 @@ export class NewsComponent implements OnInit {
               assetNames.push(company.ticker);
             }
             this.setAssets(assetNames);
-          }else{
-            this.setAssets(['AAPL', 'GME', 'GOOG', 'AMZN', 'MSFT', 'TSLA']);
           }
+        }else{
+          console.log("user is NOT logged in ");
+          this.setAssets(['AAPL', 'GME', 'GOOG', 'AMZN', 'MSFT', 'TSLA']);
         }
+        this.fetchArticles().then();
       })
-   this.fetchArticles();
   }
 
   onChangePage(pageData: PageEvent) {
