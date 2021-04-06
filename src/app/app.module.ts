@@ -37,7 +37,7 @@ import { CommentsContainerComponent } from './components/comment/comments-contai
 import { DisplayCommentsComponent } from './components/comment/display-comments/display-comments.component';
 
 import { AssetCandleChartComponent } from './components/asset-candle-chart/asset-candle-chart.component';
-import { AssetCompanyProfileComponent } from './components/asset-company-profile/asset-company-profile.component';
+// import { AssetCompanyProfileComponent } from './components/asset-company-profile/asset-company-profile.component';
 import { AssetChartComponent } from './components/asset-chart/asset-chart.component';
 import { GoogleChartsModule } from 'angular-google-charts';
 import { AssetChartOptionsComponent } from './components/asset-chart-options/asset-chart-options.component';
@@ -66,7 +66,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     CommentsContainerComponent,
     DisplayCommentsComponent,
     AssetCandleChartComponent,
-    AssetCompanyProfileComponent,
+    // AssetCompanyProfileComponent,
     AssetChartComponent,
     AssetChartOptionsComponent,
     CompanyDetailsComponent
