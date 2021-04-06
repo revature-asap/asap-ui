@@ -46,6 +46,7 @@ import { AssetChartOptionsComponent } from './components/asset-chart-options/ass
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 
+
 import { CompanyDetailsComponent } from './components/pages/asset-profile/company-details/company-details.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 

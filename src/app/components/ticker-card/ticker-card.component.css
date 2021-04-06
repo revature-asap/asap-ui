@@ -11,18 +11,27 @@
   }
 
   .ticker-display {
-      background-color: black;
+      background-color: #f7f6f6;
       overscroll-behavior: contain;
-      width: 20em;
+      width: 16em;
       color: white;
-      font-family: cursive;
+  }
+  .title{
+    font-size: small;
+    color: #1B402E;
   }
   .subtitle {
-    color: white;
+    color: #1B402E;
+    font-style: bold;
+
   }
 
   .material-icons{
     position: relative;
     top: .3em;
+}
+
+a{
+  text-decoration: none;
 }
 
