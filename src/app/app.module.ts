@@ -35,7 +35,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { CommentBoxComponent } from './components/comment/comment-box/comment-box.component';
 import { CommentsContainerComponent } from './components/comment/comments-container/comments-container.component';
 import { DisplayCommentsComponent } from './components/comment/display-comments/display-comments.component';
-
+import { ReplyBoxComponent } from './components/comment/reply-box/reply-box.component';
 import { AssetCandleChartComponent } from './components/asset-candle-chart/asset-candle-chart.component';
 // import { AssetCompanyProfileComponent } from './components/asset-company-profile/asset-company-profile.component';
 import { AssetChartComponent } from './components/asset-chart/asset-chart.component';
@@ -43,7 +43,6 @@ import { GoogleChartsModule } from 'angular-google-charts';
 import { AssetChartOptionsComponent } from './components/asset-chart-options/asset-chart-options.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
-
 import { CompanyDetailsComponent } from './components/pages/asset-profile/company-details/company-details.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 
@@ -69,7 +68,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     // AssetCompanyProfileComponent,
     AssetChartComponent,
     AssetChartOptionsComponent,
-    CompanyDetailsComponent
+    CompanyDetailsComponent,
+    ReplyBoxComponent
   ],
   imports: [
     BrowserModule,

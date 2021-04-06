@@ -14,5 +14,9 @@
         </mat-card-content>
 
     </mat-card>
-    <button mat-raised-button color="primary" id="reply-button" class="spacer" (click)="onReply()")> Reply </button>
+    <div class="alignReply">
+        <app-reply-box
+        [post] = "post"
+        ></app-reply-box>
+    </div>
 </div>

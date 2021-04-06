@@ -42,11 +42,9 @@ export class WatchListService {
 
   insertFavorite(userTicker: companyProfile) {
     console.log(this.fetchAssetUrl+userTicker.ticker);
-    this.httpClient.post(this.fetchAssetUrl + userTicker.ticker, {
-    }).pipe(
-      map(data => {
-        this.currentWatchList.push(userTicker);
-        this.currentUserWatchList.next(this.currentWatchList)
-      }));
+    this.httpClient.post<any>(this.fetchAssetUrl + userTicker.ticker, {
+    }).subscribe();
+    this.currentWatchList.push(userTicker);
+    this.currentUserWatchList.next(this.currentWatchList);
   }
 }

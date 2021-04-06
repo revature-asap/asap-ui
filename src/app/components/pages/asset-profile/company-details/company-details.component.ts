@@ -58,7 +58,7 @@ export class CompanyDetailsComponent implements OnInit {
       //console.log("getting quote for company details component - " + JSON.stringify(this.asset));
     });
 
-    //making call to finnhub service just to minimize number of services being used even though it will be calling 
+    //making call to finnhub service just to minimize number of services being used even though it will be calling
     // a different endpoint api to get the logo
     //actually = get logo would be really easy
     // this.setLogo();
@@ -88,7 +88,7 @@ export class CompanyDetailsComponent implements OnInit {
       this.watchList = this.watchListService.getCompanyProfile();
 
       if (this.watchList == null) {
-        this.watchListService.fetchUserWatchList();
+        this.watchListService.fetchUserWatchList().then();
         this.watchList = this.watchListService.getCompanyProfile();
       }
   }

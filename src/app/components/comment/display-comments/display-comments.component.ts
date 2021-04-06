@@ -14,6 +14,7 @@ import { PostsService } from 'src/app/services/posts.service';
 export class DisplayCommentsComponent implements OnInit {
   posts: Post[] = [];
   subscription: Subscription | undefined;
+  assetTickerName!: string; 
 
   userProfile = {};
 
@@ -40,10 +41,6 @@ export class DisplayCommentsComponent implements OnInit {
       }
     )
 
-  }
-
-  onReply() {
-    console.log("replying");
   }
 
 }
