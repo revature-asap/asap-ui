@@ -13,46 +13,26 @@ import {WatchListService} from "../../services/watch-list.service";
 })
 export class TickerContainerComponent implements OnInit {
 
-  stringOfAssets: string[] = [];
   asset!: assetQuote;
   change!: number;
   assetQuotes:assetQuote[] = []; // = [new assetQuote(), new assetQuote(), new assetQuote(), new assetQuote(), new assetQuote()];
-  constructor(private finnhubService:FinnhubService, public tickerService: TickerService, private loginService: LoginService, private watchlistService: WatchListService) { }
+  constructor(private finnhubService:FinnhubService, public tickerService: TickerService) { }
 
   ngOnInit(): void {
-    this.assetQuotes = [];
-    let assetNames: string[] = [];
-    this.loginService.currentUser$.subscribe(
-      async (user) => {
-        if (user != null) {
-          let companies = await this.watchlistService.fetchUserWatchList();
-          if(companies.length > 0){
-            for (const company of companies) {
-              assetNames.push(company.ticker);
-            }
-          }
-        }else{
-          assetNames = ['AAPL', 'GME', 'GOOG', 'AMZN', 'MSFT', 'TSLA'];
-        }
+    this.finnhubService.getQuote("IBM")
+      .subscribe((asseta)=>{
+        this.asset = new assetQuote(asseta);
+        this.asset.companyTicker = "IBM";
+
+        this.change = this.tickerService.computeChange(this.asset.current, this.asset.previousClose);
+
+        this.finnhubService.getProfile("IBM")
+          .subscribe((profile: companyProfile) => {
+            this.asset.companyName = profile.name;
+            this.assetQuotes.push(this.asset);
+          });
+
       });
-
-    for (const assetName of assetNames) {
-      console.log(assetName);
-      this.finnhubService.getQuote(assetName)
-        .subscribe((asseta)=>{
-          this.asset = new assetQuote(asseta);
-          this.asset.companyTicker = assetName;
-
-          this.change = this.tickerService.computeChange(this.asset.current, this.asset.previousClose);
-
-          this.finnhubService.getProfile(assetName)
-            .subscribe((profile: companyProfile) => {
-              this.asset.companyName = profile.name;
-              this.assetQuotes.push(this.asset);
-            });
-
-        });
-    }
   }
 
 }
