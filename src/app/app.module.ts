@@ -36,7 +36,6 @@ import { CommentBoxComponent } from './components/comment/comment-box/comment-bo
 import { CommentsContainerComponent } from './components/comment/comments-container/comments-container.component';
 import { DisplayCommentsComponent } from './components/comment/display-comments/display-comments.component';
 import { ReplyBoxComponent } from './components/comment/reply-box/reply-box.component';
-import { DisplayReplyComponent } from './components/comment/display-reply/display-reply.component';
 import { AssetCandleChartComponent } from './components/asset-candle-chart/asset-candle-chart.component';
 // import { AssetCompanyProfileComponent } from './components/asset-company-profile/asset-company-profile.component';
 import { AssetChartComponent } from './components/asset-chart/asset-chart.component';
@@ -44,10 +43,12 @@ import { GoogleChartsModule } from 'angular-google-charts';
 import { AssetChartOptionsComponent } from './components/asset-chart-options/asset-chart-options.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
-import { CompanyDetailsComponent } from './components/pages/asset-profile/company-details/company-details.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { CompanyDetailsComponent } from './components/pages/asset-profile/company-details/company-details.component';
 import { AssetNewsStoriesComponent } from './components/asset-news-stories/asset-news-stories.component';
 import { AbbrCompDeetsComponent } from './components/pages/asset-profile/abbr-comp-deets/abbr-comp-deets.component';
+import {DisplayReplyComponent} from "./components/comment/display-reply/display-reply.component";
+
 
 @NgModule({
   declarations: [

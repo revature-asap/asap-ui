@@ -33,10 +33,7 @@ export class CompanyDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.checkLoggedIn();
 
-    if (this.loggedIn) {
-      this.setWatchList();
-      this.checkIfFavorited();
-    }
+
 
     // console.log("location search: " + location.search.substring(1));
     // this.ticker = location.search.substring(1);
@@ -51,8 +48,14 @@ export class CompanyDetailsComponent implements OnInit {
       strippedUrl = strippedUrl.replace('https://www.', '');
       this.logo = this.clearbitUrl + strippedUrl;
       console.log("setting logo in company details component to: " + this.logo);
+      if (this.loggedIn) {
+        this.setWatchList();
+        this.checkIfFavorited();
+      }
       //console.log("profile returned from finnhb service: " + this.profile);
     });
+
+
 
     this.finnhub.getQuote(this.ticker!).subscribe((quote: assetQuote) => {
       this.asset = new assetQuote(quote);

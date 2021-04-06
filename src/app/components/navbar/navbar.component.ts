@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -6,15 +7,23 @@ import { Principal } from 'src/app/models/principal';
 import { User } from 'src/app/models/user';
 import { LoginService } from 'src/app/services/login.service';
 import { LogoutService } from 'src/app/services/logout.service';
+import {BreakpointObserver} from '@angular/cdk/layout'; // Needed to detect a screen size change
+import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
+
+  // Variables
+  mobileNavigation!: boolean;
+
+  @ViewChild('drawer') public drawer!: MatDrawer
 
   logSubscription!: Subscription;
+  screenSubscription!: Subscription;
 
 
   currentUser?: Principal;
@@ -69,14 +78,22 @@ export class NavbarComponent implements OnInit {
 
   ]
 
-  constructor(public loginService: LoginService, public logoutService: LogoutService, private route: Router) { }
+  constructor(public loginService: LoginService, public logoutService: LogoutService, private route: Router, private breakPointObserver: BreakpointObserver) { }
 
   ngOnInit(): void {
 
+    this.screenSubscription = this.breakPointObserver.observe('(min-width: 65rem)').subscribe(screenState => {
+      if (screenState.matches)
+      {
+        this.mobileNavigation = false;
+      }
+      else {
+        this.mobileNavigation = true;
+      }
+    });
+
     this.logSubscription = this.loginService.currentUser$.subscribe(
       user=> {
-
-        console.log("Something changed. I got a user", user);
         this.currentUser = user as Principal;
       });
 
@@ -88,7 +105,17 @@ export class NavbarComponent implements OnInit {
 
     this.logoutService.logoutUser();
     this.route.navigate(['login']);
+  }
 
+  toggleDrawer(){
+
+    this.drawer.toggle();
+
+  }
+
+  ngOnDestroy(){
+    this.logSubscription.unsubscribe();
+    this.screenSubscription.unsubscribe();
   }
 
   // onSubmit(form: NgForm){

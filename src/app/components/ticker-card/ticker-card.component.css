@@ -1,13 +1,52 @@
+.ticker-display {
+  background-color: black;
+  overscroll-behavior: contain;
+  width: 20em;
+  color: white;
+  font-family: cursive;
+  font-size: 1.5vh;
+}
+.subtitle {
+  color: white;
+  font-size: 1vh;
+}
+.inline {
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.inline > p {
+  display: inline-block;
+  margin-right: .2em;
+  font-size: 1vh;
+}
 
+.material-icons{
+  position: relative;
+  top: .3em;
+  font-size: 1vh;
+}
+
+@media(min-width: 37.5rem) {
+
+}
+
+@media (min-width: 65rem){
+  .ticker-display {
+    font-size: 1rem;
+  }
+  .subtitle {
+    font-size: 0.8rem;
+  }
   .inline {
     white-space: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
   }
-
   .inline > p {
     display: inline-block;
     margin-right: .2em;
+    font-size: 0.8rem;
   }
 
   .ticker-display {
@@ -22,13 +61,15 @@
   }
   .subtitle {
     color: #1B402E;
-    font-style: bold;
+    font-weight: bold;
 
   }
 
   .material-icons{
     position: relative;
     top: .3em;
+    font-size: 0.8rem;
+  }
 }
 
 a{

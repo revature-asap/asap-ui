@@ -5,3 +5,43 @@
   cursor: url("../../../assets/wezleygun_fix.png"), auto;
   height: 100%;
 }
+.list-of-articles > img {
+  height: 10vh;
+  width: 10vh;
+}
+.list-of-articles > p {
+  font-size: 1vh;
+}
+
+.list-of-articles > h2 {
+  font-size: 2vh;
+}
+
+
+
+
+@media(min-width: 37.5rem) {
+
+}
+
+@media (min-width: 65rem){
+  .list-of-articles{
+    margin: 1%;
+    border: solid black;
+    text-align: center;
+    cursor: url("../../../assets/wezleygun.png"), auto;
+    height: 30%;
+  }
+  .list-of-articles > img {
+    height: 10%;
+    width: 10%;
+  }
+
+  .list-of-articles > p {
+    font-size: 0.5rem;
+  }
+  
+  .list-of-articles > h2 {
+    font-size: 1rem;
+  }
+}

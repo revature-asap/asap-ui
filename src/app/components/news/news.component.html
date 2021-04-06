@@ -1,5 +1,5 @@
 <div class="list-of-articles" *ngFor="let article of articlesTemp" (click)="redirect(article.url)">
-  <img src="{{article.image}}" alt="" width="100rem" height="100rem">
+  <img src="{{article.image}}">
   <h2>{{ article.headline }}</h2>
   <p>{{article.summary}}</p>
 </div>

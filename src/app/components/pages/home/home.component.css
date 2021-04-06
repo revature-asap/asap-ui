@@ -13,3 +13,17 @@
 .container{
     padding: 1rem;
 }
+
+app-ticker-container{
+    height: 20%;
+}
+
+
+
+
+@media(min-width: 37.5rem) {
+
+}
+
+@media (min-width: 65rem){
+}
