@@ -23,7 +23,7 @@ export class SentimentService {
 
 
   updateTwitterSentiment(asset: string):Observable<sentimentCarrier> {
-      console.log("In update sentiment with asset: " + asset);
+      console.log("In update sentiment with asset: " + `${this.twitterUrl}${asset}`);
       return this.http.get<sentimentCarrier>(`${this.twitterUrl}${asset}`);
   }
 
