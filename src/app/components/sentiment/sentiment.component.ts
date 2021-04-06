@@ -46,12 +46,12 @@ export class SentimentComponent implements OnInit {
     this.sentiment.updateRedditSentiment(this.assetTicker).subscribe((response:sentimentCarrier) =>
     {
      // console.log("This is the response object from the Reddit http call: " + JSON.stringify(response));
-      this.redditSentiment = 0; //this.sentimentCompare(response.sentimentTotals.POSITIVE, response.sentimentTotals.NEGATIVE );
+      this.redditSentiment = this.sentimentCompare(response.sentimentTotals.POSITIVE, response.sentimentTotals.NEGATIVE );
     });
     this.finnhub.getSentiment(this.assetTicker).subscribe((response:newsSentiment) =>
     {
      // console.log("This is the response object from the NEWS http call: " + JSON.stringify(response));
-      this.newsSentiment = 0; //this.sentimentCompare(response.sentiment.bullishPercent, response.sentiment.bearishPercent);
+      this.newsSentiment = this.sentimentCompare(response.sentiment.bullishPercent, response.sentiment.bearishPercent);
     });
 
     setTimeout(() => {
