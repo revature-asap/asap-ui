@@ -45,8 +45,4 @@ export class TickerCardComponent implements OnInit {
     return this.selectedPath;
   }
 
-  route = async (ticker: string) => {
-    await this.router.navigate(['companyDisplay'], {queryParams: {ticker}});
-  }
-
 }
