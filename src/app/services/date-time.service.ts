@@ -11,9 +11,8 @@ export class DateTimeService {
   constructor() { }
 
   getFormattedDate(date: number, month: number,  year: number, 
-    hour: number, minutes: number, seconds: number, timezoneOffset: number): string {
+    hour: number, minutes: number, seconds: number): string {
       let localHour = ''; 
-      hour -= timezoneOffset;
 
       if (hour >= 0) {
         localHour = this.hours[hour % 12];
