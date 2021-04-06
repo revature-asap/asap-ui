@@ -1,0 +1,9 @@
+<div class="list-of-articles" *ngFor="let article of articlesTemp" (click)="redirect(article.url)">
+  <img src="{{article.image}}" alt="" width="50rem" height="50rem">
+  <h5>{{ article.headline }}</h5>
+</div>
+<mat-paginator
+  [length] = "articles.length"
+  [pageSize] = "pageSizeNum"
+  (page)="onChangePage($event)">
+</mat-paginator>
