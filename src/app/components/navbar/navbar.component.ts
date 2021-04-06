@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Principal } from 'src/app/models/principal';
@@ -17,6 +18,8 @@ export class NavbarComponent implements OnInit {
 
 
   currentUser?: Principal;
+
+  searchInput!: string;
 
   publicRoutes = [
 
@@ -76,6 +79,9 @@ export class NavbarComponent implements OnInit {
         console.log("Something changed. I got a user", user);
         this.currentUser = user as Principal;
       });
+
+    
+
   }
 
   logout() {
@@ -83,6 +89,23 @@ export class NavbarComponent implements OnInit {
     this.logoutService.logoutUser();
     this.route.navigate(['login']);
 
+  }
+
+  // onSubmit(form: NgForm){
+  //   console.log(form.value.searchField);
+
+
+  // }
+
+  onSubmit(form: NgForm){
+    
+    if(!form.value.searchField){
+    }
+    else{
+     this.route.navigate(['companyDisplay' + '/'+form.value.searchField]);
+     this.route.routeReuseStrategy.shouldReuseRoute = () => false;
+    }
+    
   }
 
 }

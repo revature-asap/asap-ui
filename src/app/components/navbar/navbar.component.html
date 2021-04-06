@@ -2,7 +2,17 @@
 
 
     <h1>Asset Sentiment Analysis Platform</h1>
+    
+    <span class="menu-spacer"></span>
 
+
+    <form (ngSubmit)= "onSubmit(f)" #f="ngForm" class="form-inline waves-light" mdbWavesEffect>
+      <mat-form-field class="md-form active-pink active-pink-2 mb-3">
+        <input ngModel matInput placeholder="Search Here" name = "searchField" class="form-control" type="search" id="search1" aria-label="Search" mdbInput>
+        <button mat-raised-button color="Accent" id="comment-button"> Search </button>
+      </mat-form-field>
+    </form>
+    
     <span class="menu-spacer"></span>
     <div *ngIf = "!currentUser">
       <span *ngFor = "let puRoute of publicRoutes">
