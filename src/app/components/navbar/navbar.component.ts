@@ -77,7 +77,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.screenSubscription = this.breakPointObserver.observe('(min-width: 65rem').subscribe(screenState => {
+    this.screenSubscription = this.breakPointObserver.observe('(min-width: 65rem)').subscribe(screenState => {
       if (screenState.matches)
       {
         this.mobileNavigation = false;
@@ -85,7 +85,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
       else {
         this.mobileNavigation = true;
       }
-    })
+    });
 
     this.logSubscription = this.loginService.currentUser$.subscribe(
       user=> {
