@@ -25,6 +25,7 @@ export class NavbarComponent implements OnInit {
       routeLink: '/home',
       routeSymbol: 'home'
     },
+
     // {
     //   routeName: 'Assets',
     //   routeLink: '/companyDisplay',
