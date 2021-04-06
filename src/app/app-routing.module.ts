@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'register', component: RegistrationComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'companyDisplay', component: CompanyDetailsComponent},
+  {path: 'companyDisplay/:tickerId', component: CompanyDetailsComponent},
   {path: 'profile', resolve: {profile: ProfileResolverService}, component: ProfileComponent, canActivate: [AuthGuardService],  children: [
     {path: 'watchlist', resolve: {asset: WatchListResolverService}, component: WatchListComponent}
   ]

@@ -5,6 +5,8 @@ import { Principal } from 'src/app/models/principal';
 import { LoginService } from 'src/app/services/login.service';
 import { WatchListService } from 'src/app/services/watch-list.service';
 import { FinnhubService } from '../../../../services/finnhub.service';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-company-details',
@@ -23,21 +25,23 @@ export class CompanyDetailsComponent implements OnInit {
 
   clearbitUrl: string = "https://logo.clearbit.com/";
 
-  constructor(private finnhub: FinnhubService, private loginService: LoginService, private watchListService: WatchListService) {
+  constructor(private finnhub: FinnhubService, private loginService: LoginService, private watchListService: WatchListService, private _Activatedroute:ActivatedRoute) {
 
   }
 
   ngOnInit(): void {
-  this.checkLoggedIn();
+    this.checkLoggedIn();
 
     if (this.loggedIn) {
       this.setWatchList();
       this.checkIfFavorited();
     }
+
     // console.log("location search: " + location.search.substring(1));
-    this.ticker = location.search.substring(1);
-    this.ticker = this.ticker.substring(0, this.ticker.length - 1);
-    // console.log("TICKER in company details component: " + this.ticker);
+    // this.ticker = location.search.substring(1);
+    // this.ticker = this.ticker.substring(0, this.ticker.length - 1);
+     this.ticker = this._Activatedroute.snapshot.paramMap.get("tickerId") || '{}';
+     console.log("TICKER in company details component: " + this.ticker);
 
     this.finnhub.getProfile(this.ticker!).subscribe((profile: companyProfile) => {
       this.profile = profile;
