@@ -103,8 +103,7 @@ export class AssetChartComponent implements OnInit {
           assetDate.getFullYear(),
           assetDate.getHours() - (assetDate.getTimezoneOffset() / 60),
           assetDate.getMinutes(),
-          assetDate.getSeconds(),
-          assetDate.getTimezoneOffset()
+          assetDate.getSeconds()
         ));
 
         candlestick.push(acd.low[i]);
