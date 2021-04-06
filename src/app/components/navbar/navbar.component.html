@@ -1,17 +1,18 @@
-<mat-toolbar class="custom" color="primary">
-
-
-    <h1>Asset Sentiment Analysis Platform</h1>
-
-    <span class="menu-spacer"></span>
-    <div *ngIf = "!currentUser">
+<mat-toolbar id="headerToolBar" color="primary">
+  <mat-toolbar-row>
+    <button type= "button" aria-label="Toggle sidenav" mat-icon-button (click) = "toggleDrawer()" *ngIf = "mobileNavigation">
+      <mat-icon arial-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+    <span id = "header-component-title">Asset Sentiment Analysis Platform</span>
+    <span class="menu-spacer" *ngIf = "!mobileNavigation"></span>
+    <div *ngIf = "!currentUser && !mobileNavigation">
       <span *ngFor = "let puRoute of publicRoutes">
         <mat-icon class = "icon" aria-hidden="false" aria-label = "Example home icon">{{puRoute.routeSymbol}}</mat-icon>
         <a color="warn" class = "route" mat-button [routerLink] = "puRoute.routeLink">{{puRoute.routeName}}</a>  
       </span>
     </div>
-
-    <div *ngIf = "currentUser">
+  
+    <div *ngIf = "currentUser && !mobileNavigation">
       <span *ngFor = "let prRoute of privateRoutes">
         <mat-icon class = "icon" aria-hidden="false" aria-label = "Example home icon">{{prRoute.routeSymbol}}</mat-icon>
         <a color="warn" class = "route" mat-button *ngIf = "prRoute.routeName != 'Logout'; else Logout" [routerLink] = "prRoute.routeLink">{{prRoute.routeName}}</a> 
@@ -20,4 +21,28 @@
         </ng-template> 
       </span>
     </div>
+  </mat-toolbar-row>
 </mat-toolbar>
+<router-outlet *ngIf = "!mobileNavigation"></router-outlet>
+<mat-drawer-container id="drawerContainer" [hasBackdrop] = "true" *ngIf = "mobileNavigation">
+  <mat-drawer #drawer mode = "push">
+    <div *ngIf = "!currentUser">
+      <div *ngFor = "let puRoute of publicRoutes">
+        <mat-icon class = "icon" aria-hidden="false" aria-label = "Example home icon">{{puRoute.routeSymbol}}</mat-icon>
+        <a color="warn" class = "route" mat-button [routerLink] = "puRoute.routeLink">{{puRoute.routeName}}</a>  
+      </div>
+    </div>
+    <div *ngIf = "currentUser">
+      <div *ngFor = "let prRoute of privateRoutes">
+        <mat-icon class = "icon" aria-hidden="false" aria-label = "Example home icon">{{prRoute.routeSymbol}}</mat-icon>
+        <a color="warn" class = "route" mat-button *ngIf = "prRoute.routeName != 'Logout'; else Logout" [routerLink] = "prRoute.routeLink">{{prRoute.routeName}}</a> 
+        <ng-template #Logout>
+          <a color="warn" class = "route" mat-button (click) = "logout()">{{prRoute.routeName}}</a>
+        </ng-template> 
+      </div>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

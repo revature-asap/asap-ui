@@ -18,7 +18,7 @@ export class WatchListService {
 
   // private tempCurrentUserWatchList: Subject<assetProfile[]| null>;
   // private tempCurrentWatchList$: assetProfile = null
-  fetchAssetUrl = `http://localhost:5000/users/watchlist/`;
+  fetchAssetUrl = `http://ec2co-ecsel-1g0q6xc63i5af-1652680293.us-east-2.elb.amazonaws.com:5000/users/watchlist/`;
   //loginUrl = 'http://ec2co-ecsel-1g0q6xc63i5af-1652680293.us-east-2.elb.amazonaws.com:5000/users/login';
   constructor(private httpClient: HttpClient, private loginService: LoginService) {
   }
