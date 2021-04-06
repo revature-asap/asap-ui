@@ -18,13 +18,9 @@ export class TickerCardComponent implements OnInit {
   rate = {};
   tickerIcon = {};
   selectedPath!: string;
-  path: string = "http://localhost:4200/companyDisplay";
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-
-    this.selectedPath = this.path + "?" + this.asset.companyTicker;
-    console.log("selected asset ticker: " + this.asset.companyTicker);
     if(this.change < 0) {
       this.rate = {
         'color': 'red',
@@ -39,10 +35,4 @@ export class TickerCardComponent implements OnInit {
 
 
   }
-
-  getUrl(ticker: string) {
-    this.selectedPath = this.path + "?" + ticker;
-    return this.selectedPath;
-  }
-
 }

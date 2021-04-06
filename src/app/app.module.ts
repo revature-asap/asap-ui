@@ -46,6 +46,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { CompanyDetailsComponent } from './components/pages/asset-profile/company-details/company-details.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { AssetNewsStoriesComponent } from './components/asset-news-stories/asset-news-stories.component';
+import { AbbrCompDeetsComponent } from './components/pages/asset-profile/abbr-comp-deets/abbr-comp-deets.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { AssetNewsStoriesComponent } from './components/asset-news-stories/asset
     AssetChartOptionsComponent,
     CompanyDetailsComponent,
     ReplyBoxComponent,
-    AssetNewsStoriesComponent
+    AssetNewsStoriesComponent,
+    AbbrCompDeetsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { newsSentiment } from 'src/app/models/newsSentiment';
 import { sentimentCarrier } from 'src/app/models/sentimentCarrier';
 import { FinnhubService } from 'src/app/services/finnhub.service';
@@ -16,7 +16,7 @@ export class SentimentComponent implements OnInit {
   redditSentiment!: number;
   newsSentiment!: number;
   loading = true;
-  assetTicker!: string;
+  @Input() assetTicker!: string;
 
   constructor(private sentiment: SentimentService, private finnhub: FinnhubService,private _Activatedroute:ActivatedRoute) {
       //Import asset service in some way
@@ -35,7 +35,9 @@ export class SentimentComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.assetTicker = this._Activatedroute.snapshot.paramMap.get("tickerId") || '{}';
+    if(this.assetTicker == null) {
+      this.assetTicker = this._Activatedroute.snapshot.paramMap.get("tickerId") || '{}';
+    }
     console.log("ticker is: " + this.assetTicker);
     this.loading = true;
     this.sentiment.updateTwitterSentiment(this.assetTicker).subscribe((response:sentimentCarrier) =>

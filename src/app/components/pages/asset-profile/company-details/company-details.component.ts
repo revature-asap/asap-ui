@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./company-details.component.css']
 })
 export class CompanyDetailsComponent implements OnInit {
+
   asset!: assetQuote;
   profile!: companyProfile;
   ticker!: string;
