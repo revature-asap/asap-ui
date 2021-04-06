@@ -93,7 +93,6 @@ export class NewsComponent implements OnInit {
    * @param assets an array of ticker names
    */
   setAssets(assets: string[]): void {
-    console.log("printing the assets: " + assets);
     this.assets = assets;
   }
 
@@ -105,7 +104,6 @@ export class NewsComponent implements OnInit {
     this.loginService.currentUser$.subscribe(
       async (user) => {
         if (user != null) {
-          console.log("user is logged in ");
           let assetNames: string[] = [];
           let companies = await this.watchlistService.fetchUserWatchList();
           if(companies.length > 0){
@@ -115,11 +113,10 @@ export class NewsComponent implements OnInit {
             this.setAssets(assetNames);
           }
         }else{
-          console.log("user is NOT logged in ");
           this.setAssets(['AAPL', 'GME', 'GOOG', 'AMZN', 'MSFT', 'TSLA']);
         }
         this.fetchArticles().then();
-      })
+      });
   }
 
   onChangePage(pageData: PageEvent) {

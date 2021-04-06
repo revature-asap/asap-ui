@@ -16,7 +16,7 @@ import {LoginService} from "../../services/login.service";
 })
 export class LoginComponent implements OnInit {
 
-  loginForm: FormGroup
+  loginForm: FormGroup;
   loading: boolean;
   submitted: boolean;
   loginSuccess: boolean;
