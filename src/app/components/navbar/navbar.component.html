@@ -1,14 +1,15 @@
-<mat-toolbar class="custom" color="primary">
+<mat-toolbar class="custom" color=#000>
 
-
+    <a [routerLink]="['/home']" >
     <h1>Asset Sentiment Analysis Platform</h1>
+    </a>
     
     <span class="menu-spacer"></span>
 
 
     <form (ngSubmit)= "onSubmit(f)" #f="ngForm" class="form-inline waves-light" mdbWavesEffect>
-      <mat-form-field class="md-form active-pink active-pink-2 mb-3">
-        <input ngModel matInput placeholder="Search Here" name = "searchField" class="form-control" type="search" id="search1" aria-label="Search" mdbInput>
+      <mat-form-field class="md-form mb-3">
+        <input ngModel matInput placeholder="Enter Ticker" name = "searchField" class="form-control" type="search" id="search1" aria-label="Search" mdbInput>
         <button mat-raised-button color="Accent" id="comment-button"> Search </button>
       </mat-form-field>
     </form>
@@ -17,16 +18,16 @@
     <div *ngIf = "!currentUser">
       <span *ngFor = "let puRoute of publicRoutes">
         <mat-icon class = "icon" aria-hidden="false" aria-label = "Example home icon">{{puRoute.routeSymbol}}</mat-icon>
-        <a color="warn" class = "route" mat-button [routerLink] = "puRoute.routeLink">{{puRoute.routeName}}</a>  
+        <a class = "route accentColor" mat-button [routerLink] = "puRoute.routeLink">{{puRoute.routeName}}</a>  
       </span>
     </div>
 
     <div *ngIf = "currentUser">
       <span *ngFor = "let prRoute of privateRoutes">
         <mat-icon class = "icon" aria-hidden="false" aria-label = "Example home icon">{{prRoute.routeSymbol}}</mat-icon>
-        <a color="warn" class = "route" mat-button *ngIf = "prRoute.routeName != 'Logout'; else Logout" [routerLink] = "prRoute.routeLink">{{prRoute.routeName}}</a> 
+        <a  class = "route accentColor" mat-button *ngIf = "prRoute.routeName != 'Logout'; else Logout" [routerLink] = "prRoute.routeLink">{{prRoute.routeName}}</a> 
         <ng-template #Logout>
-          <a color="warn" class = "route" mat-button (click) = "logout()">{{prRoute.routeName}}</a>
+          <a  class = "route accentColor" mat-button (click) = "logout()">{{prRoute.routeName}}</a>
         </ng-template> 
       </span>
     </div>

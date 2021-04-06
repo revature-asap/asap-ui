@@ -14,6 +14,7 @@
 
 #center-content {
   flex-basis: 70%;
+  padding-top: 1rem;
 }
 
 #right-sidebar {
@@ -21,7 +22,7 @@
    color: rgb(255, 255, 255);
    width: 100%;
    height: 100%;
-   background-image: linear-gradient(30deg, #11cf4d, #055e21);
+   /* background-image: linear-gradient(30deg, #11cf4d, #055e21); */
    border-top-left-radius: 90px;
 }
 
@@ -29,7 +30,7 @@
    color: rgb(255, 255, 255);
    width: 100%;
    height: 100%;
-   background-image: linear-gradient(30deg, #11cf4d, #055e21);
+   background-image: linear-gradient(30deg, #c9eaff, #015285);
    border-top-right-radius: 90px;
  }
 

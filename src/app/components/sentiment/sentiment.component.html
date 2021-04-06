@@ -1,37 +1,38 @@
-
-        <div id="sentiment-title" ><h2> Sentiment</h2></div>
-        <div id="sentiment-stuff">
-        <mat-grid-list cols="2" rowHeight="3:1">
-          <mat-grid-tile><img src="../assets/twitterIcon.png" class="sentiment-image" id="twitter-icon"></mat-grid-tile>
-          <mat-grid-tile [ngSwitch]="twitterSentiment" *ngIf="!loading" class="sentiment-image">
-            <img src="../assets/greenarrowup.png" class="sentiment-image" *ngSwitchCase="1" id="upFingerTwitter">
-            <img src="../assets/yellowneutral.png" class="sentiment-image" *ngSwitchCase="0" id="neutralFingerTwitter">
-            <img src="../assets/redarrowdown.png" class="sentiment-image" *ngSwitchCase="-1" id="downFingerTwitter">
-          </mat-grid-tile>
-          <mat-grid-tile *ngIf="loading" class="sentiment-image">
-            <img src="../assets/LoadingWheel.gif" class="sentiment-image" id="loadingTwitter">
-         </mat-grid-tile>
-          <br>
-          <mat-grid-tile><img src="../assets/redditIcon2.png" class="sentiment-image" id="reddit-icon"></mat-grid-tile>
-          <mat-grid-tile [ngSwitch]="redditSentiment" *ngIf="!loading" class="sentiment-image">
-            <img src="../assets/greenarrowup.png" class="sentiment-image" *ngSwitchCase="1" id="upFingerReddit">
-            <img src="../assets/yellowneutral.png" class="sentiment-image" *ngSwitchCase="0" id="neutralFingerReddit">
-            <img src="../assets/redarrowdown.png" class="sentiment-image" *ngSwitchCase="-1" id="downFingerReddit">
-         </mat-grid-tile>
-         <mat-grid-tile *ngIf="loading" class="sentiment-image">
-          <img src="../assets/LoadingWheel.gif" class="sentiment-image" id="loadingReddit">
-       </mat-grid-tile>
-       <br>
-          <mat-grid-tile><img src="../assets/newsImage.png" class="sentiment-image" id="news-icon"></mat-grid-tile>
-          <mat-grid-tile [ngSwitch]="newsSentiment" *ngIf="!loading" class="sentiment-image">
-            <img src="../assets/greenarrowup.png" class="sentiment-image" *ngSwitchCase="1" id="upFingerReddit">
-            <img src="../assets/yellowneutral.png" class="sentiment-image" *ngSwitchCase="0" id="neutralFingerReddit">
-            <img src="../assets/redarrowdown.png" class="sentiment-image" *ngSwitchCase="-1" id="downFingerReddit">
-         </mat-grid-tile>
-         <mat-grid-tile *ngIf="loading" class="sentiment-image">
-          <img src="../assets/LoadingWheel.gif" class="sentiment-image" id="loadingReddit">
-       </mat-grid-tile>
-        </mat-grid-list>
-        </div>
-
-
+<div class="sentitmentBackground">
+  <div id="sentiment-title">
+    <h2 class="title"> Sentiment Analysis</h2>
+  </div>
+  <div id="sentiment-stuff">
+    <mat-grid-list cols="2" rowHeight="3:1">
+      <mat-grid-tile><img src="../assets/twitterIcon.png" class="sentiment-image" id="twitter-icon"></mat-grid-tile>
+      <mat-grid-tile [ngSwitch]="twitterSentiment" *ngIf="!loading" class="sentiment-image">
+        <img src="../assets/greenarrowup.png" class="sentiment-image" *ngSwitchCase="1" id="upFingerTwitter">
+        <img src="../assets/yellowneutral.png" class="sentiment-image" *ngSwitchCase="0" id="neutralFingerTwitter">
+        <img src="../assets/redarrowdown.png" class="sentiment-image" *ngSwitchCase="-1" id="downFingerTwitter">
+      </mat-grid-tile>
+      <mat-grid-tile *ngIf="loading" class="sentiment-image">
+        <img src="../assets/LoadingWheel.gif" class="sentiment-image" id="loadingTwitter">
+      </mat-grid-tile>
+      <br>
+      <mat-grid-tile><img src="../assets/redditIcon2.png" class="sentiment-image" id="reddit-icon"></mat-grid-tile>
+      <mat-grid-tile [ngSwitch]="redditSentiment" *ngIf="!loading" class="sentiment-image">
+        <img src="../assets/greenarrowup.png" class="sentiment-image" *ngSwitchCase="1" id="upFingerReddit">
+        <img src="../assets/yellowneutral.png" class="sentiment-image" *ngSwitchCase="0" id="neutralFingerReddit">
+        <img src="../assets/redarrowdown.png" class="sentiment-image" *ngSwitchCase="-1" id="downFingerReddit">
+      </mat-grid-tile>
+      <mat-grid-tile *ngIf="loading" class="sentiment-image">
+        <img src="../assets/LoadingWheel.gif" class="sentiment-image" id="loadingReddit">
+      </mat-grid-tile>
+      <br>
+      <mat-grid-tile><img src="../assets/newsImage.png" class="sentiment-image" id="news-icon"></mat-grid-tile>
+      <mat-grid-tile [ngSwitch]="newsSentiment" *ngIf="!loading" class="sentiment-image">
+        <img src="../assets/greenarrowup.png" class="sentiment-image" *ngSwitchCase="1" id="upFingerReddit">
+        <img src="../assets/yellowneutral.png" class="sentiment-image" *ngSwitchCase="0" id="neutralFingerReddit">
+        <img src="../assets/redarrowdown.png" class="sentiment-image" *ngSwitchCase="-1" id="downFingerReddit">
+      </mat-grid-tile>
+      <mat-grid-tile *ngIf="loading" class="sentiment-image">
+        <img src="../assets/LoadingWheel.gif" class="sentiment-image" id="loadingReddit">
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>
