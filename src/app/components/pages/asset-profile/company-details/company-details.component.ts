@@ -107,6 +107,7 @@ export class CompanyDetailsComponent implements OnInit {
   }
 
   addFavorites():void {
+    console.log("IM in addfavorite Method!");
     this.watchListService.insertFavorite(this.profile);
     this.isFavorited = true;
     this.watchList = this.watchListService.getCompanyProfile();

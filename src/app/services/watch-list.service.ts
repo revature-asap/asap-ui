@@ -14,7 +14,8 @@ export class WatchListService {
   private currentUserWatchList = new Subject<companyProfile[]>();
   private currentWatchList: companyProfile[] = [];
 
-  fetchAssetUrl = 'http://ec2co-ecsel-1g0q6xc63i5af-1652680293.us-east-2.elb.amazonaws.com:5000/users/watchlist/';
+  // fetchAssetUrl = 'http://ec2co-ecsel-1g0q6xc63i5af-1652680293.us-east-2.elb.amazonaws.com:5000/users/watchlist/';
+  fetchAssetUrl = 'http://localhost:5000/users/watchlist/'
 
   constructor(private httpClient: HttpClient, private loginService: LoginService) {
   }
@@ -42,11 +43,14 @@ export class WatchListService {
 
   insertFavorite(userTicker: companyProfile) {
     console.log(this.fetchAssetUrl+userTicker.ticker);
-    this.httpClient.post(this.fetchAssetUrl + userTicker.ticker, {
-    }).pipe(
-      map(data => {
+    this.httpClient.post<any>(this.fetchAssetUrl + userTicker.ticker, {headers: {
+      'Content-Type': 'application/json'
+    },
+    observe: 'response'
+  }).subscribe(response => {
         this.currentWatchList.push(userTicker);
-        this.currentUserWatchList.next(this.currentWatchList)
-      }));
+        this.currentUserWatchList.next(this.currentWatchList);
+        
+      });
   }
 }
