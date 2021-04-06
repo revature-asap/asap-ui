@@ -18,9 +18,26 @@ export class AssetChartComponent implements OnInit {
   assetTimeInterval = '5m';
   loadingGraph = false;
   dynamicResize = true;
+  assetColumns = ['Time', 'Low', 'Open', 'Closed', 'High'];
 
   type : ChartType = ChartType.CandlestickChart;
   chartData : any[] = [];
+
+  lineOptions = {
+    legend : {
+      position: 'right'
+    },
+    crosshair: {
+      color: 'black',
+      trigger: 'both'
+    }
+  }
+
+  candleStickOptions = {
+    legend: 'none'
+  }
+
+  options :any = this.candleStickOptions;
 
   constructor(private finnhubService : FinnhubService, private dateTimeService : DateTimeService) {}
 
@@ -29,8 +46,13 @@ export class AssetChartComponent implements OnInit {
   }
 
   setChartType() {
-    this.type = this.chartType === 'candlestick' ? ChartType.CandlestickChart : ChartType.LineChart;
-  }
+    if (this.chartType === 'candlestick') {
+      this.type = ChartType.CandlestickChart;
+      this.options = this.candleStickOptions;
+    } else {
+      this.type = ChartType.LineChart;
+      this.options = this.lineOptions;
+    }  }
 
   chartTypeChange = (childChartType: string): void => {
     this.chartType = childChartType;
@@ -84,17 +106,10 @@ export class AssetChartComponent implements OnInit {
           assetDate.getSeconds())
         );
 
-        candlestick.push(acd.high[i]);
-
-        if (acd.open[i] > acd.close[i]) {
-          candlestick.push(acd.open[i]);
-          candlestick.push(acd.close[i]);
-        } else {
-          candlestick.push(acd.close[i]);
-          candlestick.push(acd.open[i]);
-        }
-        
         candlestick.push(acd.low[i]);
+        candlestick.push(acd.open[i]);
+        candlestick.push(acd.close[i]);
+        candlestick.push(acd.high[i]); 
 
         this.chartData.push(candlestick);
         this.loadingGraph = false;
