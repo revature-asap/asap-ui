@@ -11,49 +11,34 @@ import { companyProfile } from '../models/companyProfile';
 })
 export class WatchListService {
 
-
-
   private currentUserWatchList = new Subject<companyProfile[]>();
   private currentWatchList: companyProfile[] = [];
 
+<<<<<<< HEAD
   // private tempCurrentUserWatchList: Subject<assetProfile[]| null>;
   // private tempCurrentWatchList$: assetProfile = null
   fetchAssetUrl = `http://ec2co-ecsel-1g0q6xc63i5af-1652680293.us-east-2.elb.amazonaws.com:5000/users/watchlist/`;
   //loginUrl = 'http://ec2co-ecsel-1g0q6xc63i5af-1652680293.us-east-2.elb.amazonaws.com:5000/users/login';
+=======
+  // fetchAssetUrl = 'http://ec2co-ecsel-1g0q6xc63i5af-1652680293.us-east-2.elb.amazonaws.com:5000/users/watchlist/';
+  fetchAssetUrl = 'http://localhost:5000/users/watchlist/'
+
+>>>>>>> dev
   constructor(private httpClient: HttpClient, private loginService: LoginService) {
   }
 
-
-
-      // //Pulled from ASAP API
-      // id: number; //made by ASAP API
-      // name: string; //Asset's full name
-      // ticker: string; //Exchange abbreviation for asset
-      // imageUrl: string; //url on finn
-      // marketCap: number; //Specific to stocks: "Defnitions may vary"
-      // shareOutstanding: number; //Specific to Stocks
-      // industryCategory: string; //Potentially used for searching purposes
-      // websiteUrl: string;
-      // lastTouchedTimestamp: Date; //Not sure about this one
   getCompanyProfile() {
     return this.currentWatchList;
   }
 
   fetchUserWatchList() : Promise<companyProfile[]> {
-    this.loginService.currentUser$.subscribe(
-      user => {
-        this.fetchAssetUrl+= user?.id;
-      }
-    );
-
-    return this.httpClient.get<companyProfile[]>(this.fetchAssetUrl, {
+        return this.httpClient.get<companyProfile[]>(this.fetchAssetUrl, {
       headers: {
         'Content-Type': 'application/json'
       },
       observe: 'response'
     }).pipe(
       map(resp => {
-
         const assetProfile1 = resp.body as companyProfile[];
         this.currentWatchList = assetProfile1;
         this.currentUserWatchList.next(assetProfile1);
@@ -64,33 +49,10 @@ export class WatchListService {
   }
 
   insertFavorite(userTicker: companyProfile) {
-
-    this.httpClient.post(this.fetchAssetUrl + userTicker.ticker, {
-
-    }).pipe(
-      map(data => {this.currentWatchList.push(userTicker); this.currentUserWatchList.next(this.currentWatchList)})
-    );
-
+    console.log(this.fetchAssetUrl+userTicker.ticker);
+    this.httpClient.post<any>(this.fetchAssetUrl + userTicker.ticker, {
+    }).subscribe();
+    this.currentWatchList.push(userTicker);
+    this.currentUserWatchList.next(this.currentWatchList);
   }
-  // authenticate(un: string, pw: string): Promise<any> {
-  //   let creds = new Credentials(un, pw);
-  //   // @ts-ignore
-  //   return this.httpClient.post(this.loginUrl, creds, {
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     observe: 'response'
-  //   }).pipe(
-  //     // @ts-ignore
-  //     map(resp => {
-  //       const token = resp.headers.get('ASAP-token');
-  //       this.setToken(token);
-  //       const principal = resp.body as Principal;
-  //       this.currentUserSubject.next(principal);
-  //       return principal;
-  //     })
-  //   ).toPromise();
-  // }
-
-  // this.watchListService.insertFavorite('IBM');
 }

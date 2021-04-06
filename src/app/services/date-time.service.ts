@@ -12,10 +12,21 @@ export class DateTimeService {
 
   getFormattedDate(date: number, month: number,  year: number, 
     hour: number, minutes: number, seconds: number): string {
+      let localHour = ''; 
+
+      if (hour >= 0) {
+        localHour = this.hours[hour % 12];
+      }
+      else {
+        hour *= -1;
+        localHour = this.hours[this.hours.length - hour];
+        console.log('new hours ' + hour);
+      }
+      
     return this.months[month] + " " + date + " " + year + " " + 
-        this.hours[hour % 12] + ":" + (minutes < 10 ? ("0" + minutes) : minutes) + ":" 
+        localHour + ":" + (minutes < 10 ? ("0" + minutes) : minutes) + ":" 
         + (seconds < 10 ? ("0" + seconds) : seconds)
-        + (hour > 11 ? "pm" : "am"); 
+        + ((hour) > 11 ? "pm" : "am"); 
   }
 
   getTimeInterval(scaleDate: number = 1, timeInterval: string): any {

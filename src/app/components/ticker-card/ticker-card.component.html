@@ -1,18 +1,23 @@
 <mat-card class="ticker-display">
-    <a href = {{getUrl(asset.companyTicker)}}>
-        <mat-card-header>
+    <a [routerLink]="['/companyDisplay', asset.companyTicker]">
+    <mat-card-header>
         <mat-card-title >{{asset.companyName}}</mat-card-title>
+
         <mat-card-subtitle class="subtitle">{{asset.companyTicker}}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-            <p>Current: {{asset.current | currency}}</p>
-            <div class="inline">
-                <p>Changed: </p>
-                <p [ngStyle]="rate">{{change | percent: '2.1-2'}}</p>
-                <span class="material-icons">
-                    {{trending}}
-                </span>
-            </div>
-        </mat-card-content>
-    </a>
+    </mat-card-header>
+
+    <mat-card-content>
+        <p>Current: {{asset.current | currency}}</p>
+        <div class="inline">
+            <p>Changed: </p>
+
+            <p [ngStyle]="rate">{{change | percent: '2.1-2'}}</p>
+
+            <span class="material-icons">
+                {{trending}}
+            </span>
+        </div>
+
+    </mat-card-content>
+</a>
 </mat-card>

@@ -1,6 +1,7 @@
 #headerToolBar{
     width: 100%;
     height: 10%;
+    box-shadow: 0 2px 2px -2px rgba(0,0,0,.4);
 }
 #header-component-title{
     font-size: 2vh;
@@ -15,6 +16,7 @@
     width: 100%;
     height: 90%;
   }
+
 .menu-spacer{
     flex: 2 2 auto;
 }
@@ -28,6 +30,30 @@
     top: .25em;
 }
 
+input{
+    font-size: 16px;
+    color: blue;
+    opacity: 1; 
+}
+
+.form-control{
+font-size: 20px;
+color:black;
+}
+
+.form-inline{
+font-size: 15px;
+opacity: .9; 
+}
+
+.accentColor{
+color: #0367A6;
+}
+
+a{
+text-decoration: none;
+color: #000;
+}
 
 @media(min-width: 37.5rem) {
 
@@ -44,4 +70,11 @@
         font-size: 1.5rem;
     }
 }
+
+/* .active-pink-2 input[type=search]:focus:not([readonly]) {
+    border-bottom: 1px solid #05F228;
+    box-shadow: 0 1px 0 0 #05F228;
+    } */
+
+
 

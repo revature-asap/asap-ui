@@ -1,4 +1,6 @@
+
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Principal } from 'src/app/models/principal';
@@ -26,6 +28,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   currentUser?: Principal;
 
+  searchInput!: string;
+
   publicRoutes = [
 
     {
@@ -33,11 +37,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
       routeLink: '/home',
       routeSymbol: 'home'
     },
-    {
-      routeName: 'Assets',
-      routeLink: '/asset',
-      routeSymbol: 'login'
-    },
+
+    // {
+    //   routeName: 'Assets',
+    //   routeLink: '/companyDisplay',
+    //   routeSymbol: 'login'
+    // },
 
     {
       routeName: 'Login',
@@ -54,11 +59,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
       routeSymbol: 'home'
     },
 
-    {
-      routeName: 'Assets',
-      routeLink: '/companyDisplay',
-      routeSymbol: 'login'
-    },
+    // {
+    //   routeName: 'Assets',
+    //   routeLink: '/companyDisplay',
+    //   routeSymbol: 'login'
+    // },
 
     {
       routeName: 'User Profile',
@@ -91,6 +96,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
       user=> {
         this.currentUser = user as Principal;
       });
+
+    
+
   }
 
   logout() {
@@ -108,6 +116,23 @@ export class NavbarComponent implements OnInit, OnDestroy {
   ngOnDestroy(){
     this.logSubscription.unsubscribe();
     this.screenSubscription.unsubscribe();
+  }
+
+  // onSubmit(form: NgForm){
+  //   console.log(form.value.searchField);
+
+
+  // }
+
+  onSubmit(form: NgForm){
+    
+    if(!form.value.searchField){
+    }
+    else{
+     this.route.navigate(['companyDisplay' + '/'+form.value.searchField]);
+     this.route.routeReuseStrategy.shouldReuseRoute = () => false;
+    }
+    
   }
 
 }

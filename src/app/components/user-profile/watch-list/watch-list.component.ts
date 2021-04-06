@@ -19,14 +19,14 @@ export class WatchListComponent implements OnInit {
   ngOnInit(): void {
 
     this.subscription = this.route.data.subscribe(
-      (data: Data) =>{
-        this.currentCompanyProfile = data['asset'];
-        console.log(this.currentCompanyProfile);
-
+      () =>{
+        this.userWatchList().then();
       }
     )
+  }
 
-
+  userWatchList = async () => {
+    this.currentCompanyProfile = await this.watchListService.fetchUserWatchList();
   }
 
 }
