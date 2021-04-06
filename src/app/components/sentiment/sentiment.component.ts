@@ -3,6 +3,7 @@ import { newsSentiment } from 'src/app/models/newsSentiment';
 import { sentimentCarrier } from 'src/app/models/sentimentCarrier';
 import { FinnhubService } from 'src/app/services/finnhub.service';
 import { SentimentService } from 'src/app/services/sentiment.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-sentiment',
@@ -17,7 +18,7 @@ export class SentimentComponent implements OnInit {
   loading = true;
   assetTicker!: string;
 
-  constructor(private sentiment: SentimentService, private finnhub: FinnhubService) {
+  constructor(private sentiment: SentimentService, private finnhub: FinnhubService,private _Activatedroute:ActivatedRoute) {
       //Import asset service in some way
    }
 
@@ -34,9 +35,8 @@ export class SentimentComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.assetTicker = location.search.substring(1);
-    this.assetTicker = this.assetTicker.substring(0, this.assetTicker.length - 1);
-//    console.log("ticker is: " + this.assetTicker);
+    this.assetTicker = this._Activatedroute.snapshot.paramMap.get("tickerId") || '{}';
+    console.log("ticker is: " + this.assetTicker);
     this.loading = true;
     this.sentiment.updateTwitterSentiment(this.assetTicker).subscribe((response:sentimentCarrier) =>
     {
@@ -46,12 +46,12 @@ export class SentimentComponent implements OnInit {
     this.sentiment.updateRedditSentiment(this.assetTicker).subscribe((response:sentimentCarrier) =>
     {
      // console.log("This is the response object from the Reddit http call: " + JSON.stringify(response));
-      this.redditSentiment = this.sentimentCompare(response.sentimentTotals.POSITIVE, response.sentimentTotals.NEGATIVE );
+      this.redditSentiment = 0; //this.sentimentCompare(response.sentimentTotals.POSITIVE, response.sentimentTotals.NEGATIVE );
     });
     this.finnhub.getSentiment(this.assetTicker).subscribe((response:newsSentiment) =>
     {
      // console.log("This is the response object from the NEWS http call: " + JSON.stringify(response));
-      this.newsSentiment = this.sentimentCompare(response.sentiment.bullishPercent, response.sentiment.bearishPercent);
+      this.newsSentiment = 0; //this.sentimentCompare(response.sentiment.bullishPercent, response.sentiment.bearishPercent);
     });
 
     setTimeout(() => {

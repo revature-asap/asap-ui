@@ -5,8 +5,13 @@
   object-fit: contain
 }
 
-#sentiment-title{
+#sentiment-stuff {
+  padding-top: 30%;
+}
 
+#sentiment-title {
+  padding-top: 12%;
+  text-align: center;
 }
 
 

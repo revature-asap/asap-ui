@@ -1,13 +1,6 @@
 
-<mat-sidenav-container>
- <mat-sidenav #sidenav>
-   <mat-nav-list>
-   </mat-nav-list>
- </mat-sidenav>
- <mat-sidenav-content>
-   <div style="height: 88vh; margin-left: 80%; margin-right: 2%; margin-top: 1%; border: 2px solid green;">
-     <div style= "border: 1px solid green; margin: 1%">
-        <div id="sentiment-title" >Sentiment</div>
+        <div id="sentiment-title" ><h2> Sentiment</h2></div>
+        <div id="sentiment-stuff">
         <mat-grid-list cols="2" rowHeight="3:1">
           <mat-grid-tile><img src="../assets/twitterIcon.png" class="sentiment-image" id="twitter-icon"></mat-grid-tile>
           <mat-grid-tile [ngSwitch]="twitterSentiment" *ngIf="!loading" class="sentiment-image">
@@ -39,10 +32,6 @@
           <img src="../assets/LoadingWheel.gif" class="sentiment-image" id="loadingReddit">
        </mat-grid-tile>
         </mat-grid-list>
-
-     </div>
-   </div>
- </mat-sidenav-content>
-</mat-sidenav-container>
+        </div>
 
 
