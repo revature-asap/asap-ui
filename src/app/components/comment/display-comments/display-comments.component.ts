@@ -3,6 +3,7 @@ import { ActivatedRoute, Data } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Post } from 'src/app/models/post.model';
 import { User } from 'src/app/models/user';
+import { LoginService } from 'src/app/services/login.service';
 import { PostsService } from 'src/app/services/posts.service';
 
 
@@ -14,17 +15,30 @@ import { PostsService } from 'src/app/services/posts.service';
 export class DisplayCommentsComponent implements OnInit {
   posts: Post[] = [];
   subscription: Subscription | undefined;
-  assetTickerName!: string; 
+  assetTicker!: string; 
+  loggedIn!: boolean;
 
   userProfile = {};
 
   user!: User;
 
-  constructor(private postService: PostsService, private route: ActivatedRoute) { }
+  constructor(private postService: PostsService, private route: ActivatedRoute, private loginService: LoginService) { }
 
   ngOnInit(): void {
     console.log("Made it 2: ");
-    this.postService.getAllPosts().subscribe(p=> {this.posts = p; console.log(this.posts);});
+    this.postService.getAllPosts()
+      .subscribe(p=> {
+        this.posts = p;
+      });
+
+    this.loginService.currentUser$.subscribe(
+      u => {
+        if (u != null) {
+          this.loggedIn = true;
+        } else {
+          this.loggedIn = false;
+        }
+      });
 
     this.subscription = this.route.data.subscribe(
       (data: Data) =>{

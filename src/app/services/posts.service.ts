@@ -3,7 +3,6 @@ import { Post } from '../models/post.model';
 import { Observable, Subject } from 'rxjs'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +18,7 @@ export class PostsService {
 
   getAllPosts():Observable<Post[]>{
     console.log("Made it: 1");
-    return this.http.get<Post[]>(this.url);
+    return this.http.get<Post[]>(this.url + "/-1");
 
   }
 
@@ -35,11 +34,12 @@ export class PostsService {
     }
 
     let addPost = {
-      title: title,
       id: 0,
+      title: title,
       authorId: 15,
       textContent: content,
-      assetId: 1
+      assetId: 1,
+      parentPostId: -1
       }
 
     let json = JSON.stringify(addPost);

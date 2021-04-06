@@ -36,6 +36,7 @@ import { CommentBoxComponent } from './components/comment/comment-box/comment-bo
 import { CommentsContainerComponent } from './components/comment/comments-container/comments-container.component';
 import { DisplayCommentsComponent } from './components/comment/display-comments/display-comments.component';
 import { ReplyBoxComponent } from './components/comment/reply-box/reply-box.component';
+import { DisplayReplyComponent } from './components/comment/display-reply/display-reply.component';
 import { AssetCandleChartComponent } from './components/asset-candle-chart/asset-candle-chart.component';
 // import { AssetCompanyProfileComponent } from './components/asset-company-profile/asset-company-profile.component';
 import { AssetChartComponent } from './components/asset-chart/asset-chart.component';
@@ -73,7 +74,8 @@ import { AbbrCompDeetsComponent } from './components/pages/asset-profile/abbr-co
     CompanyDetailsComponent,
     ReplyBoxComponent,
     AssetNewsStoriesComponent,
-    AbbrCompDeetsComponent
+    AbbrCompDeetsComponent,
+    DisplayReplyComponent
   ],
   imports: [
     BrowserModule,
