@@ -26,7 +26,7 @@ export class PostsService {
   newPost(title: string, content: string, tickerName: string):Observable<any>{
 
     //Todo: covert passed in tickerName into an asset Id.
-    
+
 
     const httpOptions = {                                             
       headers: new HttpHeaders({
@@ -44,18 +44,40 @@ export class PostsService {
 
     let json = JSON.stringify(addPost);
 
-      // formData.append("parentPostId", 1);
-      // console.log("this is the form data: " + formData.getAll());
-      // formData.append("assetId", `${post.assetId}`);
-      // formData.append("userId", `${post.userId}`);
+    return this.http.post<any>(this.url, json, httpOptions);
 
+  }
+
+  addReply(parentPostId: number, title: string, content: string, tickerName: string):Observable<any>{
+
+    const httpOptions = {                                             
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }
+
+    let addPost = {
+      title: title,
+      id: 0,
+      authorId: 15,
+      textContent: content,
+      assetId: 1,
+      parentPostId: parentPostId
+      }
+
+    let json = JSON.stringify(addPost);
 
     return this.http.post<any>(this.url, json, httpOptions);
 
   }
 
+  getReplys(parentPostId: number):Observable<Post[]> {
+    return this.http.get<Post[]>(this.url + '/' + parentPostId);
+  }
+
   deletePost(){
 
   }
+
 
 }
