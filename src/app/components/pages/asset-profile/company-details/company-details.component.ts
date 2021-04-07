@@ -50,30 +50,19 @@ export class CompanyDetailsComponent implements OnInit {
     });
 
     this.finnhub.getQuote(this.ticker!).subscribe((quote: assetQuote) => {
-      console.log("getting quote from finnhub");
-      this.asset = new assetQuote(quote);
-      console.log("getting quote for company details component - " + JSON.stringify(this.asset));
-      this.finnhub.getLunarCrushQuote(this.ticker!).subscribe((quote: any) => {
-        console.log("got quote from lunar crush- " + JSON.stringify(quote));
-        console.log("getting coin price: " + quote.data[0].price);
-        console.log("getting close from lunar crush: " + JSON.stringify(quote.data[0].timeSeries[0].close));
-        this.mapLunarCrushQuote(quote);
-        console.log("got quote for lunar crush display- " + JSON.stringify(this.asset));
+        // this.asset.open = 0;
+        this.asset = new assetQuote(quote);
+        // console.log("ASSET:" + JSON.stringify(this.asset));
+        this.finnhub.getLunarCrushQuote(this.ticker!).subscribe((quote: any) => {
+        // console.log("got quote from lunar crush- " + JSON.stringify(quote));
+        // console.log("getting coin price: " + quote.data[0].price);
+        // console.log("getting close from lunar crush: " + JSON.stringify(quote.data[0].timeSeries[0].close));
+        if (!(quote.message == "Internal server error")) {
+          this.mapLunarCrushQuote(quote);
+          // console.log("got quote for lunar crush display- " + JSON.stringify(this.asset));
+        }
       });
     });
-
-    
-    // this.finnhub.getLunarCrushQuote(this.ticker!).subscribe((quote: any) => {
-    //   console.log("got quote from lunar crush- " + JSON.stringify(quote));
-    //   console.log("getting coin price: " + quote.data[0].price);
-    //   console.log("getting close from lunar crush: " + JSON.stringify(quote.data[0].timeSeries[0].close));
-    //   this.mapLunarCrushQuote(quote);
-    //   console.log("got quote for lunar crush display- " + JSON.stringify(this.asset));
-    // });
-
-
-    //get lunar crush quote
-    //would have to do some mappings probs
 
   }
 
