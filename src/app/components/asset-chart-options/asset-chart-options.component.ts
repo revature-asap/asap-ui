@@ -14,10 +14,10 @@ export class AssetChartOptionsComponent implements OnInit {
 
 
   chartSelection: string[] = ['candlestick', 'line'];
-  timeIntervalSelection : string[] = ['5m', '15m', '30m', '1h', '4h', '6h', '12h', '1d'];
+  timeIntervalSelection : string[] = ['12h', '1d', '2d'];
 
 
-  selectedTime: string = '12h';
+  selectedTime: string = '1d';
 
   propagateChartType(event: MatRadioChange) {
     this.chartTypeEvent.emit(event.value);

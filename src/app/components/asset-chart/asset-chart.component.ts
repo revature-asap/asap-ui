@@ -67,6 +67,7 @@ export class AssetChartComponent implements OnInit {
   getChartData(scaleDate: number = 1) {
     this.chartData = [];
 
+    // If we've gone back too many days and haven't found data
     if (scaleDate >= 15) {
       alert("Too many calls to the finnhub api have been made. Try refreshing the page.");
       this.loadingGraph = false;
@@ -78,7 +79,7 @@ export class AssetChartComponent implements OnInit {
     let assetTime = this.dateTimeService.getTimeInterval(scaleDate, this.assetTimeInterval);
 
     this.loadingGraph = true;
-    let fhd = this.finnhubService.getCandle(this.assetTicker, "1", assetTime.pastTime.toString(),
+    let fhd = this.finnhubService.getCandle(this.assetTicker, "D", assetTime.pastTime.toString(),
       assetTime.currentTime.toString());
 
     fhd.toPromise().then(data => {
@@ -89,6 +90,7 @@ export class AssetChartComponent implements OnInit {
       console.log(acd.low);
       console.log(acd.timestamp);
 
+      // If there's no data, go back a day
       if (acd.status === 'no_data') {
         this.getChartData(++scaleDate);
         return;
