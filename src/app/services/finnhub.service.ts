@@ -7,7 +7,6 @@ import { finnhubAssetProfile } from 'src/app/models/finnhubAssetProfile';
 import {Observable} from 'rxjs';
 import { newsSentiment } from '../models/newsSentiment';
 import { companyProfile } from '../models/companyProfile';
-import { lunarCrushQuote } from '../models/lunarCrushQuote';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -41,9 +40,9 @@ export class FinnhubService {
     return this.http.get<assetQuote>(`${this.api_url + this.quoteUrl + ticker.toUpperCase() }${this.tokens[this.getToken()]}`);
   }
 
-  getLunarCrushQuote(ticker: string): Observable<lunarCrushQuote> {
+  getLunarCrushQuote(ticker: string): Observable<any> {
     console.log("finnhub service trying to get lunar crush quote");
-    return this.http.get<lunarCrushQuote>(`${this.lunarCrushUrl + ticker}`);
+    return this.http.get(`${this.lunarCrushUrl + ticker}`);
   }
 
   //should pull from backend api to display profile information for given asset with database/finnhub/lunarcrush being checked for info in order

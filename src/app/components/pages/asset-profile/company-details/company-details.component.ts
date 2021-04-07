@@ -6,7 +6,6 @@ import { LoginService } from 'src/app/services/login.service';
 import { WatchListService } from 'src/app/services/watch-list.service';
 import { FinnhubService } from '../../../../services/finnhub.service';
 import { ActivatedRoute } from '@angular/router';
-import { lunarCrushQuote } from 'src/app/models/lunarCrushQuote';
 import { AssetCandleChartComponent } from 'src/app/components/asset-candle-chart/asset-candle-chart.component';
 
 
@@ -38,7 +37,7 @@ export class CompanyDetailsComponent implements OnInit {
 
     this.ticker = this._Activatedroute.snapshot.paramMap.get("tickerId") || '{}';
     console.log("TICKER in company details component: " + this.ticker);
-    
+
     this.finnhub.getProfile(this.ticker!).subscribe((profile: companyProfile) => {
       this.profile = profile;
       this.setLogo();
@@ -62,7 +61,7 @@ export class CompanyDetailsComponent implements OnInit {
       });
     });
 
-    
+
     // this.finnhub.getLunarCrushQuote(this.ticker!).subscribe((quote: any) => {
     //   console.log("got quote from lunar crush- " + JSON.stringify(quote));
     //   console.log("getting coin price: " + quote.data[0].price);
@@ -81,7 +80,7 @@ export class CompanyDetailsComponent implements OnInit {
   mapLunarCrushQuote(newQuote: any)  {
     console.log("mapping lunar crush quote: " + JSON.stringify(newQuote));
     console.log("mapping lunar crush open data: " + newQuote.data[0].open);
-    
+
     this.asset.open = newQuote.data[0].open;
     console.log("mapped open: " + this.asset.open);
     this.asset.high = newQuote.data[0].high;
