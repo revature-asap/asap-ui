@@ -13,7 +13,8 @@ export class TickerCardComponent implements OnInit {
   @Input() asset!: assetQuote;
   @Input() companyName!: companyProfile;
   @Input() change!: number;
-
+  //change=this.asset.change;
+  //change=0;
   trending = "";
   rate = {};
   tickerIcon = {};
@@ -21,7 +22,7 @@ export class TickerCardComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    if(this.change < 0) {
+    if(this.asset.change < 0) {
       this.rate = {
         'color': 'red',
       }
