@@ -7,6 +7,7 @@ import { finnhubAssetProfile } from 'src/app/models/finnhubAssetProfile';
 import {Observable} from 'rxjs';
 import { newsSentiment } from '../models/newsSentiment';
 import { companyProfile } from '../models/companyProfile';
+import { lunarCrushQuote } from '../models/lunarCrushQuote';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -27,6 +28,7 @@ export class FinnhubService {
 
   api_url: string = "https://finnhub.io/api/v1";
   backend_url: string = "http://ec2co-ecsel-1g0q6xc63i5af-1652680293.us-east-2.elb.amazonaws.com:5000/asset?ticker=";
+  lunarCrushUrl: string = "https://api.lunarcrush.com/v2?data=assets&key=x9aazwqfpgvfd08gtrd2&data_points=1&symbol=";
   quoteUrl: string = "/quote?symbol=";
   candleUrl: string = "/stock/candle?symbol=";
   profileUrl: string = "/stock/profile2?symbol=";
@@ -35,14 +37,19 @@ export class FinnhubService {
 
   getQuote(ticker: string):Observable<assetQuote> {
     //console.log("in get quote with ticker: " + ticker);
-    console.log("Inside not test " + `${this.api_url + this.quoteUrl + ticker }${this.tokens[this.getToken()]}`);
-    return this.http.get<assetQuote>(`${this.api_url + this.quoteUrl + ticker }${this.tokens[this.getToken()]}`);
+    console.log("Inside get quote " + `${this.api_url + this.quoteUrl + ticker.toUpperCase() }${this.tokens[this.getToken()]}`);
+    return this.http.get<assetQuote>(`${this.api_url + this.quoteUrl + ticker.toUpperCase() }${this.tokens[this.getToken()]}`);
+  }
+
+  getLunarCrushQuote(ticker: string): Observable<lunarCrushQuote> {
+    console.log("finnhub service trying to get lunar crush quote");
+    return this.http.get<lunarCrushQuote>(`${this.lunarCrushUrl + ticker}`);
   }
 
   //should pull from backend api to display profile information for given asset with database/finnhub/lunarcrush being checked for info in order
   getProfile(ticker: string):Observable<companyProfile> {
     //console.log("in get quote with ticker: " + ticker);
-    return this.http.get<companyProfile>(`${this.backend_url + ticker}${this.tokens[this.getToken()]}`);
+    return this.http.get<companyProfile>(`${this.backend_url + ticker}`);
   }
 
   getCandle(ticker: string, resolution: string, start: string, end: string):Observable<assetCandle> {
