@@ -18,6 +18,7 @@ export class DisplayCommentsComponent implements OnInit {
   assetTicker!: string; 
   loggedIn!: boolean;
 
+
   userProfile = {};
 
   user!: User;
@@ -29,6 +30,11 @@ export class DisplayCommentsComponent implements OnInit {
     this.postService.getAllPosts()
       .subscribe(p=> {
         this.posts = p;
+
+        for(let i=0; i < this.posts.length; i++) {
+          this.posts[i].showReply = false;
+        }
+
       });
 
     this.loginService.currentUser$.subscribe(
@@ -55,6 +61,18 @@ export class DisplayCommentsComponent implements OnInit {
       }
     )
 
+  }
+
+  showReply(post: Post) {
+    console.log("I am CLICKING! " + post.title + " " +post.showReply);
+    if(post.showReply == true){
+      post.showReply = false;
+      return;
+    }
+    if(post.showReply == false){
+      post.showReply = true;
+      return;
+    }
   }
 
 }

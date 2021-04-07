@@ -2,13 +2,13 @@
   <div id="left-sidebar">
     <!-- 'Main content' -->
     <div id="company-info">
-      <div class="company-image">
-        <img [src]="logo" alt="Company logo"/>
+      <div class="company-image clickable">
+        <img [src]="logo" alt="Company logo" (click)="goToAsset(profile.ticker)"/>
       </div>
-      <div class="company-info-text">
-        <h2>{{profile?.name}}</h2>
+      <div class="company-info-text clickable">
+        <h2 (click)="goToAsset(profile.ticker)" >{{profile?.name}}</h2>
       </div>
-      <div class="company-info-text" >
+      <div class="company-info-text clickable" (click)="goToAsset(profile.ticker)">
         <h4>{{profile?.ticker}}</h4>
       </div>
       <div class="company-info-text">

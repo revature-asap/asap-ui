@@ -1,5 +1,6 @@
 <div *ngFor="let post of posts">
-    <mat-card class="card">
+
+    <mat-card class="card" (click)="showReply(post)">
         <mat-card-header>
             <div mat-card-avatar [ngStyle]="userProfile" ></div>
             <mat-card-title class="title"> 
@@ -14,11 +15,12 @@
         </mat-card-content>
 
     </mat-card>
-    <div class="alignReply" *ngIf="loggedIn">
-        <app-reply-box
-        [post] = "post"
-        ></app-reply-box>
-    </div>
+
+        <div class="alignReply" *ngIf="loggedIn"> 
+            <app-reply-box 
+            [post] = "post"
+            ></app-reply-box>
+        </div>
 
     <div>
         <app-display-reply

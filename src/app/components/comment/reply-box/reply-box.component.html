@@ -1,4 +1,4 @@
-<mat-card class="card">
+<mat-card class="card" *ngIf="post.showReply">
     <form (ngSubmit)="onReply(f)" #f="ngForm">
     <mat-form-field appearance="outline">
         <textarea ngModel matInput placeholder = "Comment here ...." name="postContent" >
