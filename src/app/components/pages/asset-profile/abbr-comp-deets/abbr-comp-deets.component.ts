@@ -5,7 +5,7 @@ import {Principal} from "../../../../models/principal";
 import {FinnhubService} from "../../../../services/finnhub.service";
 import {LoginService} from "../../../../services/login.service";
 import {WatchListService} from "../../../../services/watch-list.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-abbr-comp-deets',
@@ -23,7 +23,8 @@ export class AbbrCompDeetsComponent implements OnInit {
 
   clearbitUrl: string = "https://logo.clearbit.com/";
 
-  constructor(private finnhub: FinnhubService, private loginService: LoginService, private watchListService: WatchListService, private _Activatedroute:ActivatedRoute) {
+  constructor(private finnhub: FinnhubService, private loginService: LoginService, private watchListService: WatchListService, 
+    private _Activatedroute:ActivatedRoute, private router:Router) {
 
   }
 
@@ -45,6 +46,10 @@ export class AbbrCompDeetsComponent implements OnInit {
       //console.log("getting quote for company details component - " + JSON.stringify(this.asset));
     });
 
+  }
+
+  goToAsset(ticker:String){
+    this.router.navigate(['companyDisplay' + '/'+ticker]);
   }
 
 }
