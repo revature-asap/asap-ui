@@ -12,10 +12,10 @@ import { DateTimeService } from '../../services/date-time.service';
 export class AssetChartComponent implements OnInit {
   @Input() chartTitle = 'Asset Chart';
   @Input() height = 400;
-  @Input() chartType = 'candlestick'; // default for charts
+  @Input() chartType = 'line'; // default for charts
   @Input() assetTicker = 'AAPL'; // default ticker is Apple
 
-  assetTimeInterval = '5m';
+  assetTimeInterval = '12h';
   loadingGraph = false;
   dynamicResize = true;
   assetColumns = ['Time', 'Low', 'Open', 'Closed', 'High'];
