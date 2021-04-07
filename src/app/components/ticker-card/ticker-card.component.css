@@ -1,14 +1,33 @@
 .ticker-display {
-  background-color: black;
+  background-color: #f7f6f6;
   overscroll-behavior: contain;
-  width: 20em;
+  width: 16em;
   color: white;
-  font-family: cursive;
-  font-size: 1.5vh;
+  font-family: sans-serif;
+
 }
+
+.card-header{
+  width: 100%;
+  align-content: center;
+}
+
+.title{
+  font-size: x-large;
+  font-weight: bold;
+  color: #1B402E;
+  text-align: center;
+  width:100%
+
+}
+
 .subtitle {
-  color: white;
-  font-size: 1vh;
+  color: #1B402E;
+  font-size: 2.5vh;
+  text-align: center;
+  width:100%
+
+
 }
 .inline {
   white-space: nowrap;
@@ -18,13 +37,13 @@
 .inline > p {
   display: inline-block;
   margin-right: .2em;
-  font-size: 1vh;
+  font-size: 2vh;
 }
 
 .material-icons{
   position: relative;
   top: .3em;
-  font-size: 1vh;
+  font-size: 2vh;
 }
 
 @media(min-width: 37.5rem) {
@@ -34,9 +53,10 @@
 @media (min-width: 65rem){
   .ticker-display {
     font-size: 1rem;
+
   }
   .subtitle {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
   .inline {
     white-space: nowrap;
@@ -49,6 +69,13 @@
     font-size: 0.8rem;
   }
 
+
+  .title{
+    font-size: x-large;
+    font-weight: bold;
+    color: #1B402E;
+  }
+
   .ticker-display {
       background-color: #f7f6f6;
       /* overscroll-behavior: contain; */
@@ -57,10 +84,6 @@
       width: 16em;
       color: white;
       padding: 1rem;
-  }
-  .title{
-    font-size: small;
-    color: #000;
   }
   .subtitle {
     font-weight: bold;
@@ -80,5 +103,10 @@
 
 a{
   text-decoration: none;
+}
+
+#mat-card{
+  font-size: medium;
+  margin-top: 2rem;
 }
 
