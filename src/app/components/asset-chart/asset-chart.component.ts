@@ -12,10 +12,10 @@ import { DateTimeService } from '../../services/date-time.service';
 export class AssetChartComponent implements OnInit {
   @Input() chartTitle = 'Asset Chart';
   @Input() height = 400;
-  @Input() chartType = 'candlestick'; // default for charts
+  @Input() chartType = 'line'; // default for charts
   @Input() assetTicker = 'AAPL'; // default ticker is Apple
 
-  assetTimeInterval = '5m';
+  assetTimeInterval = '12h';
   loadingGraph = false;
   dynamicResize = true;
   assetColumns = ['Time', 'Low', 'Open', 'Closed', 'High'];
@@ -95,16 +95,17 @@ export class AssetChartComponent implements OnInit {
         let candlestick : Array<string | number> = [];
         let assetDate = new Date(acd.timestamp[i] * 1000);
 
-        console.log("assetdate " + assetDate);
+        console.log("assetdate " + assetDate.toISOString());
 
-        candlestick.push(this.dateTimeService.getFormattedDate(
-          assetDate.getDate(),
-          assetDate.getMonth(),
-          assetDate.getFullYear(),
-          assetDate.getHours() - (assetDate.getTimezoneOffset() / 60),
-          assetDate.getMinutes(),
-          assetDate.getSeconds()
-        ));
+        // candlestick.push(this.dateTimeService.getFormattedDate(
+        //   assetDate.getDate(),
+        //   assetDate.getMonth(),
+        //   assetDate.getFullYear(),
+        //   assetDate.getHours() - (assetDate.getTimezoneOffset() / 60),
+        //   assetDate.getMinutes(),
+        //   assetDate.getSeconds()
+        // ));
+        candlestick.push(assetDate.toISOString());
 
         candlestick.push(acd.low[i]);
         candlestick.push(acd.open[i]);

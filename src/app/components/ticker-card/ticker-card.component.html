@@ -6,11 +6,11 @@
     </mat-card-header>
 
     <mat-card-content>
-        <p>Current: {{asset.current | currency}}</p>
+        <p class="details">Current: {{asset.current | currency}}</p>
         <div class="inline">
-            <p>Changed: </p>
+            <p class="details">Changed: </p>
 
-            <p [ngStyle]="rate">{{change | percent: '2.1-2'}}</p>
+            <p [ngStyle]="rate">{{asset.change | percent: '1.1-2'}}</p>
 
             <span class="material-icons">
                 {{trending}}

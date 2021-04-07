@@ -55,6 +55,7 @@ export class TickerContainerComponent implements OnInit {
           asset.companyTicker = assetName;
 
           this.change = this.tickerService.computeChange(asset.current, asset.previousClose);
+          asset.change=this.change;
           console.log("within first subscribe " + asset.companyTicker);
           this.finnhubService.getProfile(assetName)
             .subscribe((profile: companyProfile) => {
@@ -64,7 +65,6 @@ export class TickerContainerComponent implements OnInit {
 
         });
     }
-    console.log("end of the list of displayed tickers ");
   }
 
 }
