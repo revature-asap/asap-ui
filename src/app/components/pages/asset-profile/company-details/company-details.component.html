@@ -3,7 +3,9 @@
     <!-- 'Main content' -->
           <div id="company-info">
             <div class="company-image">
-              <img [src]="logo" alt="Company logo" id="logo-id"/>
+              <a href="{{profile?.weburl}}">
+                <img [src]="logo" alt="Company logo" id="logo-id"/>
+              </a>
             </div>
             <div class="company-info-text" style="margin-left: 4%">
                   <h2>{{profile?.name}}</h2>
@@ -44,8 +46,7 @@
               </div>
             <button *ngIf = "!isFavorited && loggedIn" (click) = "addFavorites()" style="margin-left: 4%; margin-top: 3%">Add to Favorites</button>
           </div>
-          <!-- <input type="URL" name="myURL" [(ngModel)]="myURL" placeholder="insert image URL here" (change)="onURLinserted() ">
-          <img [src]="imageToShow" alt="Place image title"> -->
+
   </div>
   <div id="center-content">
 
