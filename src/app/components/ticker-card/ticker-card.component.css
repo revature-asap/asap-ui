@@ -76,12 +76,29 @@
     color: #1B402E;
   }
 
+  .ticker-display {
+      background-color: #f7f6f6;
+      /* overscroll-behavior: contain; */
+      box-shadow: 0 4px 4px 1px rgba(0,0,0,.2);
+      border-radius: 5px;
+      width: 16em;
+      color: white;
+      padding: 1rem;
+  }
+  .subtitle {
+    font-weight: bold;
+    color: #000;
+  }
 
   .material-icons{
     position: relative;
     top: .3em;
     font-size: 0.8rem;
   }
+}
+
+.details{
+  color: rgb(48, 48, 48);
 }
 
 a{

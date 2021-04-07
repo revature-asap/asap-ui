@@ -8,6 +8,7 @@ export class assetQuote {
     previousClose: number; //Previous close price
     companyTicker!: string;
     companyName!: string;
+    change!:number;
 
     constructor(asset: any){
         this.open = asset.o;
