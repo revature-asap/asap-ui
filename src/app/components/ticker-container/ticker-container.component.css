@@ -1,11 +1,11 @@
 .scrolling-wrapper-flexbox {
     display: flex;
     flex-wrap: nowrap;
-    border-style: ridge;
+    border-style: groove;
     flex-direction: row;
     overflow-x: auto;
     /* height: 20%; */
-    background-color: #D9D9D9;
+    background-color: #0367A6;
   }
 
   .card {
@@ -13,5 +13,8 @@
   }
 
   .space {
-    margin-right: .3em;
+    margin-left: 0.2em;
+    margin-right: 0.2rem;
+    margin-top: 0.1rem;
+    margin-bottom:  0.1rem;;
   }
