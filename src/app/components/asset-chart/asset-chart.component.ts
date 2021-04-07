@@ -83,6 +83,11 @@ export class AssetChartComponent implements OnInit {
 
     fhd.toPromise().then(data => {
       let acd = new assetCandle(data);
+      console.log(acd.open);
+      console.log(acd.close);
+      console.log(acd.high);
+      console.log(acd.low);
+      console.log(acd.timestamp);
 
       if (acd.status === 'no_data') {
         this.getChartData(++scaleDate);
