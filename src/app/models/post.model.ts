@@ -7,6 +7,7 @@ export class Post{
     assetId: number;
     parentPostId!: number;
     creationTimestamp!: number;
+    username: string;
 
     constructor(post:any){
         this.id = post.id;
@@ -16,6 +17,7 @@ export class Post{
         this.assetId = post.assetId;
         this.parentPostId = post.parentPostId;
         this.creationTimestamp = post.creationTimestamp;
+        this.username = post.username;
     }
     
 }
