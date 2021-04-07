@@ -35,47 +35,24 @@ export class DateTimeService {
 
     previousDay.setUTCHours(12, 59, 59);
     let ct = Math.floor(previousDay.valueOf() / 1000);
+    let unitTime = timeInterval[timeInterval.length-1];
+    let time = parseInt(timeInterval.slice(0, timeInterval.length-1));
 
-    switch(timeInterval) {
-      case '5m':
+    switch(unitTime) {
+      case 'm':
         return {
           currentTime: ct,
-          pastTime: ct - (60 * 5)
+          pastTime: ct - 60 * time
         }
-      case '15m':
+      case 'h':
         return {
           currentTime: ct,
-          pastTime: ct - (60 * 15)
+          pastTime: ct - (60 * 60) * time
         }
-      case '30m':
-        return {
-          currentTime: ct,
-          pastTime: ct - (60 * 30)
-        }
-      case '1h':
-        return {
-          currentTime: ct,
-          pastTime: ct - (60 * 60)
-        }
-      case '4h':
-        return {
-          currentTime: ct,
-          pastTime: ct - (60 * 60 * 4)
-        }
-      case '6h':
-        return {
-          currentTime: ct,
-          pastTime: ct - (60 * 60 * 6)
-        }
-      case '12h':
-        return {
-          currentTime: ct,
-          pastTime: ct - (60 * 60 * 12)
-        }
-      case '1d':
+      case 'd':
         return {
             currentTime: ct,
-            pastTime: ct - (60 * 60 * 24)
+            pastTime: ct - (60 * 60 * 24) * time
         }
     }
   }

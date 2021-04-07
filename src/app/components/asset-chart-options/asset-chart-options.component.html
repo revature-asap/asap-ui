@@ -23,5 +23,15 @@
                 </mat-option>
             </mat-select>
         </mat-form-field>
+        <mat-divider class="divider-space"></mat-divider>
+        <h3>Chart timescale</h3>
+        <mat-form-field>
+            <mat-label>timescale</mat-label>
+            <mat-select [(value)]="selectedTimescale" (selectionChange)="propagateTimescale($event)"> 
+                <mat-option *ngFor="let timescale of timescaleSelection" [value]="timescale">
+                    {{printTimescale(timescale)}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
     </mat-expansion-panel>
 </mat-accordion>

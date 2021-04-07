@@ -11,13 +11,16 @@ export class AssetChartOptionsComponent implements OnInit {
   @Input() selectedChartType: string = 'line';
   @Output() chartTypeEvent = new EventEmitter<string>();
   @Output() timeIntervalEvent = new EventEmitter<string>();
+  @Output() timescaleEvent = new EventEmitter<string>();
 
 
   chartSelection: string[] = ['candlestick', 'line'];
-  timeIntervalSelection : string[] = ['12h', '1d', '2d'];
+  timeIntervalSelection : string[] = ['15m', '30m', '1h', '3h', '6h', '12h', '1d', '2d'];
+  timescaleSelection: string[] = ['D', 'W', 'M'];
 
 
   selectedTime: string = '1d';
+  selectedTimescale: string = 'D';
 
   propagateChartType(event: MatRadioChange) {
     this.chartTypeEvent.emit(event.value);
@@ -25,6 +28,10 @@ export class AssetChartOptionsComponent implements OnInit {
 
   propagateTimeInterval(event: MatSelectChange) {
     this.timeIntervalEvent.emit(event.value);
+  }
+
+  propagateTimescale(event: MatSelectChange) {
+    this.timescaleEvent.emit(event.value);
   }
 
   printTimeInterval(time: string) {
@@ -38,6 +45,17 @@ export class AssetChartOptionsComponent implements OnInit {
         return timeValue + " hour" + (parseInt(timeValue) > 1 ? "s" : "");
       default:
         return timeValue + " day" + (parseInt(timeValue) > 1 ? "s" : "");
+    }
+  }
+
+  printTimescale(time: string) {
+    switch(time) {
+      case 'D':
+        return '1 trading day';
+      case 'W':
+        return '7 trading days';
+      default:
+        return '28 trading days';
     }
   }
 

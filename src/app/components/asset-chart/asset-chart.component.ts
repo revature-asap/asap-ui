@@ -19,6 +19,7 @@ export class AssetChartComponent implements OnInit {
   loadingGraph = false;
   dynamicResize = true;
   assetColumns = ['Time', 'Low', 'Open', 'Closed', 'High'];
+  timescaleResolution = 'D';
 
   type : ChartType = ChartType.CandlestickChart;
   chartData : any[] = [];
@@ -64,6 +65,12 @@ export class AssetChartComponent implements OnInit {
     this.getChartData();
   }
 
+  timescaleChange = (timescale: string): void => {
+    this.timescaleResolution = timescale;
+    console.log("resolution " + this.timescaleResolution);
+    this.getChartData();
+  }
+
   getChartData(scaleDate: number = 1) {
     this.chartData = [];
 
@@ -76,10 +83,11 @@ export class AssetChartComponent implements OnInit {
 
     this.setChartType();
 
+    console.log("asset time interval = " + this.assetTimeInterval);
     let assetTime = this.dateTimeService.getTimeInterval(scaleDate, this.assetTimeInterval);
 
     this.loadingGraph = true;
-    let fhd = this.finnhubService.getCandle(this.assetTicker, "D", assetTime.pastTime.toString(),
+    let fhd = this.finnhubService.getCandle(this.assetTicker, this.timescaleResolution, assetTime.pastTime.toString(),
       assetTime.currentTime.toString());
 
     fhd.toPromise().then(data => {
