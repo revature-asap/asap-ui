@@ -1,5 +1,5 @@
 export class Post{
-    id: number;
+    postId: number;
     userId: number;
     textContent: string;
     title: string;
@@ -8,9 +8,10 @@ export class Post{
     parentPostId!: number;
     creationTimestamp!: number;
     username: string;
+    showReply = false;
 
     constructor(post:any){
-        this.id = post.id;
+        this.postId = post.postId;
         this.userId = post.authorId;
         this.textContent = post.textContent;
         this.title = post.title;
@@ -18,6 +19,7 @@ export class Post{
         this.parentPostId = post.parentPostId;
         this.creationTimestamp = post.creationTimestamp;
         this.username = post.username;
+        this.showReply = false;
     }
     
 }

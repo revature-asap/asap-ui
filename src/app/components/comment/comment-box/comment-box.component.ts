@@ -16,23 +16,12 @@ export class CommentBoxComponent implements OnInit {
   public id = 0; //??
   newPost!: Post;
 
-  loggedIn!: boolean;
-
   @Output() userComment = new EventEmitter();
 
   constructor(private formBuilder: FormBuilder, private postService: PostsService, private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.createForm;
-
-    this.loginService.currentUser$.subscribe(
-      u => {
-        if (u != null) {
-          this.loggedIn = true;
-        } else {
-          this.loggedIn = false;
-        }
-      });
   }
 
   createForm(){

@@ -11,16 +11,12 @@ import { User } from '../models/user';
 })
 export class PostsService {
 
-  private posts: Post[] = [];
-  private postUpdated = new Subject<Post[]>();
-  private user!: User;
   
   private url:string = "http://ec2co-ecsel-1g0q6xc63i5af-1652680293.us-east-2.elb.amazonaws.com:5000/posts";
 
   constructor(private http:HttpClient, private router:Router, private loginService:LoginService) { }
 
   getAllPosts():Observable<Post[]>{
-    console.log("Made it: 1");
     return this.http.get<Post[]>(this.url + "/-1");
 
   }
@@ -35,6 +31,7 @@ export class PostsService {
       })
     }
 
+    console.log("Im in newpost before loginservice"+addPost);  
     this.loginService.currentUser$.subscribe(
       u => {
         addPost = {
@@ -44,8 +41,10 @@ export class PostsService {
           textContent: content,
           assetId: 1
           }
+          console.log("Im in newpost inside loginservice"+addPost);  
       });
 
+    console.log("Im in newpost after loginservice"+addPost);  
     let json = JSON.stringify(addPost);
 
     return this.http.post<any>(this.url, json, httpOptions);
@@ -62,6 +61,7 @@ export class PostsService {
       })
     }
 
+    console.log("Im in newreply before loginservice"+JSON.stringify(addPost));  
     this.loginService.currentUser$.subscribe(
       u => {
         addPost = {
@@ -72,9 +72,10 @@ export class PostsService {
           assetId: 1,
           parentPostId: parentPostId
           }
+          console.log("Im in newreply inside loginservice"+ JSON.stringify(addPost));  
       });
 
-
+      console.log("Im in newreply after loginservice"+JSON.stringify(addPost));  
 
     let json = JSON.stringify(addPost);
 
