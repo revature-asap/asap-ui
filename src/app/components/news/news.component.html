@@ -1,3 +1,5 @@
+<h2 class="which-articles" *ngIf="loggedIn">Watchlist news</h2>
+<h2 class="which-articles" *ngIf="!loggedIn">Common asset news</h2>
 <div class="list-of-articles" *ngFor="let article of articlesTemp" (click)="redirect(article.url)">
   <img src="{{article.image}}">
   <h2>{{ article.headline }}</h2>
