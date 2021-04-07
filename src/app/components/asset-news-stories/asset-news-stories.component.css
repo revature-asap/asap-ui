@@ -1,7 +1,8 @@
 .list-of-articles{
   margin: 1%;
-  border: solid black;
   text-align: center;
   cursor: url("../../../assets/wezleygun_fix.png"), auto;
   color: black;
+  box-shadow: 0 0px 2px 2px rgba(0,0,0,.4);
+  font-family: Lato, sans-serif;
 }

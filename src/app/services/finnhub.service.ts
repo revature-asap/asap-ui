@@ -26,6 +26,8 @@ export class FinnhubService {
   tokens: string[] = ["&token=c1ceppv48v6scqmqtk5g", "&token=c1cepq748v6scqmqtk8g", "&token=c1cf0gf48v6scqmqtr50"];
 
   api_url: string = "https://finnhub.io/api/v1";
+  backend_url: string = "http://ec2co-ecsel-1g0q6xc63i5af-1652680293.us-east-2.elb.amazonaws.com:5000/asset?ticker=";
+  lunarCrushUrl: string = "https://api.lunarcrush.com/v2?data=assets&key=x9aazwqfpgvfd08gtrd2&data_points=1&symbol=";
   quoteUrl: string = "/quote?symbol=";
   candleUrl: string = "/stock/candle?symbol=";
   profileUrl: string = "/stock/profile2?symbol=";
@@ -34,14 +36,19 @@ export class FinnhubService {
 
   getQuote(ticker: string):Observable<assetQuote> {
     //console.log("in get quote with ticker: " + ticker);
-    console.log("Inside not test " + `${this.api_url + this.quoteUrl + ticker }${this.tokens[this.getToken()]}`);
-    return this.http.get<assetQuote>(`${this.api_url + this.quoteUrl + ticker }${this.tokens[this.getToken()]}`);
+    console.log("Inside get quote " + `${this.api_url + this.quoteUrl + ticker.toUpperCase() }${this.tokens[this.getToken()]}`);
+    return this.http.get<assetQuote>(`${this.api_url + this.quoteUrl + ticker.toUpperCase() }${this.tokens[this.getToken()]}`);
+  }
+
+  getLunarCrushQuote(ticker: string): Observable<any> {
+    console.log("finnhub service trying to get lunar crush quote");
+    return this.http.get(`${this.lunarCrushUrl + ticker}`);
   }
 
   //should pull from backend api to display profile information for given asset with database/finnhub/lunarcrush being checked for info in order
   getProfile(ticker: string):Observable<companyProfile> {
     //console.log("in get quote with ticker: " + ticker);
-    return this.http.get<companyProfile>(`${this.api_url + this.profileUrl + ticker}${this.tokens[this.getToken()]}`);
+    return this.http.get<companyProfile>(`${this.backend_url + ticker}`);
   }
 
   getCandle(ticker: string, resolution: string, start: string, end: string):Observable<assetCandle> {
