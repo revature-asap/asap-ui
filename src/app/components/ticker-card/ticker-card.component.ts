@@ -13,8 +13,7 @@ export class TickerCardComponent implements OnInit {
   @Input() asset!: assetQuote;
   @Input() companyName!: companyProfile;
   @Input() change!: number;
-  //change=this.asset.change;
-  //change=0;
+
   trending = "";
   rate = {};
   tickerIcon = {};
