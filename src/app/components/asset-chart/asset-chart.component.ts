@@ -95,16 +95,17 @@ export class AssetChartComponent implements OnInit {
         let candlestick : Array<string | number> = [];
         let assetDate = new Date(acd.timestamp[i] * 1000);
 
-        console.log("assetdate " + assetDate);
+        console.log("assetdate " + assetDate.toISOString());
 
-        candlestick.push(this.dateTimeService.getFormattedDate(
-          assetDate.getDate(),
-          assetDate.getMonth(),
-          assetDate.getFullYear(),
-          assetDate.getHours() - (assetDate.getTimezoneOffset() / 60),
-          assetDate.getMinutes(),
-          assetDate.getSeconds()
-        ));
+        // candlestick.push(this.dateTimeService.getFormattedDate(
+        //   assetDate.getDate(),
+        //   assetDate.getMonth(),
+        //   assetDate.getFullYear(),
+        //   assetDate.getHours() - (assetDate.getTimezoneOffset() / 60),
+        //   assetDate.getMinutes(),
+        //   assetDate.getSeconds()
+        // ));
+        candlestick.push(assetDate.toISOString());
 
         candlestick.push(acd.low[i]);
         candlestick.push(acd.open[i]);
