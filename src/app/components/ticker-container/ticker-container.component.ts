@@ -65,7 +65,6 @@ export class TickerContainerComponent implements OnInit {
 
         });
     }
-    console.log("end of the list of displayed tickers ");
   }
 
 }

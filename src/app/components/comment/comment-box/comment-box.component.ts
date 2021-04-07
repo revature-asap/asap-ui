@@ -2,6 +2,7 @@ import { Component, AfterViewInit, OnInit, ViewChild, ElementRef, Output, EventE
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import { Post } from 'src/app/models/post.model';
+import { LoginService } from 'src/app/services/login.service';
 import { PostsService } from 'src/app/services/posts.service';
 
 @Component({
@@ -15,12 +16,23 @@ export class CommentBoxComponent implements OnInit {
   public id = 0; //??
   newPost!: Post;
 
+  loggedIn!: boolean;
+
   @Output() userComment = new EventEmitter();
 
-  constructor(private formBuilder: FormBuilder, private postService: PostsService) { }
+  constructor(private formBuilder: FormBuilder, private postService: PostsService, private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.createForm;
+
+    this.loginService.currentUser$.subscribe(
+      u => {
+        if (u != null) {
+          this.loggedIn = true;
+        } else {
+          this.loggedIn = false;
+        }
+      });
   }
 
   createForm(){
