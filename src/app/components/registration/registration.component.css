@@ -4,13 +4,39 @@
 }
 
 #registrationForm {
-    text-align: center;
+
+    position: absolute;
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    font-size: 3vh;
+
+
+
+    /* text-align: center;
     border: 3px solid black;
     margin-left: 25rem;
     margin-right: 25rem;
-    margin-top: 5rem;
+    margin-top: 5rem; */
 }
 
 button{
     margin-bottom: 10px;
+}
+
+
+@media(min-width: 37.5rem) {
+
+}
+
+@media (min-width: 65rem){
+
+    #registrationForm {
+        font-size: 1.5rem;
+    }
+
 }

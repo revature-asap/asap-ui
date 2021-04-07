@@ -4,6 +4,8 @@
     border-style: ridge;
     flex-direction: row;
     overflow-x: auto;
+    /* height: 20%; */
+    background-color: #D9D9D9;
   }
 
   .card {
@@ -12,4 +14,12 @@
 
   .space {
     margin-right: .3em;
+  }
+
+  @media(min-width: 37.5rem) {
+
+  }
+  
+  @media (min-width: 65rem){
+  
   }

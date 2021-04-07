@@ -1,8 +1,11 @@
-<div>
-    <!-- Ticker accross the top -->
-    <app-ticker-container></app-ticker-container>
-    <!-- rest of the page -->
-    <div> 
-        <p> Rest of the page</p>
-    </div>
+<app-ticker-container></app-ticker-container>
+<div id = "dashboardContainer">
+      <mat-grid-list cols="2" rowHeight="100%">
+        <mat-grid-tile>
+          <app-comments-container class="container"></app-comments-container>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <app-news class="container"></app-news>
+        </mat-grid-tile>
+      </mat-grid-list>
 </div>

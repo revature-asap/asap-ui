@@ -1,0 +1,24 @@
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+
+  div mat-label {
+      display: block;
+      margin: 1rem 0;
+  }
+
+  h3 {
+      margin: 1% 0;
+  }
+
+  .divider-space {
+      margin: 1% 0;
+  }
+
+  #manual-refetch {
+      margin: 0 1.5%;
+  }
+
+  .graphOptionsSpacing{
+      margin: 3rem;
+  }

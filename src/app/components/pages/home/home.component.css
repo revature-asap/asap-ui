@@ -1,0 +1,29 @@
+#loggedInDashboard {
+    height: 100%;
+}
+
+#loggedOutDashboard {
+    height: 100%;
+}
+
+ #dashboardContainer {
+    height: 100%;
+}
+
+.container{
+    padding: 1rem;
+}
+
+app-ticker-container{
+    height: 20%;
+}
+
+
+
+
+@media(min-width: 37.5rem) {
+
+}
+
+@media (min-width: 65rem){
+}

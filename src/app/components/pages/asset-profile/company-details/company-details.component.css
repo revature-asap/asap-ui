@@ -1,0 +1,46 @@
+#main {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+}
+
+#left-sidebar {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 15%;
+
+}
+
+#center-content {
+  flex-basis: 70%;
+  padding-top: 1rem;
+}
+
+#right-sidebar {
+  flex-basis: 15%;
+   color: rgb(255, 255, 255);
+   width: 100%;
+   height: 100%;
+   /* background-image: linear-gradient(30deg, #11cf4d, #055e21); */
+   border-top-left-radius: 90px;
+}
+
+#company-info{
+   color: rgb(255, 255, 255);
+   width: 100%;
+   height: 100%;
+   background-image: linear-gradient(30deg, #c9eaff, #015285);
+   border-top-right-radius: 90px;
+ }
+
+t
+.company-info-text {
+  padding-left: 6%;
+}
+
+.company-image {
+  padding-top: 2%;
+  padding-left: 6%;
+
+}

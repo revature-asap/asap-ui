@@ -1,0 +1,22 @@
+<div *ngIf="chartData.length > 0" class="chartMargin">
+    <google-chart 
+        [title]="chartTitle" 
+        [type]="type" 
+        [data]="chartData" 
+        [height]="height"
+        [dynamicResize]="dynamicResize"
+        [columns]="assetColumns"
+        [options]="options"
+        style="width: 100%;">
+    </google-chart>
+</div>
+<div *ngIf="chartData.length === 0">
+    <h1 *ngIf="!loadingGraph">Your asset chart can't be rendered at this time</h1>
+    <div *ngIf="loadingGraph">
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+<asset-chart-options 
+    (chartTypeEvent)='chartTypeChange($event)' 
+    (timeIntervalEvent)='timeIntervalChange($event)'>
+</asset-chart-options>

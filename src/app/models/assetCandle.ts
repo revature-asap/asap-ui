@@ -9,18 +9,17 @@ export class assetCandle {
     timestamp: number[];// List of timestamp for returned candles
     status: string;// Status of the response. This field can either be ok or no_data.
 
-    constructor(){
-        this.open =[];
-        this.high = [];
-        this.low = [];
-        this.close = [];
-        this.volume = [];
-        this.timestamp = [];
-        this.status = "";
-    }
-
-    updateCandle(candle:any) {
-        this.open = candle.o;
+    // constructor(){
+    //     this.open =[];
+    //     this.high = [];
+    //     this.low = [];
+    //     this.close = [];
+    //     this.volume = [];
+    //     this.timestamp = [];
+    //     this.status = "";
+    // }
+    constructor(candle:any) {
+        this.open = candle.c;
         this.high = candle.h;
         this.low = candle.l;
         this.close = candle.c;

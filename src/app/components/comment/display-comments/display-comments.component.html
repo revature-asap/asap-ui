@@ -1,0 +1,28 @@
+<div *ngFor="let post of posts">
+    <mat-card class="card">
+        <mat-card-header>
+            <div mat-card-avatar [ngStyle]="userProfile" ></div>
+            <mat-card-title class="title"> 
+                {{post.title}}
+            </mat-card-title>
+            <mat-card-subtitle>
+                {{post.id}} {{post.creationTimestamp | date}}
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            {{post.textContent}}
+        </mat-card-content>
+
+    </mat-card>
+    <div class="alignReply" *ngIf="loggedIn">
+        <app-reply-box
+        [post] = "post"
+        ></app-reply-box>
+    </div>
+
+    <div>
+        <app-display-reply
+        [post] = "post"
+        ></app-display-reply>
+    </div>
+</div>

@@ -1,6 +1,8 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
-import { assetProfile } from 'src/app/models/assetProfile';
+import { companyProfile } from 'src/app/models/companyProfile';
 import { assetQuote } from '../../models/assetQuote.model'
+import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-ticker-card',
@@ -9,14 +11,14 @@ import { assetQuote } from '../../models/assetQuote.model'
 })
 export class TickerCardComponent implements OnInit {
   @Input() asset!: assetQuote;
-  @Input() companyName!: assetProfile;
+  @Input() companyName!: companyProfile;
   @Input() change!: number;
- 
+
   trending = "";
   rate = {};
   tickerIcon = {};
-
-  constructor() { }
+  selectedPath!: string;
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     if(this.change < 0) {
@@ -27,11 +29,10 @@ export class TickerCardComponent implements OnInit {
     }else {
       this.rate = {
         'color': 'green'
-      }      
+      }
       this.trending = "trending_up";
     }
 
 
   }
-
 }

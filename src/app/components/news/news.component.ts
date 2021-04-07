@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {NewsService} from "../../services/news.service";
 import {Article} from "../../models/article";
+import { PageEvent } from '@angular/material/paginator';
+import {LoginService} from "../../services/login.service";
+import {WatchListService} from "../../services/watch-list.service";
+import {companyProfile} from "../../models/companyProfile";
 
 /**
  * This component is able to display all the news articles for a given
@@ -14,14 +18,19 @@ import {Article} from "../../models/article";
 export class NewsComponent implements OnInit {
 
   articles: Article[] = [];
-  assets: string[] = ['AAPL', 'GME', 'GOOG', 'AMZN', 'MSFT', 'TSLA'];
+  assets: string[] = [];
+  articlesTemp: Article[] = [];
+  numElements = 0;
+  currentIndex = 0;
+  pageSizeNum = 4;
 
-  constructor(private newsService: NewsService) { }
+  constructor(private newsService: NewsService, private loginService: LoginService, private watchlistService: WatchListService) { }
 
   /**
    * Fetches articles fora given stock symbol
    */
   fetchArticles = async () => {
+    this.articles = [];
     //Finnhub is annoying and requires that the date format have the 0 in front of the months and
     // days with one character
     let to = this.todayDate();
@@ -30,12 +39,21 @@ export class NewsComponent implements OnInit {
     for (const asset of this.assets) {
       try{
         let allArticles: Article[] = await this.newsService.stockNews(asset, from, to);
-        this.articles.push(allArticles[0]);
+        if(allArticles.length > 0){
+          this.articles.push(allArticles[0]);
+        }
       }catch (e){
         console.error(e);
       }
     }
-
+    this.articlesTemp = [];
+    let counter = 0;
+    for (let i = 0; i < this.articles.length-1; i++) {
+      if(counter > this.pageSizeNum){
+        break;
+      }
+      this.articlesTemp.push(this.articles[i]);
+    }
   }
 
   /**
@@ -83,7 +101,37 @@ export class NewsComponent implements OnInit {
    * method in order to populate with the news articles in the class variable
    */
   ngOnInit(): void {
-    this.fetchArticles();
+    this.loginService.currentUser$.subscribe(
+      async (user) => {
+        if (user != null) {
+          let assetNames: string[] = [];
+          let companies = await this.watchlistService.fetchUserWatchList();
+          if(companies.length > 0){
+            for (const company of companies) {
+              assetNames.push(company.ticker);
+            }
+            this.setAssets(assetNames);
+          }
+        }else{
+          this.setAssets(['AAPL', 'GME', 'GOOG', 'AMZN', 'MSFT', 'TSLA']);
+        }
+        this.fetchArticles().then();
+      });
+  }
+
+  onChangePage(pageData: PageEvent) {
+    this.articlesTemp = [];
+
+    this.numElements = 0;
+    this.currentIndex = pageData.pageIndex * pageData.pageSize;
+
+      while (this.numElements < pageData.pageSize && this.currentIndex < this.articles.length) {
+
+        this.articlesTemp.push(this.articles[this.currentIndex]);
+        this.numElements++;
+        this.currentIndex++;
+      }
+    console.log(pageData);
   }
 
 }

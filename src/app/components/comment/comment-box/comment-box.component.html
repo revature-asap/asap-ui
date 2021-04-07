@@ -1,0 +1,30 @@
+<div>
+    <h2> Posts </h2>
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        
+        <div>
+            <mat-form-field >
+                <mat-label>Asset Ticker</mat-label>
+                <input ngModel matInput placeholder = "Asset Ticker..." name="assetTicker">
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field>
+                <mat-label>Post Title</mat-label>
+                <input ngModel matInput placeholder = "Post Title" name="postTitle">
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>New Post</mat-label>
+                <textarea ngModel matInput placeholder = "Comment here ...." name="postContent" >
+                </textarea>
+            </mat-form-field>
+        </div>
+        <div>
+            <button mat-raised-button color="primary" id="comment-button"> Submit </button>
+        </div>
+    </form>
+</div>

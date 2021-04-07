@@ -8,6 +8,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { AppComponent } from './app.component';
+import { SentimentComponent } from './components/sentiment/sentiment.component';
 import { LoginComponent } from './components/login/login.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
@@ -30,11 +31,29 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { TickerContainerComponent } from './components/ticker-container/ticker-container.component';
 import {MatCardModule} from '@angular/material/card';
 import {ScrollingModule} from '@angular/cdk/scrolling';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { CommentBoxComponent } from './components/comment/comment-box/comment-box.component';
+import { CommentsContainerComponent } from './components/comment/comments-container/comments-container.component';
+import { DisplayCommentsComponent } from './components/comment/display-comments/display-comments.component';
+import { ReplyBoxComponent } from './components/comment/reply-box/reply-box.component';
+import { AssetCandleChartComponent } from './components/asset-candle-chart/asset-candle-chart.component';
+// import { AssetCompanyProfileComponent } from './components/asset-company-profile/asset-company-profile.component';
+import { AssetChartComponent } from './components/asset-chart/asset-chart.component';
+import { GoogleChartsModule } from 'angular-google-charts';
+import { AssetChartOptionsComponent } from './components/asset-chart-options/asset-chart-options.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { CompanyDetailsComponent } from './components/pages/asset-profile/company-details/company-details.component';
+import { AssetNewsStoriesComponent } from './components/asset-news-stories/asset-news-stories.component';
+import { AbbrCompDeetsComponent } from './components/pages/asset-profile/abbr-comp-deets/abbr-comp-deets.component';
+import {DisplayReplyComponent} from "./components/comment/display-reply/display-reply.component";
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    SentimentComponent,
     LoginComponent,
     AssetDisplayComponent,
     NavbarComponent,
@@ -45,7 +64,19 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     RegisterEmailConfirmationDialog,
     TickerCardComponent,
     HomeComponent,
-    TickerContainerComponent
+    TickerContainerComponent,
+    CommentBoxComponent,
+    CommentsContainerComponent,
+    DisplayCommentsComponent,
+    AssetCandleChartComponent,
+    // AssetCompanyProfileComponent,
+    AssetChartComponent,
+    AssetChartOptionsComponent,
+    CompanyDetailsComponent,
+    ReplyBoxComponent,
+    AssetNewsStoriesComponent,
+    AbbrCompDeetsComponent,
+    DisplayReplyComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +97,12 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     MatCardModule,
     MatDialogModule,
     OverlayModule,
-    ScrollingModule
+    ScrollingModule,
+    MatGridListModule,
+    GoogleChartsModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatPaginatorModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},

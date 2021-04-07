@@ -1,0 +1,58 @@
+<div id="main">
+  <div id="left-sidebar">
+    <!-- 'Main content' -->
+          <div id="company-info">
+            <button *ngIf = "!isFavorited && loggedIn" (click) = "addFavorites()">Add to Favorites</button>
+            <div class="company-image">
+              <img [src]="logo" alt="Company logo"/>
+            </div>
+            <div class="company-info-text">
+                  <h2>{{profile?.name}}</h2>
+              </div>
+              <div class="company-info-text" >
+                  <h4>{{profile?.ticker}}</h4>
+              </div>
+              <div class="company-info-text">
+                  Category:
+                  {{profile?.finnhubIndustry}}
+              </div>
+              <div class="company-info-text">
+                  Current Price:
+                  {{asset?.current | currency}}
+              </div>
+              <div class="company-info-text">
+                  Open:
+                  {{asset?.open | currency}}
+              </div>
+              <div class="company-info-text">
+                  High:
+                  {{asset?.high | currency}}
+              </div>
+              <div class="company-info-text">
+                  Low:
+                  {{asset?.low | currency}}
+              </div>
+              <div class="company-info-text">
+                  Market Cap:
+                  {{profile?.marketCapitalization | currency}}
+              </div>
+              <div class="company-info-text">
+                  Outstanding Shares:
+                  {{profile?.shareOutstanding | number : '1.2-2'}}
+              </div>
+              <div class="company-info-text">
+                  <a href="{{profile?.weburl}}">{{profile?.weburl}}</a>
+              </div>
+          </div>
+          <!-- <input type="URL" name="myURL" [(ngModel)]="myURL" placeholder="insert image URL here" (change)="onURLinserted() ">
+          <img [src]="imageToShow" alt="Place image title"> -->
+  </div>
+  <div id="center-content">
+
+    <asset-chart></asset-chart>
+  </div>
+  <div id="right-sidebar">
+    <app-sentiment></app-sentiment>
+    <app-asset-news-stories></app-asset-news-stories>
+  </div>
+</div>
