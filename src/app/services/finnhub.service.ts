@@ -26,6 +26,7 @@ export class FinnhubService {
   tokens: string[] = ["&token=c1ceppv48v6scqmqtk5g", "&token=c1cepq748v6scqmqtk8g", "&token=c1cf0gf48v6scqmqtr50"];
 
   api_url: string = "https://finnhub.io/api/v1";
+  backend_url: string = "http://ec2co-ecsel-1g0q6xc63i5af-1652680293.us-east-2.elb.amazonaws.com:5000/asset?ticker=";
   quoteUrl: string = "/quote?symbol=";
   candleUrl: string = "/stock/candle?symbol=";
   profileUrl: string = "/stock/profile2?symbol=";
@@ -41,7 +42,7 @@ export class FinnhubService {
   //should pull from backend api to display profile information for given asset with database/finnhub/lunarcrush being checked for info in order
   getProfile(ticker: string):Observable<companyProfile> {
     //console.log("in get quote with ticker: " + ticker);
-    return this.http.get<companyProfile>(`${this.api_url + this.profileUrl + ticker}${this.tokens[this.getToken()]}`);
+    return this.http.get<companyProfile>(`${this.backend_url + ticker}${this.tokens[this.getToken()]}`);
   }
 
   getCandle(ticker: string, resolution: string, start: string, end: string):Observable<assetCandle> {
