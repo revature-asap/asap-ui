@@ -75,8 +75,8 @@ export class AssetChartComponent implements OnInit {
     this.chartData = [];
 
     // If we've gone back too many days and haven't found data
-    if (scaleDate >= 15) {
-      alert("Too many calls to the finnhub api have been made. Try refreshing the page.");
+    if (scaleDate >= 5) {
+      // alert("Too many calls to the finnhub api have been made. Try refreshing the page.");
       this.loadingGraph = false;
       return;
     }
