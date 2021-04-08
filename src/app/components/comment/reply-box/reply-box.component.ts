@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Post } from 'src/app/models/post.model';
 import { PostsService } from 'src/app/services/posts.service';
 
@@ -10,7 +11,7 @@ import { PostsService } from 'src/app/services/posts.service';
 })
 export class ReplyBoxComponent implements OnInit {
 
-  constructor(private postService: PostsService) { }
+  constructor(private postService: PostsService, private router: Router) { }
   @Input() post!:Post;
   parentPostId!: number;
 
@@ -29,6 +30,13 @@ export class ReplyBoxComponent implements OnInit {
       this.post.assetTicker
       ).subscribe(post => {
       });
+
+      this.router.routeReuseStrategy.shouldReuseRoute = function () {
+        return false;
+      }
+      
+      this.router.onSameUrlNavigation = 'reload';
+      this.router.navigate(['']);
   }
 
 }
