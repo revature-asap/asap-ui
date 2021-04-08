@@ -8,7 +8,7 @@ import { MatSelectChange } from '@angular/material/select';
   styleUrls: ['./asset-chart-options.component.css']
 })
 export class AssetChartOptionsComponent implements OnInit {
-  @Input() selectedChartType: string = 'line';
+  @Input() selectedChartType: string = 'candlestick';
   @Output() chartTypeEvent = new EventEmitter<string>();
   @Output() timeIntervalEvent = new EventEmitter<string>();
   @Output() timescaleEvent = new EventEmitter<string>();
@@ -20,7 +20,7 @@ export class AssetChartOptionsComponent implements OnInit {
 
 
   selectedTime: string = '60';
-  selectedTimescale: string = '1d';
+  selectedTimescale: string = '7d';
 
   propagateChartType(event: MatRadioChange) {
     this.chartTypeEvent.emit(event.value);
