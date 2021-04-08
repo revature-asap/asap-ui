@@ -12,14 +12,14 @@ import { DateTimeService } from '../../services/date-time.service';
 export class AssetChartComponent implements OnInit {
   @Input() chartTitle = 'Asset Chart';
   @Input() height = 400;
-  @Input() chartType = 'line'; // default for charts
+  @Input() chartType = 'candlestick'; // default for charts
   @Input() assetTicker = 'AAPL'; // default ticker is Apple
 
   assetTimeInterval = '60';
   loadingGraph = false;
   dynamicResize = true;
   assetColumns = ['Time', 'Low', 'Open', 'Closed', 'High'];
-  chartTimescale = '12h';
+  chartTimescale = '7d';
 
   type : ChartType = ChartType.CandlestickChart;
   chartData : any[] = [];
