@@ -4,7 +4,6 @@ import { Observable, Subject } from 'rxjs'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
-import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +30,6 @@ export class PostsService {
       })
     }
 
-    console.log("Im in newpost before loginservice"+addPost);  
     this.loginService.currentUser$.subscribe(
       u => {
         addPost = {
@@ -41,10 +39,8 @@ export class PostsService {
           textContent: content,
           assetId: 1
           }
-          console.log("Im in newpost inside loginservice"+addPost);  
       });
 
-    console.log("Im in newpost after loginservice"+addPost);  
     let json = JSON.stringify(addPost);
 
     return this.http.post<any>(this.url, json, httpOptions);
@@ -61,7 +57,6 @@ export class PostsService {
       })
     }
 
-    console.log("Im in newreply before loginservice"+JSON.stringify(addPost));  
     this.loginService.currentUser$.subscribe(
       u => {
         addPost = {
@@ -72,10 +67,8 @@ export class PostsService {
           assetId: 1,
           parentPostId: parentPostId
           }
-          console.log("Im in newreply inside loginservice"+ JSON.stringify(addPost));  
       });
 
-      console.log("Im in newreply after loginservice"+JSON.stringify(addPost));  
 
     let json = JSON.stringify(addPost);
 

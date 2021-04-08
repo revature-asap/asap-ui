@@ -15,21 +15,19 @@ export class ReplyBoxComponent implements OnInit {
   parentPostId!: number;
 
   ngOnInit(): void {
-    console.log("This is the specific parentPost inside post id: " + this.post.postId)
+
     this.parentPostId = this.post.postId;
-    console.log("This is the specific parentPost inside parentpost: " + this.parentPostId)
+
   }
 
   onReply(form:NgForm) {
-    console.log("replying");
-    console.log("in the onReply before adding: " + this.parentPostId);
+
     this.postService.addReply(
       this.parentPostId,
       this.post.title,
       form.value.postContent,
       this.post.assetTicker
       ).subscribe(post => {
-        console.log("trying to console log post:" + post);
       });
   }
 

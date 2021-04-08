@@ -26,13 +26,14 @@ export class DisplayCommentsComponent implements OnInit {
   constructor(private postService: PostsService, private route: ActivatedRoute, private loginService: LoginService) { }
 
   ngOnInit(): void {
-    console.log("Made it 2: ");
+
     this.postService.getAllPosts()
       .subscribe(p=> {
         this.posts = p;
 
         for(let i=0; i < this.posts.length; i++) {
           this.posts[i].showReply = false;
+
         }
 
       });

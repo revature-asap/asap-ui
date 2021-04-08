@@ -48,11 +48,9 @@ export class NewsComponent implements OnInit {
       }
     }
     this.articlesTemp = [];
-    let counter = 0;
-    for (let i = 0; i < this.articles.length-1; i++) {
-      if(counter > this.pageSizeNum){
-        break;
-      }
+
+    for (let i = 0; i < this.pageSizeNum; i++) {
+    
       this.articlesTemp.push(this.articles[i]);
     }
   }

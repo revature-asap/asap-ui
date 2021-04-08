@@ -7,7 +7,7 @@
                 {{post.title}}
             </mat-card-title>
             <mat-card-subtitle>
-                {{post.username}} {{post.creationTimestamp | date}}
+                {{post.username}} | {{post.timeStamp | date}}
             </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
@@ -16,7 +16,7 @@
 
     </mat-card>
 
-        <div class="alignReply" *ngIf="loggedIn">
+        <div *ngIf="loggedIn">
             <app-reply-box
             [post] = "post"
             ></app-reply-box>
