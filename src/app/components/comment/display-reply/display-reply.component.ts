@@ -15,9 +15,9 @@ export class DisplayReplyComponent implements OnInit {
   constructor(private postService: PostsService) { }
 
   ngOnInit(): void {
-    console.log("this is before getting replys: " + this.post.postId);
 
     this.postService.getReplys(this.post.postId).subscribe(replys => {
+        console.log(this.post.timeStamp);
         this.replys = replys;
     })
   }

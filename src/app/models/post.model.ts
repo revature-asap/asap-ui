@@ -6,7 +6,7 @@ export class Post{
     assetTicker!: string;
     assetId: number;
     parentPostId!: number;
-    creationTimestamp!: number;
+    timeStamp!: number;
     username: string;
     showReply = false;
 
@@ -17,7 +17,7 @@ export class Post{
         this.title = post.title;
         this.assetId = post.assetId;
         this.parentPostId = post.parentPostId;
-        this.creationTimestamp = post.creationTimestamp;
+        this.timeStamp = post.timeStamp;
         this.username = post.username;
         this.showReply = false;
     }
