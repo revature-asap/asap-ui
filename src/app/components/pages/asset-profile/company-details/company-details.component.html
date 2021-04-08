@@ -2,50 +2,51 @@
   <div id="left-sidebar">
     <!-- 'Main content' -->
           <div id="company-info">
-            <button *ngIf = "!isFavorited && loggedIn" (click) = "addFavorites()">Add to Favorites</button>
             <div class="company-image">
-              <img [src]="logo" alt="Company logo"/>
+              <a href="{{profile?.weburl}}">
+                <img [src]="logo" alt="Company logo" id="logo-id"/>
+              </a>
             </div>
-            <div class="company-info-text">
+            <div class="company-info-text" style="margin-left: 4%">
                   <h2>{{profile?.name}}</h2>
               </div>
-              <div class="company-info-text" >
+              <div class="company-info-text" style="margin-left: 4%">
                   <h4>{{profile?.ticker}}</h4>
               </div>
-              <div class="company-info-text">
+              <div class="company-info-text" style="margin-left: 4%">
                   Category:
                   {{profile?.finnhubIndustry}}
               </div>
-              <div class="company-info-text">
+              <div class="company-info-text" style="margin-left: 4%">
                   Current Price:
                   {{asset?.current | currency}}
               </div>
-              <div class="company-info-text">
+              <div class="company-info-text" style="margin-left: 4%">
                   Open:
                   {{asset?.open | currency}}
               </div>
-              <div class="company-info-text">
+              <div class="company-info-text" style="margin-left: 4%">
                   High:
                   {{asset?.high | currency}}
               </div>
-              <div class="company-info-text">
+              <div class="company-info-text" style="margin-left: 4%">
                   Low:
                   {{asset?.low | currency}}
               </div>
-              <div class="company-info-text">
+              <div class="company-info-text" style="margin-left: 4%">
                   Market Cap:
                   {{profile?.marketCapitalization | currency}}
               </div>
-              <div class="company-info-text">
+              <div class="company-info-text" style="margin-left: 4%">
                   Outstanding Shares:
                   {{profile?.shareOutstanding | number : '1.2-2'}}
               </div>
-              <div class="company-info-text">
+              <div class="company-info-text" style="margin-left: 4%">
                   <a href="{{profile?.weburl}}">{{profile?.weburl}}</a>
               </div>
+            <button *ngIf = "!isFavorited && loggedIn" (click) = "addFavorites()" style="margin-left: 4%; margin-top: 3%">Add to Favorites</button>
           </div>
-          <!-- <input type="URL" name="myURL" [(ngModel)]="myURL" placeholder="insert image URL here" (change)="onURLinserted() ">
-          <img [src]="imageToShow" alt="Place image title"> -->
+
   </div>
   <div id="center-content">
 

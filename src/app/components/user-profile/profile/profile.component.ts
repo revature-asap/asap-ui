@@ -19,10 +19,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
   user!: Principal;
 
   constructor(private route: ActivatedRoute) {
+
   }
 
   ngOnInit(): void {
-
+    let watchlistButton = document.getElementById("watchlistButton");
+    watchlistButton?.click();
+    
     this.subscription = this.route.data.subscribe(
       (data: Data) =>{
         this.user = data['profile'];

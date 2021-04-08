@@ -4,23 +4,18 @@ import { Observable, Subject } from 'rxjs'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
-import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostsService {
 
-  private posts: Post[] = [];
-  private postUpdated = new Subject<Post[]>();
-  private user!: User;
   
   private url:string = "http://ec2co-ecsel-1g0q6xc63i5af-1652680293.us-east-2.elb.amazonaws.com:5000/posts";
 
   constructor(private http:HttpClient, private router:Router, private loginService:LoginService) { }
 
   getAllPosts():Observable<Post[]>{
-    console.log("Made it: 1");
     return this.http.get<Post[]>(this.url + "/-1");
 
   }
@@ -73,7 +68,6 @@ export class PostsService {
           parentPostId: parentPostId
           }
       });
-
 
 
     let json = JSON.stringify(addPost);
