@@ -15,7 +15,7 @@ import { PostsService } from 'src/app/services/posts.service';
 export class DisplayCommentsComponent implements OnInit {
   posts: Post[] = [];
   subscription: Subscription | undefined;
-  assetTicker!: string; 
+  assetTicker!: string;
   loggedIn!: boolean;
 
 

@@ -3,7 +3,7 @@
     <mat-card class="card" (click)="showReply(post)">
         <mat-card-header>
             <div mat-card-avatar [ngStyle]="userProfile" ></div>
-            <mat-card-title class="title"> 
+            <mat-card-title class="title">
                 {{post.title}}
             </mat-card-title>
             <mat-card-subtitle>
@@ -16,8 +16,8 @@
 
     </mat-card>
 
-        <div class="alignReply" *ngIf="loggedIn"> 
-            <app-reply-box 
+        <div class="alignReply" *ngIf="loggedIn">
+            <app-reply-box
             [post] = "post"
             ></app-reply-box>
         </div>
