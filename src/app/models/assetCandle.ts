@@ -19,7 +19,7 @@ export class assetCandle {
     //     this.status = "";
     // }
     constructor(candle:any) {
-        this.open = candle.c;
+        this.open = candle.o;
         this.high = candle.h;
         this.low = candle.l;
         this.close = candle.c;
