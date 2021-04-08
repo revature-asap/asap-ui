@@ -15,11 +15,11 @@ export class AssetChartComponent implements OnInit {
   @Input() chartType = 'line'; // default for charts
   @Input() assetTicker = 'AAPL'; // default ticker is Apple
 
-  assetTimeInterval = '12h';
+  assetTimeInterval = '60';
   loadingGraph = false;
   dynamicResize = true;
   assetColumns = ['Time', 'Low', 'Open', 'Closed', 'High'];
-  timescaleResolution = 'D';
+  chartTimescale = '12h';
 
   type : ChartType = ChartType.CandlestickChart;
   chartData : any[] = [];
@@ -66,8 +66,8 @@ export class AssetChartComponent implements OnInit {
   }
 
   timescaleChange = (timescale: string): void => {
-    this.timescaleResolution = timescale;
-    console.log("resolution " + this.timescaleResolution);
+    this.chartTimescale = timescale;
+    console.log("resolution " + this.chartTimescale);
     this.getChartData();
   }
 
@@ -83,20 +83,13 @@ export class AssetChartComponent implements OnInit {
 
     this.setChartType();
 
-    console.log("asset time interval = " + this.assetTimeInterval);
-    let assetTime = this.dateTimeService.getTimeInterval(scaleDate, this.assetTimeInterval);
-
+    let assetTime = this.dateTimeService.getTimeInterval(scaleDate, this.chartTimescale);
     this.loadingGraph = true;
-    let fhd = this.finnhubService.getCandle(this.assetTicker, this.timescaleResolution, assetTime.pastTime.toString(),
+    let fhd = this.finnhubService.getCandle(this.assetTicker, this.assetTimeInterval, assetTime.pastTime.toString(),
       assetTime.currentTime.toString());
 
     fhd.toPromise().then(data => {
       let acd = new assetCandle(data);
-      console.log(acd.open);
-      console.log(acd.close);
-      console.log(acd.high);
-      console.log(acd.low);
-      console.log(acd.timestamp);
 
       // If there's no data, go back a day
       if (acd.status === 'no_data') {
@@ -110,8 +103,6 @@ export class AssetChartComponent implements OnInit {
         let candlestick : Array<string | number> = [];
         let assetDate = new Date(acd.timestamp[i] * 1000);
 
-        console.log("assetdate " + assetDate.toISOString());
-
         // candlestick.push(this.dateTimeService.getFormattedDate(
         //   assetDate.getDate(),
         //   assetDate.getMonth(),
@@ -121,7 +112,6 @@ export class AssetChartComponent implements OnInit {
         //   assetDate.getSeconds()
         // ));
         candlestick.push(assetDate.toISOString());
-
         candlestick.push(acd.low[i]);
         candlestick.push(acd.open[i]);
         candlestick.push(acd.close[i]);

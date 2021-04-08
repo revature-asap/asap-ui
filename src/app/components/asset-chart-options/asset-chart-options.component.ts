@@ -15,12 +15,12 @@ export class AssetChartOptionsComponent implements OnInit {
 
 
   chartSelection: string[] = ['candlestick', 'line'];
-  timeIntervalSelection : string[] = ['15m', '30m', '1h', '3h', '6h', '12h', '1d', '2d'];
-  timescaleSelection: string[] = ['D', 'W', 'M'];
+  timeIntervalSelection : string[] = ['1','5','15','30','60', 'D', 'W','M'];
+  timescaleSelection: string[] = ['12h', '1d', '2d', '3d', '4d', '5d', '6d', '7d', '14d', '21d', '28d'];
 
 
-  selectedTime: string = '1d';
-  selectedTimescale: string = 'D';
+  selectedTime: string = '60';
+  selectedTimescale: string = '1d';
 
   propagateChartType(event: MatRadioChange) {
     this.chartTypeEvent.emit(event.value);
@@ -35,27 +35,35 @@ export class AssetChartOptionsComponent implements OnInit {
   }
 
   printTimeInterval(time: string) {
-    let unit = time[time.length-1];
-    let timeValue = time.slice(0, time.length-1);
-
-    switch(unit) {
-      case 'm':
-        return timeValue + " minute" + (parseInt(timeValue) > 1 ? "s" : "");
-      case 'h':
-        return timeValue + " hour" + (parseInt(timeValue) > 1 ? "s" : "");
+    switch(time) {
+      case '1':
+        return '1 minute';
+      case '5': 
+        return '5 minutes';
+      case '15':
+        return '15 minutes';
+      case '30':
+        return '30 minutes';
+      case '60':
+        return '1 hour';
+      case 'D':
+        return '1 day';
+      case 'W':
+        return '1 trading week';
       default:
-        return timeValue + " day" + (parseInt(timeValue) > 1 ? "s" : "");
+        return '1 trading month';
     }
   }
 
   printTimescale(time: string) {
-    switch(time) {
-      case 'D':
-        return '1 trading day';
-      case 'W':
-        return '7 trading days';
+    let unit = time[time.length-1];
+    let timeValue = time.slice(0, time.length-1);
+
+    switch(unit) {
+      case 'h':
+        return timeValue + " hour" + (parseInt(timeValue) > 1 ? "s" : "");
       default:
-        return '28 trading days';
+        return timeValue + " day" + (parseInt(timeValue) > 1 ? "s" : "");
     }
   }
 
