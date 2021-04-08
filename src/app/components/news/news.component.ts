@@ -17,6 +17,7 @@ import {companyProfile} from "../../models/companyProfile";
 })
 export class NewsComponent implements OnInit {
 
+  loggedIn = false;
   articles: Article[] = [];
   assets: string[] = [];
   articlesTemp: Article[] = [];
@@ -47,11 +48,9 @@ export class NewsComponent implements OnInit {
       }
     }
     this.articlesTemp = [];
-    let counter = 0;
-    for (let i = 0; i < this.articles.length-1; i++) {
-      if(counter > this.pageSizeNum){
-        break;
-      }
+
+    for (let i = 0; i < this.pageSizeNum; i++) {
+    
       this.articlesTemp.push(this.articles[i]);
     }
   }
@@ -104,15 +103,21 @@ export class NewsComponent implements OnInit {
     this.loginService.currentUser$.subscribe(
       async (user) => {
         if (user != null) {
+          this.loggedIn = true;
           let assetNames: string[] = [];
           let companies = await this.watchlistService.fetchUserWatchList();
-          if(companies.length > 0){
-            for (const company of companies) {
+          for (const company of companies) {
               assetNames.push(company.ticker);
-            }
-            this.setAssets(assetNames);
           }
+          let defaults = ['AAPL', 'GME', 'GOOG', 'AMZN', 'MSFT', 'TSLA'];
+          for (const ticker of defaults) {
+            if(!assetNames.includes(ticker)){
+              assetNames.push(ticker);
+            }
+          }
+          this.setAssets(assetNames);
         }else{
+          this.loggedIn = false;
           this.setAssets(['AAPL', 'GME', 'GOOG', 'AMZN', 'MSFT', 'TSLA']);
         }
         this.fetchArticles().then();

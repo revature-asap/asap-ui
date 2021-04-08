@@ -69,7 +69,7 @@ color: #000;
 
     }
     .submitBar{
-        padding-left: 40rem;
+        padding-left: 4rem;
     
     }
     #header-component-title{
@@ -81,6 +81,9 @@ color: #000;
     .route{
         font-size: 1.5rem;
     }
+    .CalvinsDivider{
+        padding-right: 4rem;
+    }
 }
 
 /* .active-pink-2 input[type=search]:focus:not([readonly]) {
@@ -88,5 +91,9 @@ color: #000;
     box-shadow: 0 1px 0 0 #05F228;
     } */
 
+.CalvinsDivider{
+    flex: 2 2 auto;
+
+}
 
 

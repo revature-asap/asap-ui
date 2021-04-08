@@ -1,26 +1,23 @@
 .card {
-    margin-bottom: 10px;
+    margin-bottom: 2em;
     display: block;
   
-    border: .2em solid rgba(0, 0, 0, 0.938);
-    border-radius: 5px;
+    box-shadow: 0 4px 4px 1px rgba(0,0,0,.2);
+    border: .2em solid #04BF68;
+    border-radius: 5em;
 
-    width: 40%;
+    width: 80%;
     height: 80%;
-    padding: 10px;
+    padding: 3em;
     white-space: nowrap;
+
+    white-space: initial;
+    overflow-x: wrap;
 }
 
 .spacer {
     margin-bottom: 1em;
 }
 
-.alignReply {
-    display: flex;
-    flex-wrap: wrap;
 
-}
 
-.replybox {
-    
-}

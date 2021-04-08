@@ -14,12 +14,22 @@
             </mat-radio-group>
         </div>
         <mat-divider class="divider-space"></mat-divider>
-        <h3>Assets from a span of time</h3>
+        <h3>Asset resolution</h3>
         <mat-form-field>
-            <mat-label>Time interval</mat-label>
+            <mat-label>timespan</mat-label>
             <mat-select [(value)]="selectedTime" (selectionChange)='propagateTimeInterval($event)'>
                 <mat-option *ngFor="let time of timeIntervalSelection" [value]="time">
                    {{printTimeInterval(time)}} 
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-divider class="divider-space"></mat-divider>
+        <h3>Chart timescale</h3>
+        <mat-form-field>
+            <mat-label>timescale</mat-label>
+            <mat-select [(value)]="selectedTimescale" (selectionChange)="propagateTimescale($event)"> 
+                <mat-option *ngFor="let timescale of timescaleSelection" [value]="timescale">
+                    {{printTimescale(timescale)}}
                 </mat-option>
             </mat-select>
         </mat-form-field>

@@ -21,7 +21,7 @@ export class TickerCardComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    if(this.change < 0) {
+    if(this.asset.change < 0) {
       this.rate = {
         'color': 'red',
       }

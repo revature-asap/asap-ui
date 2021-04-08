@@ -3,29 +3,26 @@ import { Post } from '../models/post.model';
 import { Observable, Subject } from 'rxjs'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { LoginService } from './login.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostsService {
 
-  private posts: Post[] = [];
-  private postUpdated = new Subject<Post[]>();
   
   private url:string = "http://ec2co-ecsel-1g0q6xc63i5af-1652680293.us-east-2.elb.amazonaws.com:5000/posts";
 
-  constructor(private http:HttpClient, private router:Router) { }
+  constructor(private http:HttpClient, private router:Router, private loginService:LoginService) { }
 
   getAllPosts():Observable<Post[]>{
-    console.log("Made it: 1");
     return this.http.get<Post[]>(this.url + "/-1");
 
   }
 
   newPost(title: string, content: string, tickerName: string):Observable<any>{
 
-    //Todo: covert passed in tickerName into an asset Id.
-
+    let addPost = {};
 
     const httpOptions = {                                             
       headers: new HttpHeaders({
@@ -33,14 +30,16 @@ export class PostsService {
       })
     }
 
-    let addPost = {
-      id: 0,
-      title: title,
-      authorId: 15,
-      textContent: content,
-      assetId: 1,
-      parentPostId: -1
-      }
+    this.loginService.currentUser$.subscribe(
+      u => {
+        addPost = {
+          title: title,
+          id: 0,
+          authorId: u?.id,
+          textContent: content,
+          assetId: 1
+          }
+      });
 
     let json = JSON.stringify(addPost);
 
@@ -50,20 +49,26 @@ export class PostsService {
 
   addReply(parentPostId: number, title: string, content: string, tickerName: string):Observable<any>{
 
+    let addPost = {};
+
     const httpOptions = {                                             
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     }
 
-    let addPost = {
-      title: title,
-      id: 0,
-      authorId: 15,
-      textContent: content,
-      assetId: 1,
-      parentPostId: parentPostId
-      }
+    this.loginService.currentUser$.subscribe(
+      u => {
+        addPost = {
+          title: title,
+          id: 0,
+          authorId: u?.id,
+          textContent: content,
+          assetId: 1,
+          parentPostId: parentPostId
+          }
+      });
+
 
     let json = JSON.stringify(addPost);
 

@@ -10,9 +10,9 @@ export class DateTimeService {
 
   constructor() { }
 
-  getFormattedDate(date: number, month: number,  year: number, 
+  getFormattedDate(date: number, month: number,  year: number,
     hour: number, minutes: number, seconds: number): string {
-      let localHour = ''; 
+      let localHour = '';
 
       if (hour >= 0) {
         localHour = this.hours[hour % 12];
@@ -22,11 +22,11 @@ export class DateTimeService {
         localHour = this.hours[this.hours.length - hour];
         console.log('new hours ' + hour);
       }
-      
-    return this.months[month] + " " + date + " " + year + " " + 
-        localHour + ":" + (minutes < 10 ? ("0" + minutes) : minutes) + ":" 
+
+    return this.months[month] + " " + date + " " + year + " " +
+        localHour + ":" + (minutes < 10 ? ("0" + minutes) : minutes) + ":"
         + (seconds < 10 ? ("0" + seconds) : seconds)
-        + ((hour) > 11 ? "pm" : "am"); 
+        + ((hour) > 11 ? "pm" : "am");
   }
 
   getTimeInterval(scaleDate: number = 1, timeInterval: string): any {
@@ -35,47 +35,24 @@ export class DateTimeService {
 
     previousDay.setUTCHours(12, 59, 59);
     let ct = Math.floor(previousDay.valueOf() / 1000);
+    let unitTime = timeInterval[timeInterval.length-1];
+    let time = parseInt(timeInterval.slice(0, timeInterval.length-1));
 
-    switch(timeInterval) {
-      case '5m':
+    switch(unitTime) {
+      case 'm':
         return {
           currentTime: ct,
-          pastTime: ct - (60 * 5)
+          pastTime: ct - 60 * time
         }
-      case '15m':
+      case 'h':
         return {
           currentTime: ct,
-          pastTime: ct - (60 * 15)
+          pastTime: ct - (60 * 60) * time
         }
-      case '30m':
-        return {
-          currentTime: ct,
-          pastTime: ct - (60 * 30)
-        }
-      case '1h':
-        return {
-          currentTime: ct,
-          pastTime: ct - (60 * 60)
-        }
-      case '4h':
-        return {
-          currentTime: ct,
-          pastTime: ct - (60 * 60 * 4)
-        }
-      case '6h':
-        return {
-          currentTime: ct,
-          pastTime: ct - (60 * 60 * 6)
-        }
-      case '12h':
-        return {
-          currentTime: ct,
-          pastTime: ct - (60 * 60 * 12)
-        }
-      case '1d':
+      case 'd':
         return {
             currentTime: ct,
-            pastTime: ct - (60 * 60 * 24)
+            pastTime: ct - (60 * 60 * 24) * time
         }
     }
   }

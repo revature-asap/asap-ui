@@ -1,14 +1,15 @@
 <mat-card class="card" *ngFor ="let reply of replys">
+
     <mat-card-header>
-        <!-- <div mat-card-avatar [ngStyle]="userProfile" ></div> -->
         <mat-card-title class="title"> 
             {{reply.userId}}
         </mat-card-title>
         <mat-card-subtitle>
-            {{reply.creationTimestamp}}
+            {{reply.username}} | {{reply.timeStamp | date}}
         </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
         {{reply.textContent}}
     </mat-card-content>
+
 </mat-card>

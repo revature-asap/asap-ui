@@ -11,13 +11,17 @@ export class DisplayReplyComponent implements OnInit {
   @Input() post!: Post;
   replys: Post[] = [];
 
+
   constructor(private postService: PostsService) { }
 
   ngOnInit(): void {
-    this.postService.getReplys(this.post.id).subscribe(replys => {
+
+    this.postService.getReplys(this.post.postId).subscribe(replys => {
+        console.log(this.post.timeStamp);
         this.replys = replys;
     })
   }
+
 
   
 

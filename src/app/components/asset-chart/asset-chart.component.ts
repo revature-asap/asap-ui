@@ -12,13 +12,14 @@ import { DateTimeService } from '../../services/date-time.service';
 export class AssetChartComponent implements OnInit {
   @Input() chartTitle = 'Asset Chart';
   @Input() height = 400;
-  @Input() chartType = 'candlestick'; // default for charts
+  @Input() chartType = 'line'; // default for charts
   @Input() assetTicker = 'AAPL'; // default ticker is Apple
 
-  assetTimeInterval = '5m';
+  assetTimeInterval = '60';
   loadingGraph = false;
   dynamicResize = true;
   assetColumns = ['Time', 'Low', 'Open', 'Closed', 'High'];
+  chartTimescale = '12h';
 
   type : ChartType = ChartType.CandlestickChart;
   chartData : any[] = [];
@@ -64,26 +65,33 @@ export class AssetChartComponent implements OnInit {
     this.getChartData();
   }
 
+  timescaleChange = (timescale: string): void => {
+    this.chartTimescale = timescale;
+    console.log("resolution " + this.chartTimescale);
+    this.getChartData();
+  }
+
   getChartData(scaleDate: number = 1) {
     this.chartData = [];
 
-    if (scaleDate >= 15) {
-      alert("Too many calls to the finnhub api have been made. Try refreshing the page.");
+    // If we've gone back too many days and haven't found data
+    if (scaleDate >= 5) {
+      // alert("Too many calls to the finnhub api have been made. Try refreshing the page.");
       this.loadingGraph = false;
       return;
     }
 
     this.setChartType();
 
-    let assetTime = this.dateTimeService.getTimeInterval(scaleDate, this.assetTimeInterval);
-
+    let assetTime = this.dateTimeService.getTimeInterval(scaleDate, this.chartTimescale);
     this.loadingGraph = true;
-    let fhd = this.finnhubService.getCandle(this.assetTicker, "1", assetTime.pastTime.toString(),
+    let fhd = this.finnhubService.getCandle(this.assetTicker, this.assetTimeInterval, assetTime.pastTime.toString(),
       assetTime.currentTime.toString());
 
     fhd.toPromise().then(data => {
       let acd = new assetCandle(data);
 
+      // If there's no data, go back a day
       if (acd.status === 'no_data') {
         this.getChartData(++scaleDate);
         return;
@@ -95,17 +103,15 @@ export class AssetChartComponent implements OnInit {
         let candlestick : Array<string | number> = [];
         let assetDate = new Date(acd.timestamp[i] * 1000);
 
-        console.log("assetdate " + assetDate);
-
-        candlestick.push(this.dateTimeService.getFormattedDate(
-          assetDate.getDate(),
-          assetDate.getMonth(),
-          assetDate.getFullYear(),
-          assetDate.getHours() - (assetDate.getTimezoneOffset() / 60),
-          assetDate.getMinutes(),
-          assetDate.getSeconds()
-        ));
-
+        // candlestick.push(this.dateTimeService.getFormattedDate(
+        //   assetDate.getDate(),
+        //   assetDate.getMonth(),
+        //   assetDate.getFullYear(),
+        //   assetDate.getHours() - (assetDate.getTimezoneOffset() / 60),
+        //   assetDate.getMinutes(),
+        //   assetDate.getSeconds()
+        // ));
+        candlestick.push(assetDate.toISOString());
         candlestick.push(acd.low[i]);
         candlestick.push(acd.open[i]);
         candlestick.push(acd.close[i]);

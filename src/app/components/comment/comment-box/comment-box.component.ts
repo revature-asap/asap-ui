@@ -1,7 +1,9 @@
 import { Component, AfterViewInit, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Post } from 'src/app/models/post.model';
+import { LoginService } from 'src/app/services/login.service';
 import { PostsService } from 'src/app/services/posts.service';
 
 @Component({
@@ -17,7 +19,8 @@ export class CommentBoxComponent implements OnInit {
 
   @Output() userComment = new EventEmitter();
 
-  constructor(private formBuilder: FormBuilder, private postService: PostsService) { }
+  constructor(private formBuilder: FormBuilder, private postService: PostsService, private loginService: LoginService,
+    private router:Router) { }
 
   ngOnInit(): void {
     this.createForm;
@@ -38,19 +41,17 @@ export class CommentBoxComponent implements OnInit {
         console.log("trying to console log post:" + post);
       });
 
+      form.reset();
 
-    // this.submitted = true;
-    //If form is invalid:
-    // if (this.commentForm.invalid){
-    //   return;
-    // }else{
-    //   this.commentInfo.push({
-    //     currentDate: new Date(), 
-    //     commentTxt: this.commentForm.controls['comment'].value,
-    //     replyComment: []
-    //   });
-    //   this.userComment.emit(this.commentInfo);
-    // }
+      this.router.routeReuseStrategy.shouldReuseRoute = function () {
+        return false;
+      }
+      
+      this.router.onSameUrlNavigation = 'reload';
+      this.router.navigate(['']);
+
+
+
   }
 
 }

@@ -1,14 +1,39 @@
+
+
+*/.card-header{
+  /* width: 100%; */
+  align-content: center;
+}
+
+.title{
+  /* font-size: medium; */
+  font-weight: bold;
+  /* color: #000; */
+  text-align: center;
+  /* width:100%; */
+}
+
+.subtitle {
+  /* color: #000; */
+  /* font-size: 2.5vh; */
+  font-weight: normal;
+  text-align: center;
+  /* width:100% */
+}
+
+
+
 .ticker-display {
   background-color: black;
   overscroll-behavior: contain;
   width: 20em;
   color: white;
-  font-family: cursive;
   font-size: 1.5vh;
 }
 .subtitle {
   color: white;
   font-size: 1vh;
+  align-content: center;
 }
 .inline {
   white-space: nowrap;
@@ -51,18 +76,20 @@
 
   .ticker-display {
       background-color: #f7f6f6;
-      overscroll-behavior: contain;
+      /* overscroll-behavior: contain; */
+      box-shadow: 0 4px 4px 1px rgba(0,0,0,.2);
+      border-radius: 5px;
       width: 16em;
       color: white;
+      padding: 1rem;
   }
   .title{
-    font-size: small;
-    color: #1B402E;
+    font-size: medium;
+    color: #000;
   }
   .subtitle {
-    color: #1B402E;
-    font-weight: bold;
-
+    /* font-weight: bold; */
+    color: #000;
   }
 
   .material-icons{
@@ -72,7 +99,10 @@
   }
 }
 
+.details{
+  color: blue;
+}
+
 a{
   text-decoration: none;
 }
-
