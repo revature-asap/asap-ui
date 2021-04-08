@@ -15,8 +15,9 @@ import { PostsService } from 'src/app/services/posts.service';
 export class DisplayCommentsComponent implements OnInit {
   posts: Post[] = [];
   subscription: Subscription | undefined;
-  assetTicker!: string; 
+  assetTicker!: string;
   loggedIn!: boolean;
+
 
   userProfile = {};
 
@@ -25,10 +26,16 @@ export class DisplayCommentsComponent implements OnInit {
   constructor(private postService: PostsService, private route: ActivatedRoute, private loginService: LoginService) { }
 
   ngOnInit(): void {
-    console.log("Made it 2: ");
+
     this.postService.getAllPosts()
       .subscribe(p=> {
         this.posts = p;
+
+        for(let i=0; i < this.posts.length; i++) {
+          this.posts[i].showReply = false;
+
+        }
+
       });
 
     this.loginService.currentUser$.subscribe(
@@ -55,6 +62,18 @@ export class DisplayCommentsComponent implements OnInit {
       }
     )
 
+  }
+
+  showReply(post: Post) {
+    console.log("I am CLICKING! " + post.title + " " +post.showReply);
+    if(post.showReply == true){
+      post.showReply = false;
+      return;
+    }
+    if(post.showReply == false){
+      post.showReply = true;
+      return;
+    }
   }
 
 }

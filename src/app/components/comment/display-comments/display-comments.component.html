@@ -1,12 +1,13 @@
 <div *ngFor="let post of posts">
-    <mat-card class="card">
+
+    <mat-card class="card" (click)="showReply(post)">
         <mat-card-header>
             <div mat-card-avatar [ngStyle]="userProfile" ></div>
-            <mat-card-title class="title"> 
+            <mat-card-title class="title">
                 {{post.title}}
             </mat-card-title>
             <mat-card-subtitle>
-                {{post.username}} {{post.creationTimestamp | date}}
+                {{post.username}} | {{post.timeStamp | date}}
             </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
@@ -14,11 +15,12 @@
         </mat-card-content>
 
     </mat-card>
-    <div class="alignReply" *ngIf="loggedIn">
-        <app-reply-box
-        [post] = "post"
-        ></app-reply-box>
-    </div>
+
+        <div *ngIf="loggedIn">
+            <app-reply-box
+            [post] = "post"
+            ></app-reply-box>
+        </div>
 
     <div>
         <app-display-reply
