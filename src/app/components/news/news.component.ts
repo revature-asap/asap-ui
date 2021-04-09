@@ -4,7 +4,6 @@ import {Article} from "../../models/article";
 import { PageEvent } from '@angular/material/paginator';
 import {LoginService} from "../../services/login.service";
 import {WatchListService} from "../../services/watch-list.service";
-import {companyProfile} from "../../models/companyProfile";
 
 /**
  * This component is able to display all the news articles for a given
@@ -32,8 +31,6 @@ export class NewsComponent implements OnInit {
    */
   fetchArticles = async () => {
     this.articles = [];
-    //Finnhub is annoying and requires that the date format have the 0 in front of the months and
-    // days with one character
     let to = this.todayDate();
     let from = this.weekAgo(new Date());
 
@@ -50,7 +47,6 @@ export class NewsComponent implements OnInit {
     this.articlesTemp = [];
 
     for (let i = 0; i < this.pageSizeNum; i++) {
-    
       this.articlesTemp.push(this.articles[i]);
     }
   }
@@ -124,6 +120,10 @@ export class NewsComponent implements OnInit {
       });
   }
 
+  /**
+   * Changes the page in the paginator
+   * @param pageData the data for what page the paginator is on
+   */
   onChangePage(pageData: PageEvent) {
     this.articlesTemp = [];
 

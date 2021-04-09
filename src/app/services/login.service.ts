@@ -1,9 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-// @ts-ignore
 import {map} from "rxjs/operators";
 import {Principal} from "../models/principal";
-// @ts-ignore
 import {BehaviorSubject, Observable} from "rxjs";
 import {Credentials} from "../models/credentials";
 
@@ -37,14 +35,12 @@ export class LoginService {
    */
   authenticate(un: string, pw: string): Promise<any> {
     let creds = new Credentials(un, pw);
-    // @ts-ignore
     return this.httpClient.post(this.loginUrl, creds, {
       headers: {
         'Content-Type': 'application/json'
       },
       observe: 'response'
     }).pipe(
-      // @ts-ignore
       map(resp => {
         const token = resp.headers.get('ASAP-token');
         this.setToken(token);

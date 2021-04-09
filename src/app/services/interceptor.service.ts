@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
-// @ts-ignore
 import {Observable} from "rxjs";
 import {LoginService} from "./login.service";
 

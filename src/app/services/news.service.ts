@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-// @ts-ignore
 import {map} from "rxjs/operators";
-import {Article} from "../models/article";
 
 /**
  * Service leveraged by the NewsComponent for making calls to

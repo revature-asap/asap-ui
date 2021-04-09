@@ -7,6 +7,11 @@ import {MatPaginator, PageEvent} from "@angular/material/paginator";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {MatTableDataSource} from "@angular/material/table";
 
+/**
+ * This component is for showing the news stories for a specific
+ * asset on the asset display page, which is only two articles
+ * for each page in the paginator
+ */
 @Component({
   selector: 'app-asset-news-stories',
   templateUrl: './asset-news-stories.component.html',
@@ -22,6 +27,9 @@ export class AssetNewsStoriesComponent implements OnInit {
 
   constructor(private newsService: NewsService, private router: ActivatedRoute) { }
 
+  /**
+   * Grabs the ticker upon initialization
+   */
   ngOnInit(): void {
     let assetName: string;
     assetName = this.router.snapshot.paramMap.get("tickerId") || '{}';
@@ -85,6 +93,10 @@ export class AssetNewsStoriesComponent implements OnInit {
     window.open(url, '_blank');
   }
 
+  /**
+   * Changes the page in the paginator
+   * @param pageData the data for what page the paginator is on
+   */
   onChangePage(pageData: PageEvent) {
     this.articlesTemp = [];
 

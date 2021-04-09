@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {LoginService} from "../../services/login.service";
@@ -23,8 +23,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
-              private loginService: LoginService
-  ) {
+              private loginService: LoginService) {
 
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
