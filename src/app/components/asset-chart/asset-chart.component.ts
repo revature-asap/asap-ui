@@ -10,16 +10,16 @@ import { DateTimeService } from '../../services/date-time.service';
   styleUrls: ['./asset-chart.component.css']
 })
 export class AssetChartComponent implements OnInit {
-  @Input() chartTitle = 'Asset Chart';
-  @Input() height = 400;
-  @Input() chartType = 'candlestick'; // default for charts
   @Input() assetTicker = 'AAPL'; // default ticker is Apple
-
-  assetTimeInterval = '60';
+  chartTitle = 'Asset Chart';
+  height = 400;
+  chartType = 'candlestick'; // default for charts
+  
+  assetTimeInterval = '60'; // the amount time a candlestick or a vertical set of points covers
   loadingGraph = false;
   dynamicResize = true;
-  assetColumns = ['Time', 'Low', 'Open', 'Closed', 'High'];
-  chartTimescale = '7d';
+  assetColumns = ['Time', 'Low', 'Open', 'Closed', 'High']; // labels for graph
+  chartTimescale = '7d'; // overall time the graph covers
 
   type : ChartType = ChartType.CandlestickChart;
   chartData : any[] = [];
@@ -99,18 +99,11 @@ export class AssetChartComponent implements OnInit {
 
       let length = acd.close.length;
 
+      // maps data to be in groups of 5: timestamp, low, open, closed, and high
       for (let i=0; i<length; i++) {
         let candlestick : Array<string | number> = [];
         let assetDate = new Date(acd.timestamp[i] * 1000);
 
-        // candlestick.push(this.dateTimeService.getFormattedDate(
-        //   assetDate.getDate(),
-        //   assetDate.getMonth(),
-        //   assetDate.getFullYear(),
-        //   assetDate.getHours() - (assetDate.getTimezoneOffset() / 60),
-        //   assetDate.getMinutes(),
-        //   assetDate.getSeconds()
-        // ));
         candlestick.push(assetDate.toISOString());
         candlestick.push(acd.low[i]);
         candlestick.push(acd.open[i]);
@@ -120,6 +113,7 @@ export class AssetChartComponent implements OnInit {
         this.chartData.push(candlestick);
         this.loadingGraph = false;
       }
+      
     }).catch(error => this.loadingGraph = false);
   }
 }
