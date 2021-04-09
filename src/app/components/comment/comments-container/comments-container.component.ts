@@ -12,6 +12,9 @@ export class CommentsContainerComponent implements OnInit {
 
   constructor(private loginService: LoginService) { }
 
+  /**
+   * checks if the user is logged in or not.
+   */
   ngOnInit(): void {
     this.loginService.currentUser$.subscribe(
       u => {

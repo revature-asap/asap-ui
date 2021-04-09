@@ -21,6 +21,10 @@ export class ReplyBoxComponent implements OnInit {
 
   }
 
+  /**
+   * Adds a reply and set the parent post id of the reply.
+   * @param form reply form
+   */
   onReply(form:NgForm) {
 
     this.postService.addReply(

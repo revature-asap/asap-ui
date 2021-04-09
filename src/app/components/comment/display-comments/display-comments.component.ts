@@ -15,16 +15,18 @@ import { PostsService } from 'src/app/services/posts.service';
 export class DisplayCommentsComponent implements OnInit {
   posts: Post[] = [];
   subscription: Subscription | undefined;
-  assetTicker!: string;
   loggedIn!: boolean;
 
-
   userProfile = {};
-
   user!: User;
 
   constructor(private postService: PostsService, private route: ActivatedRoute, private loginService: LoginService) { }
 
+  /**
+   * Displays all the posts and set their showReply intially to false. Also checks if the user
+   * is log in so that they can see a reply box if they click post. This also gets the current user
+   * information.
+   */
   ngOnInit(): void {
 
     this.postService.getAllPosts()
@@ -49,7 +51,6 @@ export class DisplayCommentsComponent implements OnInit {
 
     this.subscription = this.route.data.subscribe(
       (data: Data) =>{
-        console.log("im here: " + data)
         this.user = data['profile'];
         this.userProfile = {
           'background' : 'url(assets/images/default.png)',
@@ -64,8 +65,11 @@ export class DisplayCommentsComponent implements OnInit {
 
   }
 
+  /**
+   * shows/unshows the reply box if a user clicks on a post
+   */
   showReply(post: Post) {
-    console.log("I am CLICKING! " + post.title + " " +post.showReply);
+
     if(post.showReply == true){
       post.showReply = false;
       return;

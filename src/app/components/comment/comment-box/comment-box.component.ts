@@ -27,19 +27,21 @@ export class CommentBoxComponent implements OnInit {
   }
 
   createForm(){
-    
+
   }
 
+  /**
+   * Get the value from the form(post) and send it to the post service to add
+   * a new post in the database.
+   * @param form form for a post
+   */
   onSubmit(form:NgForm){
-    console.log("I need this for posting new post: " + form.value.postTitle);
 
     this.postService.newPost(
       form.value.postTitle,
       form.value.postContent,
       form.value.assetTicker,
-      ).subscribe(post => {
-        console.log("trying to console log post:" + post);
-      });
+      )
 
       form.reset();
 

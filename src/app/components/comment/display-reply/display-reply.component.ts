@@ -14,10 +14,12 @@ export class DisplayReplyComponent implements OnInit {
 
   constructor(private postService: PostsService) { }
 
+  /**
+   * Gets all the replys for a single post
+   */
   ngOnInit(): void {
 
     this.postService.getReplys(this.post.postId).subscribe(replys => {
-        console.log(this.post.timeStamp);
         this.replys = replys;
     })
   }
