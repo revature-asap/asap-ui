@@ -9,6 +9,10 @@ import {Router} from "@angular/router";
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
+/**
+ * the component for showing a registeration page connected to registration service to pass the 
+ * input values 
+ */
 export class RegistrationComponent implements OnInit {
   newUser: User = {
     username: '',
@@ -26,6 +30,10 @@ export class RegistrationComponent implements OnInit {
 
   }
 
+  /**
+   * this method is what is called on the Register User button
+   * @returns 
+   */
   register() {
     if (!this.newUser.username || !this.newUser.password || !this.newUser.firstName ||
       !this.newUser.lastName || !this.newUser.email)  {
@@ -64,6 +72,9 @@ export class RegistrationComponent implements OnInit {
   selector: 'register-email-confirmation-dialog',
   templateUrl: 'register.email.confirmation.dialog.html'
 })
+/**
+ * a TS for a our register email component
+ */
 export class RegisterEmailConfirmationDialog {
   constructor(public dialogRef: MatDialogRef<RegisterEmailConfirmationDialog>) {}
 
