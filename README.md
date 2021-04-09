@@ -72,7 +72,14 @@ All service files will be hitting the hosted project. In order to hit your own h
 
 ## Usage
 
-> Here, you instruct other people on how to use your project after they’ve installed it. This would also be a good place to include screenshots of your project in action.
+Once you run `ng serve` or `npm start` the front end will spin up on `localhost:4200`, which you can hit with any broswer you like. Once the page loads, you will be able to navigate through the website:
+
+- The first page is the `home` page, which has some base assets and some general comments made by a few of the users, as well as you can see news about the assets across the top of the page
+- When a ticker is clicked, it will take you to the `companyDisplay` page, which if you are logged in, allows you to add the asset to your watchlist
+- If you navigate to the `login` page, you can login with existing credentials or naviagte to the `register` page
+- On the `register` page, you can sign up for a new account. You must use an email you have access too, in order to confirm your account
+- When logged in, you can navigate to the `profile` page, which shows some basic information as well as the watchlist
+- Clicking an asset in the watchlist will create a drop down menu showing basic information, which when the logo is clicked, you are directed to the `companyDisplay` page
 
 ## Contributors
 
