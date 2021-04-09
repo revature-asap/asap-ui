@@ -6,9 +6,9 @@ import { LoginService } from 'src/app/services/login.service';
 import { WatchListService } from 'src/app/services/watch-list.service';
 import { FinnhubService } from '../../../../services/finnhub.service';
 import { ActivatedRoute } from '@angular/router';
-import { AssetCandleChartComponent } from 'src/app/components/asset-candle-chart/asset-candle-chart.component';
 
-
+//Component used as the source or top level component for the asset display page that appears after navigating to a particular stock either through the search bar or 
+//by clicking on a card on the main page.
 @Component({
   selector: 'app-company-details',
   templateUrl: './company-details.component.html',
@@ -32,12 +32,11 @@ export class CompanyDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.checkLoggedIn();
-
-
     this.ticker = this._Activatedroute.snapshot.paramMap.get("tickerId") || '{}';
-    console.log("TICKER in company details component: " + this.ticker);
 
+    //get profile information from backend api 
     this.finnhub.getProfile(this.ticker!).subscribe((profile: companyProfile) => {
       this.profile = profile;
       this.setLogo();
@@ -45,65 +44,45 @@ export class CompanyDetailsComponent implements OnInit {
         this.setWatchList();
         this.checkIfFavorited();
       }
-      console.log("profile returned from finnhb service: " + JSON.stringify(this.profile));
     });
 
+    /** The following call series checks finnhub for a ticker then goes to lunar crush to overwrite the returns 
+     * --aka we provide information for cryptos over regular stocks if a ticker matches
+     */
+    //get up to date stock financial data directly from a call to finnhub in the finnhub.service in our angular application
     this.finnhub.getQuote(this.ticker!).subscribe((quote: assetQuote) => {
-        // this.asset.open = 0;
-        this.asset = new assetQuote(quote);
-        // console.log("ASSET:" + JSON.stringify(this.asset));
-        this.finnhub.getLunarCrushQuote(this.ticker!).subscribe((quote: any) => {
-        // console.log("got quote from lunar crush- " + JSON.stringify(quote));
-        // console.log("getting coin price: " + quote.data[0].price);
-        // console.log("getting close from lunar crush: " + JSON.stringify(quote.data[0].timeSeries[0].close));
+      this.asset = new assetQuote(quote);
+      //attempt to call lunar crush to override the data displayed for the stock as a regular stock if any was returned
+      this.finnhub.getLunarCrushQuote(this.ticker!).subscribe((quote: any) => {
         if (!(quote.message == "Internal server error")) {
           this.mapLunarCrushQuote(quote);
-          // console.log("got quote for lunar crush display- " + JSON.stringify(this.asset));
         }
       });
     });
 
-
-    // this.finnhub.getLunarCrushQuote(this.ticker!).subscribe((quote: any) => {
-    //   console.log("got quote from lunar crush- " + JSON.stringify(quote));
-    //   console.log("getting coin price: " + quote.data[0].price);
-    //   console.log("getting close from lunar crush: " + JSON.stringify(quote.data[0].timeSeries[0].close));
-    //   this.mapLunarCrushQuote(quote);
-    //   console.log("got quote for lunar crush display- " + JSON.stringify(this.asset));
-    // });
-
-
-    //get lunar crush quote
-    //would have to do some mappings probs
-
   }
 
-
-  mapLunarCrushQuote(newQuote: any)  {
-    console.log("mapping lunar crush quote: " + JSON.stringify(newQuote));
-    console.log("mapping lunar crush open data: " + newQuote.data[0].open);
-
+  //map return from lunar crush to our asset display 
+  mapLunarCrushQuote(newQuote: any) {
     this.asset.open = newQuote.data[0].open;
-    console.log("mapped open: " + this.asset.open);
     this.asset.high = newQuote.data[0].high;
     this.asset.low = newQuote.data[0].low;
     this.asset.current = newQuote.data[0].price;
     this.asset.previousClose = newQuote.data[0].timeSeries[0].close;
     this.asset.companyName = newQuote.data[0].name;
     this.asset.companyTicker = newQuote.data[0].symbol;
-    console.log("asset mapped: " + JSON.stringify(this.asset));
   }
 
+  //get the logo from our clearbit api
   setLogo() {
     let strippedUrl = this.profile?.weburl;
-    console.log("stripped url from profile: " + strippedUrl);
     strippedUrl = strippedUrl.replace('https://', '');
     strippedUrl = strippedUrl.replace('www.', '');
     strippedUrl = strippedUrl.replace('/en-us', '');
     this.logo = this.clearbitUrl + strippedUrl;
-    console.log("setting logo in company details component to: " + this.logo);
   }
 
+  //check if a user is logged in for the logged in display options (favorites button)
   checkLoggedIn() {
     this.loginService.currentUser$.subscribe(
       user => {
@@ -113,31 +92,27 @@ export class CompanyDetailsComponent implements OnInit {
 
   }
 
+  //setting watch list for the company details
   setWatchList() {
     console.log("Set watch list");
     this.watchList = this.watchListService.getCompanyProfile();
-
     if (this.watchList == null) {
       this.watchListService.fetchUserWatchList().then();
       this.watchList = this.watchListService.getCompanyProfile();
     }
   }
 
+  //check to see if a stock is already favorited by a checked in user to determine whether to display favorite button
   checkIfFavorited() {
-    console.log("Inside the checkifFavorited");
     for (let i = 0; i < this.watchList.length; i++) {
       if (this.watchList[i].ticker == this.profile.ticker) {
-        console.log(this.watchList[i].ticker);
         this.isFavorited = true;
       }
     }
-
-    console.log("Favorite boolean is " + this.isFavorited);
-
   }
 
+  //add a stock to the users favorite list after a click on the favorites button
   addFavorites(): void {
-    console.log("IM in addfavorite Method!");
     this.watchListService.insertFavorite(this.profile);
     this.isFavorited = true;
     this.watchList = this.watchListService.getCompanyProfile();

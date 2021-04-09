@@ -16,7 +16,6 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {InterceptorService} from "./services/interceptor.service";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import { AssetDisplayComponent } from './components/asset-display/asset-display.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import {RegisterEmailConfirmationDialog, RegistrationComponent } from './components/registration/registration.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
@@ -36,8 +35,6 @@ import { CommentBoxComponent } from './components/comment/comment-box/comment-bo
 import { CommentsContainerComponent } from './components/comment/comments-container/comments-container.component';
 import { DisplayCommentsComponent } from './components/comment/display-comments/display-comments.component';
 import { ReplyBoxComponent } from './components/comment/reply-box/reply-box.component';
-import { AssetCandleChartComponent } from './components/asset-candle-chart/asset-candle-chart.component';
-// import { AssetCompanyProfileComponent } from './components/asset-company-profile/asset-company-profile.component';
 import { AssetChartComponent } from './components/asset-chart/asset-chart.component';
 import { GoogleChartsModule } from 'angular-google-charts';
 import { AssetChartOptionsComponent } from './components/asset-chart-options/asset-chart-options.component';
@@ -55,7 +52,6 @@ import {DisplayReplyComponent} from "./components/comment/display-reply/display-
     AppComponent,
     SentimentComponent,
     LoginComponent,
-    AssetDisplayComponent,
     NavbarComponent,
     RegistrationComponent,
     ProfileComponent,
@@ -68,8 +64,6 @@ import {DisplayReplyComponent} from "./components/comment/display-reply/display-
     CommentBoxComponent,
     CommentsContainerComponent,
     DisplayCommentsComponent,
-    AssetCandleChartComponent,
-    // AssetCompanyProfileComponent,
     AssetChartComponent,
     AssetChartOptionsComponent,
     CompanyDetailsComponent,
