@@ -1,6 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
-import { Tile } from 'src/app/models/Tile';
+import { Component, OnInit} from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -9,39 +7,22 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  comments!: string;
-  count!: number;
-
-
-  loggedIn!:boolean;
-  tiles: Tile[] = [
-    {text: 'One', cols: 1, rows: 1, color: 'lightblue'},
-    {text: 'Two', cols: 1, rows: 1, color: 'lightgreen'},
-    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'}
-  ];
+  // Variables
+  loggedIn!:boolean; // Boolean used to for *ngIf to determine which tags show in HTML
+    // Angular's version of dependency injection by including an access modifier, parameter name, and parameter type
   constructor(private loginService: LoginService) { }
-
+  // Code to run when component is created
   ngOnInit(): void {
+    // Subscribe to currentUser$ and check if a user exists or is null. If they exist,
+    // loggedIn is true, else loggedIn is false
     this.loginService.currentUser$.subscribe(
       user => {
         if (user != null) {
           this.loggedIn = true;
-        } else {
+        } // if 
+        else {
           this.loggedIn = false;
-        }
-      })
-    this.count = 0;
-  }
-
-  receiveComment($event: string){
-    this.comments = $event;
-    this.count = this.comments.length;
-    console.log(this.comments.length);
-  }
-
-  receiveCount($event: string){
-    this.comments = $event;
-    this.count = this.comments.length
-  }
-
-}
+        }// else
+      });
+  } // ngOnInit()
+} // class HomeComponent

@@ -1,4 +1,3 @@
-
 <mat-toolbar id="headerToolBar">
   <mat-toolbar-row>
     <button type= "button" aria-label="Toggle sidenav" mat-icon-button (click) = "toggleDrawer()" *ngIf = "mobileNavigation">
@@ -22,7 +21,6 @@
         <a class = "route accentColor" mat-button [routerLink] = "puRoute.routeLink">{{puRoute.routeName}}</a>  
       </span>
     </div>
-  
     <div *ngIf = "currentUser && !mobileNavigation">
       <span *ngFor = "let prRoute of privateRoutes">
         <mat-icon class = "icon" aria-hidden="false" aria-label = "Example home icon">{{prRoute.routeSymbol}}</mat-icon>

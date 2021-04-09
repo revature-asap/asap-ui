@@ -85,12 +85,6 @@ color: #000;
         padding-right: 4rem;
     }
 }
-
-/* .active-pink-2 input[type=search]:focus:not([readonly]) {
-    border-bottom: 1px solid #05F228;
-    box-shadow: 0 1px 0 0 #05F228;
-    } */
-
 .CalvinsDivider{
     flex: 2 2 auto;
 
